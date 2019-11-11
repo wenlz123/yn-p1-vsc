@@ -1,0 +1,4557 @@
+{
+  "yn-button": {
+    "name": "yn-button",
+    "displayName": "按钮",
+    "version": "1.0.0",
+    "desc": "按钮用于开始一个即时操作。",
+    "properties": {
+      "disabled": {
+        "displayName": "不可用状态",
+        "desc": "按钮失效状态",
+        "type": "boolean",
+        "value": false
+      },
+      "ghost": {
+        "displayName": "幽灵按钮",
+        "desc": "幽灵属性，使按钮背景透明",
+        "type": "boolean",
+        "value": false
+      },
+      "htmlType": {
+        "displayName": "设置原生类型",
+        "desc": "设置 button 原生的 type 值，可选值请参考 HTML 标准",
+        "type": "string",
+        "value": "button"
+      },
+      "icon": {
+        "displayName": "图标按钮",
+        "desc": "设置按钮的图标类型",
+        "type": "string"
+      },
+      "loading": {
+        "displayName": "加载中状态",
+        "desc": "设置按钮载入状态，如果值是对象类型，格式为 {delay:number}",
+        "type": "boolean|object",
+        "value": false
+      },
+      "shape": {
+        "displayName": "按钮形状",
+        "desc": "设置按钮形状，可选值为 circle 或者不设",
+        "type": "string"
+      },
+      "size": {
+        "displayName": "按钮尺寸",
+        "desc": "设置按钮大小，可选值为 small large 或者不设",
+        "type": "string",
+        "value": "default"
+      },
+      "type": {
+        "displayName": "按钮类型",
+        "desc": "设置按钮类型，可选值为 primary dashed danger link 或者不设",
+        "type": "string",
+        "value": "default"
+      },
+      "block": {
+        "displayName": "block按钮",
+        "desc": "将按钮宽度调整为其父宽度的选项",
+        "type": "boolean",
+        "value": false
+      }
+    },
+    "events": {
+      "click": {
+        "displayName": "点击",
+        "desc": "点击按钮时的回调",
+        "data": {
+          "desc": "事件",
+          "type": "object"
+        }
+      }
+    },
+    "methods": {}
+  },
+  "yn-button-group": {
+    "name": "yn-button-group",
+    "displayName": "按钮组合",
+    "version": "1.0.0",
+    "desc": "按钮组合",
+    "properties": {},
+    "slots": {},
+    "events": {},
+    "methods": {}
+  },
+  "yn-icon": {
+    "name": "yn-icon",
+    "displayName": "图标",
+    "version": "1.0.0",
+    "desc": "语义化的矢量图形。",
+    "properties": {
+      "type": {
+        "displayName": "图标类型",
+        "desc": "图标类型。遵循图标的命名规范",
+        "type": "string"
+      },
+      "style": {
+        "displayName": "设置图标的样式",
+        "desc": "设置图标的样式，例如 fontSize 和 color",
+        "typeDesc": "CSSProperties",
+        "type": "object"
+      },
+      "theme": {
+        "displayName": "图标主题风格",
+        "desc": "图标主题风格。可选实心、描线、双色等主题风格，适用于官方图标",
+        "typeDesc": "'filled' | 'outlined' | 'twoTone'",
+        "type": "string",
+        "value": "outlined"
+      },
+      "spin": {
+        "displayName": "旋转动画",
+        "desc": "是否有旋转动画",
+        "type": "boolean",
+        "value": false
+      },
+      "rotate": {
+        "displayName": "图标旋转角度",
+        "desc": "图标旋转角度（1.4.0 后新增，IE9 无效）",
+        "type": "number"
+      },
+      "component": {
+        "displayName": "控制如何渲染图标",
+        "desc": "控制如何渲染图标，通常是一个渲染根标签为 <svg> 的 Vue 组件，会使 type 属性失效",
+        "typeDesc": "ComponentType<CustomIconComponentProps>",
+        "type": "object"
+      },
+      "twoToneColor": {
+        "displayName": "仅适用双色图标",
+        "desc": "仅适用双色图标。设置双色图标的主要颜色",
+        "typeDesc": "string (十六进制颜色)",
+        "type": "string"
+      }
+    },
+    "methods": {}
+  },
+  "yn-cube-grid": {
+    "name": "yn-cube-grid",
+    "displayName": "元年多维表",
+    "version": "1.0.0",
+    "desc": "元年多维数据表格",
+    "properties": {
+      "data": {
+        "displayName": "data",
+        "desc": "该CubeGrid对应的数据提供方实例，该提供方必须是继承DataGridDataProvider的子类并实现其接口。",
+        "type": "object",
+        "value": null
+      },
+      "cell": {
+        "displayName": "cell",
+        "desc": "单元格相关的一系列属性，用于对cell格子进行自定义配置。格式为 -- {className?: K, renderer?: Function, style?: K}",
+        "type": "object"
+      },
+      "header": {
+        "displayName": "header",
+        "desc": "Header格子相关的一系列属性，用于对header格子进行自定义配置。格式为 -- {column?: {className? K, renderer?: Function, resizeable?: K, style? K}, row?: {className? K, renderer?: Function, resizeable?: K, style? K}}",
+        "type": "object"
+      },
+      "scroll-policy": {
+        "displayName": "scroll-policy",
+        "desc": "滚动的策略配置，默认是选用virtual scrolling的方式，这里有两种选择，一种是virtual scrolling, value是'scroll'，另外一种是full scrolling，value是'loadOnMoreScroll'",
+        "type": "string",
+        "value": "scroll"
+      },
+      "scroll-policy-options": {
+        "displayName": "scroll-policy-options",
+        "desc": "关于单元格scroll policy的子属性，其中包括maxRowCount跟maxColumnCount，该属性只用于full scrolling的情况。",
+        "type": "object"
+      },
+      "scroll-position": {
+        "displayName": "scroll-position",
+        "desc": "CubeGrid加载时，初始化scroll的位置，格式为 -- {x?: K, y?: K, rowIndex?: K, columnIndex?: K, rowKey?: K, columnKey?: K, offsetX?: K, offsetY?: K}，缺省为 {x: 0, y: 0}",
+        "type": "object"
+      },
+      "selection": {
+        "displayName": "selection",
+        "desc": "CubeGrid加载时，初始化选中区域，格式为 -- {startIndex?: {row: number, column?: number}, startKey?:{row: K, column?: K}, endIndex?: {row: number, column?: number}, endKey?:{row: K, column?: K}}，缺省为 []",
+        "type": "array"
+      },
+      "selection-mode": {
+        "displayName": "selection-mode",
+        "desc": "配置header跟cell部分的单元格是否可以单选或者多选或者不选，格式为 -- {cell?: [none|single|multiple], row?: [none|single|multiple]}，缺省为全部支持多选",
+        "type": "object"
+      },
+      "listener": {
+        "displayName": "listener",
+        "desc": "处理选中后鼠标右击单元格或者header部分callback，afterSelectionAndRightClickHeader和afterSelectionAndRightClickCell",
+        "type": "object"
+      }
+    },
+    "slots": {
+      "[template]": {
+        "displayName": "[template]",
+        "desc": "[template]代表所有的slot都是动态的，是由后端数据传出的，后端传来某个fullpath的维度value可以设置相应的slot。"
+      }
+    },
+    "events": {
+      "resize": {
+        "displayName": "resize",
+        "desc": "当cubegrid单元格大小发生变化时触发。"
+      },
+      "scroll": {
+        "displayName": "scroll",
+        "desc": "当cubegrid发生滚动时触发。"
+      }
+    },
+    "methods": {
+      "refresh": {
+        "desc": "更新数据，刷新cubegrid",
+        "displayName": "刷新",
+        "visible": true,
+        "args": []
+      }
+    }
+  },
+  "yn-cube-pilot": {
+    "name": "yn-cube-pilot",
+    "displayName": "pilot表组件",
+    "version": "1.0.0",
+    "desc": "支持复杂pilot表的基础excel操作",
+    "properties": {
+      "settings": {
+        "displayName": "参数设置",
+        "desc": "cube pilot的所有属性配置均在settings里面完成",
+        "type": "object"
+      }
+    },
+    "slots": {},
+    "events": {},
+    "methods": {}
+  },
+  "yn-row": {
+    "name": "yn-row",
+    "displayName": "Row",
+    "version": "1.0.0",
+    "desc": "Yn Row",
+    "properties": {
+      "align": {
+        "displayName": "对其方式",
+        "description": "flex 布局下的垂直对齐方式：top middle bottom",
+        "type": "string",
+        "value": "top"
+      },
+      "gutter": {
+        "displayName": "栅格间隔",
+        "description": "栅格间隔，可以写成像素值或支持响应式的对象写法 { sm: 16, md: 24}",
+        "type": "number|object",
+        "value": 0
+      },
+      "justify": {
+        "displayName": "水平排列方式",
+        "description": "flex 布局下的水平排列方式：start end center space-around space-between",
+        "type": "string",
+        "value": "start"
+      },
+      "type": {
+        "displayName": "布局模式",
+        "description": "布局模式，可选 flex，现代浏览器 下有效",
+        "type": "string"
+      }
+    },
+    "slots": {},
+    "events": {},
+    "methods": {}
+  },
+  "yn-col": {
+    "name": "yn-col",
+    "displayName": "Col",
+    "version": "1.0.0",
+    "desc": "Yn Col",
+    "properties": {
+      "offset": {
+        "displayName": "栅格左侧的间隔格数",
+        "description": "栅格左侧的间隔格数，间隔内不可以有栅格",
+        "type": "number",
+        "value": 0
+      },
+      "order": {
+        "displayName": "@",
+        "description": "栅格顺序，flex 布局模式下有效",
+        "type": "number",
+        "value": 0
+      },
+      "pull": {
+        "displayName": "@",
+        "description": "栅格向左移动格数",
+        "type": "number",
+        "value": 0
+      },
+      "push": {
+        "displayName": "@",
+        "description": "栅格向右移动格数",
+        "type": "number",
+        "value": 0
+      },
+      "span": {
+        "displayName": "@",
+        "description": "栅格占位格数，为 0 时相当于 display: none",
+        "type": "number",
+        "value": 0
+      },
+      "xs": {
+        "displayName": "@",
+        "description": "<576px 响应式栅格，可为栅格数或一个包含其他属性的对象",
+        "type": "number|object"
+      },
+      "sm": {
+        "displayName": "@",
+        "description": "≥576px 响应式栅格，可为栅格数或一个包含其他属性的对象",
+        "type": "number|object"
+      },
+      "md": {
+        "displayName": "@",
+        "description": "≥768px 响应式栅格，可为栅格数或一个包含其他属性的对象",
+        "type": "number|object"
+      },
+      "lg": {
+        "displayName": "@",
+        "description": "≥992px 响应式栅格，可为栅格数或一个包含其他属性的对象",
+        "type": "number|object"
+      },
+      "xl": {
+        "displayName": "@",
+        "description": "≥1200px 响应式栅格，可为栅格数或一个包含其他属性的对象",
+        "type": "number|object"
+      },
+      "xxl": {
+        "displayName": "@",
+        "description": "≥1600px 响应式栅格，可为栅格数或一个包含其他属性的对象",
+        "type": "number|object"
+      }
+    },
+    "slots": {},
+    "events": {},
+    "methods": {}
+  },
+  "yn-layout": {
+    "name": "yn-layout",
+    "displayName": "布局",
+    "version": "1.0.0",
+    "desc": "协助进行页面级整体布局。",
+    "properties": {
+      "class": {
+        "displayName": "容器 class",
+        "desc": "容器 class",
+        "type": "string"
+      },
+      "style": {
+        "displayName": "指定样式",
+        "desc": "指定样式",
+        "type": "object"
+      },
+      "hasSider": {
+        "displayName": "子元素里有 Sider",
+        "desc": "表示子元素里有 Sider，一般不用指定。可用于服务端渲染时避免样式闪动",
+        "type": "boolean"
+      }
+    },
+    "methods": {}
+  },
+  "yn-layout-sider": {
+    "name": "yn-layout-sider",
+    "displayName": "侧边栏。",
+    "version": "1.0.0",
+    "desc": "侧边栏。",
+    "properties": {
+      "breakpoint": {
+        "displayName": "触发响应式布局的断点",
+        "desc": "触发响应式布局的断点",
+        "typeDesc": "Enum { 'xs', 'sm', 'md', 'lg', 'xl', 'xxl' }",
+        "type": "string"
+      },
+      "class": {
+        "displayName": "容器 class",
+        "desc": "容器 class",
+        "type": "string"
+      },
+      "collapsed": {
+        "displayName": "当前收起状态",
+        "desc": "当前收起状态",
+        "type": "boolean",
+        "v-model": true
+      },
+      "collapsedWidth": {
+        "displayName": "收缩宽度",
+        "desc": "收缩宽度，设置为 0 会出现特殊 trigger",
+        "type": "number",
+        "value": 80
+      },
+      "collapsible": {
+        "displayName": "是否可收起",
+        "desc": "是否可收起",
+        "type": "boolean",
+        "value": false
+      },
+      "defaultCollapsed": {
+        "displayName": "是否默认收起",
+        "desc": "是否默认收起",
+        "type": "boolean",
+        "value": false
+      },
+      "reverseArrow": {
+        "displayName": "翻转折叠提示箭头的方向",
+        "desc": "翻转折叠提示箭头的方向，当 Sider 在右边时可以使用",
+        "type": "boolean",
+        "value": false
+      },
+      "style": {
+        "displayName": "指定样式",
+        "desc": "指定样式",
+        "type": "object|string"
+      },
+      "theme": {
+        "displayName": "主题颜色",
+        "desc": "主题颜色",
+        "typeDesc": "string: light dark",
+        "type": "string",
+        "value": "dark"
+      },
+      "trigger": {
+        "displayName": "自定义 trigger",
+        "desc": "自定义 trigger，设置为 null 时隐藏 trigger",
+        "type": "string"
+      },
+      "width": {
+        "displayName": "宽度",
+        "desc": "宽度",
+        "type": "number|string",
+        "value": 200
+      }
+    },
+    "slots": {
+      "trigger": {
+        "displayName": "自定义 trigger",
+        "desc": "自定义 trigger，设置为 null 时隐藏 trigger"
+      }
+    },
+    "events": {
+      "collapse": {
+        "displayName": "展开-收起时的回调函数",
+        "desc": "展开-收起时的回调函数，有点击 trigger 以及响应式反馈两种方式可以触发",
+        "argsDesc": "(collapsed, type) => {}"
+      },
+      "breakpoint": {
+        "displayName": "触发响应式布局断点时的回调",
+        "desc": "触发响应式布局断点时的回调",
+        "argsDesc": "(broken) => {}"
+      }
+    },
+    "methods": {}
+  },
+  "yn-affix": {
+    "name": "yn-affix",
+    "displayName": "固钉",
+    "version": "1.0.0",
+    "desc": "将页面元素钉在可视范围。",
+    "properties": {
+      "offsetBottom": {
+        "displayName": "距离窗口底部达到指定偏移量后触发",
+        "desc": "距离窗口底部达到指定偏移量后触发",
+        "type": "number"
+      },
+      "offsetTop": {
+        "displayName": "距离窗口顶部达到指定偏移量后触发",
+        "desc": "距离窗口顶部达到指定偏移量后触发",
+        "type": "number"
+      },
+      "target": {
+        "displayName": "设置 Affix 需要监听其滚动事件的元素",
+        "desc": "设置 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数",
+        "typeDesc": "类型是：() => HTMLElement, 默认值是：() => window",
+        "type": "function"
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "固定状态改变时触发的回调函数",
+        "desc": "固定状态改变时触发的回调函数",
+        "argsDesc": "Function(affixed)"
+      }
+    },
+    "methods": {}
+  },
+  "yn-breadcrumb": {
+    "name": "yn-breadcrumb",
+    "displayName": "@",
+    "version": "1.0.0",
+    "desc": "显示当前页面在系统层级结构中的位置，并能向上返回。",
+    "properties": {
+      "itemRender": {
+        "displayName": "自定义链接函数",
+        "desc": "自定义链接函数，和 vue-router 配置使用， 也可使用 slot='itemRender' 和 slot-scope='props'",
+        "type": "function",
+        "typeDesc": "({route, params, routes, paths}) => vNode"
+      },
+      "params": {
+        "displayName": "路由的参数",
+        "desc": "路由的参数",
+        "type": "object"
+      },
+      "routes": {
+        "displayName": "router 的路由栈信息",
+        "desc": "router 的路由栈信息",
+        "type": "array",
+        "typeDesc": "object[]"
+      },
+      "separator": {
+        "displayName": "分隔符自定义",
+        "desc": "分隔符自定义",
+        "type": "string"
+      }
+    },
+    "slots": {
+      "separator": {
+        "displayName": "分隔符自定义",
+        "desc": "分隔符自定义"
+      }
+    },
+    "events": {},
+    "methods": {}
+  },
+  "yn-breadcrumb-item": {
+    "name": "yn-breadcrumb-item",
+    "displayName": "面包屑项",
+    "version": "1.0.0",
+    "desc": "面包屑项",
+    "properties": {
+      "href": {
+        "displayName": "链接当前页面",
+        "desc": "指定超链接目标的URL"
+      },
+      "slots": {},
+      "events": {},
+      "methods": {}
+    }
+  },
+  "yn-dropdown": {
+    "name": "yn-dropdown",
+    "displayName": "下拉菜单",
+    "version": "1.0.0",
+    "desc": "向下弹出的列表。",
+    "properties": {
+      "disabled": {
+        "displayName": "禁用菜单",
+        "desc": "菜单是否禁用",
+        "type": "boolean"
+      },
+      "getPopupContainer": {
+        "displayName": "菜单渲染父节点。",
+        "desc": "菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位。Function(triggerNode), 默认值() => document.body",
+        "type": "function",
+        "typeDesc": "Function(triggerNode)",
+        "valueDesc": "() => document.body"
+      },
+      "overlayClassName": {
+        "displayName": "下拉根元素的类名",
+        "desc": "下拉根元素的类名称",
+        "type": "string"
+      },
+      "overlayStyle": {
+        "displayName": "下拉根元素的样式",
+        "desc": "下拉根元素的样式",
+        "type": "object"
+      },
+      "placement": {
+        "displayName": "菜单弹出位置",
+        "desc": "菜单弹出位置：bottomLeft bottomCenter bottomRight topLeft topCenter topRight",
+        "type": "string",
+        "value": "bottomLeft"
+      },
+      "trigger": {
+        "displayName": "触发下拉的行为",
+        "desc": "触发下拉的行为, Array<click|hover|contextmenu>",
+        "typeDesc": "Array<click|hover|contextmenu>, 默认值['hover']",
+        "type": "array",
+        "value": [
+          "hover"
+        ]
+      },
+      "visible": {
+        "displayName": "显示菜单",
+        "desc": "菜单是否显示",
+        "type": "boolean",
+        "v-model": true
+      }
+    },
+    "slots": {
+      "overlay": {
+        "displayName": "菜单",
+        "desc": "菜单。类型为 Menu",
+        "args": []
+      }
+    },
+    "events": {
+      "visibleChange": {
+        "displayName": "菜单显示状态改变时调用",
+        "desc": "菜单显示状态改变时调用，参数为 visible",
+        "argsDesc": "function(visible)"
+      }
+    },
+    "methods": {}
+  },
+  "yn-dropdown-button": {
+    "name": "yn-dropdown-button",
+    "displayName": "带下拉框的按钮",
+    "version": "1.0.0",
+    "desc": "左边是按钮，右边是额外的相关功能菜单。",
+    "properties": {
+      "disabled": {
+        "displayName": "禁用菜单",
+        "desc": "菜单是否禁用",
+        "type": "boolean"
+      },
+      "overlay": {
+        "displayName": "(slot)菜单",
+        "desc": "(slot)菜单",
+        "typeDesc": "Menu, overlay 菜单使用 Menu，还包括菜单项 Menu.Item，分割线 Menu.Divider。",
+        "type": "object"
+      },
+      "placement": {
+        "displayName": "菜单弹出位置",
+        "desc": "菜单弹出位置：bottomLeft bottomCenter bottomRight topLeft topCenter topRight",
+        "type": "string",
+        "value": "bottomLeft"
+      },
+      "size": {
+        "displayName": "按钮大小",
+        "desc": "按钮大小，和 Button 一致",
+        "type": "string",
+        "value": "default"
+      },
+      "trigger": {
+        "displayName": "触发下拉的行为",
+        "desc": "触发下拉的行为, Array<click|hover|contextmenu>",
+        "typeDesc": "Array<click|hover|contextmenu>",
+        "type": "array",
+        "value": "['hover']"
+      },
+      "type": {
+        "displayName": "按钮类型",
+        "desc": "按钮类型，和 Button 一致",
+        "type": "string",
+        "value": "default"
+      },
+      "visible": {
+        "displayName": "显示菜单",
+        "desc": "菜单是否显示",
+        "type": "boolean",
+        "v-model": true
+      }
+    },
+    "events": {
+      "click": {
+        "displayName": "点击左侧按钮的回调",
+        "desc": "点击左侧按钮的回调，和 Button 一致",
+        "argsDesc": "Function"
+      },
+      "visibleChange": {
+        "displayName": "菜单显示状态改变时调用",
+        "desc": "菜单显示状态改变时调用，参数为 visible",
+        "argsDesc": "function(visible)"
+      },
+      "methods": {}
+    }
+  },
+  "yn-menu": {
+    "name": "yn-menu",
+    "displayName": "导航菜单",
+    "version": "1.0.0",
+    "desc": "为页面和功能提供导航的菜单列表。",
+    "properties": {
+      "defaultOpenKeys": {
+        "displayName": "初始展开的key数组",
+        "desc": "初始展开的 SubMenu 菜单项 key 数组",
+        "type": "array"
+      },
+      "defaultSelectedKeys": {
+        "displayName": "初始选中的key数组",
+        "desc": "初始选中的菜单项 key 数组",
+        "type": "array"
+      },
+      "forceSubMenuRender": {
+        "displayName": "在子菜单展示之前就渲染进 DOM",
+        "desc": "在子菜单展示之前就渲染进 DOM",
+        "type": "boolean",
+        "value": false
+      },
+      "inlineCollapsed": {
+        "displayName": "inline 时菜单的状态",
+        "desc": "inline 时菜单是否收起状态",
+        "type": "boolean"
+      },
+      "inlineIndent": {
+        "displayName": "inline 模式的菜单缩进宽度",
+        "desc": "inline 模式的菜单缩进宽度",
+        "type": "number",
+        "value": 24
+      },
+      "mode": {
+        "displayName": "菜单类型",
+        "desc": "菜单类型，现在支持垂直、水平、和内嵌模式三种",
+        "typeDesc": "string: vertical vertical-right horizontal inline",
+        "type": "string",
+        "value": "vertical"
+      },
+      "multiple": {
+        "displayName": "多选",
+        "desc": "是否允许多选",
+        "type": "boolean",
+        "value": false
+      },
+      "openKeys": {
+        "displayName": "当前展开的 SubMenu 菜单项 key 数组",
+        "desc": "当前展开的 SubMenu 菜单项 key 数组",
+        "type": "array",
+        ".sync": true
+      },
+      "selectable": {
+        "displayName": "选中",
+        "desc": "是否允许选中",
+        "type": "boolean",
+        "value": true
+      },
+      "selectedKeys": {
+        "displayName": "当前选中的菜单项 key 数组",
+        "desc": "当前选中的菜单项 key 数组",
+        "type": "array",
+        "v-model": true
+      },
+      "subMenuCloseDelay": {
+        "displayName": "用户鼠标离开子菜单后关闭延时",
+        "desc": "用户鼠标离开子菜单后关闭延时，单位：秒",
+        "type": "number",
+        "value": 0.1
+      },
+      "subMenuOpenDelay": {
+        "displayName": "用户鼠标进入子菜单后开启延时",
+        "desc": "用户鼠标进入子菜单后开启延时，单位：秒",
+        "type": "number",
+        "value": 0
+      },
+      "theme": {
+        "displayName": "主题颜色",
+        "desc": "主题颜色",
+        "typeDesc": "string: light dark",
+        "type": "string",
+        "value": "light"
+      }
+    },
+    "events": {
+      "click": {
+        "displayName": "点击 MenuItem 调用此函数",
+        "desc": "点击 MenuItem 调用此函数",
+        "argsDesc": "function({ item, key, keyPath })"
+      },
+      "deselect": {
+        "displayName": "取消选中时调用",
+        "desc": "取消选中时调用，仅在 multiple 生效",
+        "argsDesc": "function({ item, key, selectedKeys })"
+      },
+      "openChange": {
+        "displayName": "SubMenu 展开/关闭的回调",
+        "desc": "SubMenu 展开/关闭的回调",
+        "argsDesc": "function(openKeys: string[])"
+      },
+      "select": {
+        "displayName": "被选中时调用",
+        "desc": "被选中时调用",
+        "argsDesc": "function({ item, key, selectedKeys })"
+      }
+    },
+    "methods": {}
+  },
+  "yn-menu-item": {
+    "name": "yn-menu-item",
+    "displayName": "导航菜单项",
+    "version": "1.0.0",
+    "desc": "导航菜单项",
+    "properties": {
+      "disabled": {
+        "displayName": "禁用菜单",
+        "desc": "是否禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "key": {
+        "displayName": "item 的唯一标志",
+        "desc": "item 的唯一标志",
+        "type": "string"
+      },
+      "title": {
+        "displayName": "悬浮标题",
+        "desc": "设置收缩时展示的悬浮标题",
+        "type": "string"
+      }
+    },
+    "methods": {}
+  },
+  "yn-menu-submenu": {
+    "name": "yn-menu-submenu",
+    "displayName": "子菜单",
+    "version": "1.0.0",
+    "desc": "子菜单",
+    "properties": {
+      "disabled": {
+        "displayName": "禁用菜单",
+        "desc": "是否禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "key": {
+        "displayName": "唯一标志",
+        "desc": "唯一标志",
+        "type": "string"
+      },
+      "title": {
+        "displayName": "子菜单项值",
+        "desc": "子菜单项值",
+        "type": "string"
+      }
+    },
+    "slots": {
+      "title": {
+        "displayName": "子菜单项值",
+        "desc": "子菜单项值"
+      }
+    },
+    "events": {
+      "titleClick": {
+        "displayName": "点击子菜单标题",
+        "desc": "点击子菜单标题",
+        "argsDesc": "({ key, domEvent })"
+      }
+    },
+    "methods": {}
+  },
+  "yn-menu-itemgroup": {
+    "name": "yn-menu-itemgroup",
+    "displayName": "导航菜单项组",
+    "version": "1.0.0",
+    "desc": "导航菜单项组",
+    "properties": {
+      "title": {
+        "displayName": "分组标题",
+        "desc": "分组标题",
+        "type": "string|function"
+      }
+    },
+    "slots": {
+      "title": {
+        "displayName": "分组标题",
+        "desc": "分组标题"
+      }
+    }
+  },
+  "yn-pagination": {
+    "name": "yn-pagination",
+    "displayName": "分页",
+    "version": "1.0.0",
+    "desc": "采用分页的形式分隔长列表，每次只加载一个页面。",
+    "properties": {
+      "current": {
+        "displayName": "当前页数",
+        "desc": "当前页数",
+        "type": "number"
+      },
+      "defaultCurrent": {
+        "displayName": "默认的当前页数",
+        "desc": "默认的当前页数",
+        "type": "number",
+        "value": 1
+      },
+      "defaultPageSize": {
+        "displayName": "默认的每页条数",
+        "desc": "默认的每页条数",
+        "type": "number",
+        "value": 10
+      },
+      "hideOnSinglePage": {
+        "displayName": "只有一页时是否隐藏分页器",
+        "desc": "只有一页时是否隐藏分页器",
+        "type": "boolean",
+        "value": false
+      },
+      "itemRender": {
+        "displayName": "用于自定义页码的结构，可用于优化 SEO",
+        "desc": "用于自定义页码的结构，可用于优化 SEO",
+        "typeDesc": "(page, type: 'page' | 'prev' | 'next', originalElement) => vNode",
+        "type": "function"
+      },
+      "pageSize": {
+        "displayName": "每页条数",
+        "desc": "(.sync)每页条数",
+        "type": "number"
+      },
+      "pageSizeOptions": {
+        "displayName": "指定每页可以显示多少条",
+        "desc": "指定每页可以显示多少条",
+        "typeDesc": "string[]",
+        "type": "array",
+        "value": "['10', '20', '30', '40']"
+      },
+      "showQuickJumper": {
+        "displayName": "是否可以快速跳转至某页",
+        "desc": "是否可以快速跳转至某页",
+        "type": "boolean",
+        "value": false
+      },
+      "showSizeChanger": {
+        "displayName": "是否可以改变 pageSize",
+        "desc": "是否可以改变 pageSize",
+        "type": "boolean",
+        "value": false
+      },
+      "showTotal": {
+        "displayName": "用于显示数据总量和当前数据顺序",
+        "desc": "用于显示数据总量和当前数据顺序",
+        "typeDesc": "Function(total, range)",
+        "type": "function"
+      },
+      "simple": {
+        "displayName": "当添加该属性时，显示为简单分页",
+        "desc": "当添加该属性时，显示为简单分页",
+        "type": "boolean"
+      },
+      "size": {
+        "displayName": "当为「small」时，是小尺寸分页",
+        "desc": "当为「small」时，是小尺寸分页",
+        "type": "string"
+      },
+      "total": {
+        "displayName": "数据总数",
+        "desc": "数据总数",
+        "type": "number",
+        "value": 0
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "页码改变的回调，参数是改变后的页码及每页条数",
+        "desc": "页码改变的回调，参数是改变后的页码及每页条数",
+        "argsDesc": "Function(page, pageSize)"
+      },
+      "showSizeChange": {
+        "displayName": "pageSize 变化的回调",
+        "desc": "pageSize 变化的回调",
+        "argsDesc": "Function(current, size)"
+      }
+    },
+    "methods": {}
+  },
+  "yn-auto-complete": {
+    "name": "yn-auto-complete",
+    "displayName": "Yn Auto Complete",
+    "version": "1.0.0",
+    "desc": "输入框自动完成功能。",
+    "properties": {
+      "allowClear": {
+        "displayName": "支持清除",
+        "desc": "支持清除, 单选模式有效",
+        "type": "boolean",
+        "value": false
+      },
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "backfill": {
+        "displayName": "选中项回填到输入框中",
+        "desc": "使用键盘选择选项的时候把选中项回填到输入框中",
+        "type": "boolean",
+        "value": false
+      },
+      "dataSource": {
+        "displayName": "自动完成的数据源",
+        "desc": "自动完成的数据源",
+        "type": "array",
+        "typeDesc": "DataSourceItemType[]"
+      },
+      "defaultActiveFirstOption": {
+        "displayName": "默认高亮第一个选项。",
+        "desc": "是否默认高亮第一个选项。",
+        "type": "boolean",
+        "value": true
+      },
+      "defaultValue": {
+        "displayName": "指定默认选中的条目",
+        "desc": "指定默认选中的条目",
+        "type": "string|array"
+      },
+      "disabled": {
+        "displayName": "禁用",
+        "desc": "是否禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "filterOption": {
+        "displayName": "根据输入项进行筛选",
+        "desc": "是否根据输入项进行筛选。当其为一个函数时，会接收 inputValue option 两个参数，当 option 符合筛选条件时，应返回 true，反之则返回 false。",
+        "type": "boolean|function",
+        "typeDesc": "boolean or function(inputValue, option)"
+      },
+      "placeholder": {
+        "displayName": "输入框提示",
+        "desc": "输入框提示",
+        "type": "string"
+      },
+      "value": {
+        "displayName": "指定当前选中的条目",
+        "desc": "指定当前选中的条目",
+        "type": "string|array",
+        "typeDesc": "string|string[]|{ key: string, label: string|vNodes }|Array<{ key: string, label: string|vNodes }>",
+        "v-model": true
+      },
+      "defaultOpen": {
+        "displayName": "默认展开下拉菜单",
+        "desc": "是否默认展开下拉菜单",
+        "type": "boolean"
+      },
+      "open": {
+        "displayName": "展开下拉菜单",
+        "desc": "是否展开下拉菜单",
+        "type": "boolean"
+      }
+    },
+    "slots": {
+      "dataSource": {
+        "displayName": "自动完成的数据源",
+        "desc": "自动完成的数据源"
+      },
+      "placeholder": {
+        "displayName": "输入框提示",
+        "desc": "输入框提示"
+      },
+      "default": {
+        "displayName": "默认展开下拉菜单",
+        "desc": "是否默认展开下拉菜单, Type: HTMLInputElement / HTMLTextAreaElement, default： <Input/>"
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "选中 option，或 input 的 value 变化时，调用此函数",
+        "desc": "选中 option，或 input 的 value 变化时，调用此函数",
+        "argsDesc": "function(value)"
+      },
+      "blur": {
+        "displayName": "失去焦点时的回调",
+        "desc": "失去焦点时的回调",
+        "argsDesc": "function()"
+      },
+      "focus": {
+        "displayName": "获得焦点时的回调",
+        "desc": "获得焦点时的回调",
+        "argsDesc": "function()"
+      },
+      "search": {
+        "displayName": "搜索补全项的时候调用",
+        "desc": "搜索补全项的时候调用",
+        "argsDesc": "function(value)"
+      },
+      "select": {
+        "displayName": "被选中时调用",
+        "desc": "被选中时调用，参数为选中项的 value 值",
+        "argsDesc": "function(value, option)"
+      },
+      "dropdownVisibleChange": {
+        "displayName": "展开下拉菜单的回调",
+        "desc": "展开下拉菜单的回调",
+        "argsDesc": "function(open)"
+      }
+    },
+    "methods": {
+      "blur": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    }
+  },
+  "yn-checkbox": {
+    "name": "yn-checkbox",
+    "displayName": "多选框",
+    "version": "1.0.0",
+    "desc": "多选框",
+    "properties": {
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "checked": {
+        "displayName": "指定当前是否选中",
+        "desc": "指定当前是否选中",
+        "type": "boolean",
+        "value": false
+      },
+      "defaultChecked": {
+        "displayName": "初始是否选中",
+        "desc": "初始是否选中",
+        "type": "boolean",
+        "value": false
+      },
+      "disabled": {
+        "displayName": "失效状态",
+        "desc": "失效状态",
+        "type": "boolean",
+        "value": false
+      },
+      "indeterminate": {
+        "displayName": "设置 indeterminate 状态",
+        "desc": "设置 indeterminate 状态，只负责样式控制",
+        "type": "boolean",
+        "value": false
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "变化时回调函数",
+        "desc": "多选框变化时回调函数",
+        "argsDesc": "Function(e:Event)"
+      }
+    },
+    "methods": {
+      "blur()": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus()": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    }
+  },
+  "yn-checkbox-group": {
+    "name": "yn-checkbox-group",
+    "displayName": "多选框组合",
+    "version": "1.0.0",
+    "desc": "多选框组合。",
+    "properties": {
+      "defaultValue": {
+        "displayName": "默认选中的选项",
+        "desc": "默认选中的选项",
+        "type": "array"
+      },
+      "disabled": {
+        "displayName": "整组失效",
+        "desc": "整组失效",
+        "type": "boolean",
+        "value": false
+      },
+      "options": {
+        "displayName": "指定可选项",
+        "desc": "指定可选项，可以通过 slot='label' slot-scope='option' 定制label",
+        "typeDesc": "string[] | Array<{ label: string value: string disabled?: boolean, onChange?: function }>",
+        "type": "array"
+      },
+      "value": {
+        "displayName": "指定选中的选项",
+        "desc": "指定选中的选项",
+        "type": "array"
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "变化时回调函数",
+        "desc": "多选框组合变化时回调函数",
+        "argsDesc": "Function(checkedValue)"
+      }
+    },
+    "methods": {}
+  },
+  "yn-datepicker": {
+    "name": "yn-datepicker",
+    "displayName": "日期选择框",
+    "version": "1.0.0",
+    "desc": "日期选择框",
+    "properties": {
+      "allowClear": {
+        "displayName": "是否显示清除按钮",
+        "desc": "是否显示清除按钮",
+        "type": "boolean",
+        "value": true
+      },
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "disabled": {
+        "displayName": "禁用",
+        "desc": "禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "disabledDate": {
+        "displayName": "不可选择的日期",
+        "desc": "不可选择的日期",
+        "typeDesc": "(currentDate: moment) => boolean",
+        "type": "function"
+      },
+      "getCalendarContainer": {
+        "displayName": "定义浮层的容器",
+        "desc": "定义浮层的容器，默认为 body 上新建 div",
+        "typeDesc": "function(trigger)",
+        "type": "function"
+      },
+      "locale": {
+        "displayName": "国际化配置",
+        "desc": "国际化配置",
+        "type": "object"
+      },
+      "open": {
+        "displayName": "控制弹层是否展开",
+        "desc": "控制弹层是否展开",
+        "type": "boolean"
+      },
+      "placeholder": {
+        "displayName": "输入框提示文字",
+        "desc": "输入框提示文字",
+        "typeDesc": "string|RangePicker[]",
+        "type": "string|array"
+      },
+      "popupStyle": {
+        "displayName": "额外的弹出日历样式",
+        "desc": "额外的弹出日历样式",
+        "type": "object"
+      },
+      "dropdownClassName": {
+        "displayName": "额外的弹出日历 className",
+        "desc": "额外的弹出日历 className",
+        "type": "string"
+      },
+      "size": {
+        "displayName": "输入框大小",
+        "desc": "输入框大小，large 高度为 40px，small 为 24px，默认是 32px",
+        "type": "string"
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "VNode | slot",
+        "type": "object"
+      },
+      "defaultValue": {
+        "displayName": "默认日期",
+        "desc": "默认日期",
+        "typeDesc": "类型：moment",
+        "type": "object",
+        "value": null
+      },
+      "defaultPickerValue": {
+        "displayName": "默认面板日期",
+        "desc": "默认面板日期",
+        "typeDesc": "类型：moment",
+        "type": "object",
+        "value": null
+      },
+      "disabledTime": {
+        "displayName": "不可选择的时间",
+        "desc": "不可选择的时间",
+        "typeDesc": "类型：function(date)",
+        "type": "function"
+      },
+      "format": {
+        "displayName": "设置日期格式",
+        "desc": "设置日期格式，为数组时支持多格式匹配，展示以第一个为准。配置参考 moment.js",
+        "typeDesc": "默认值：'YYYY-MM-DD'",
+        "type": "string|array"
+      },
+      "mode": {
+        "displayName": "日期面板的状态",
+        "desc": "日期面板的状态",
+        "typeDesc": "类型：time|date|month|year, 默认值：'date'",
+        "type": "string",
+        "value": "date"
+      },
+      "showTime": {
+        "displayName": "增加时间选择功能",
+        "desc": "增加时间选择功能",
+        "typeDesc": "默认值：TimePicker Options",
+        "type": "object|boolean"
+      },
+      "showTime.defaultValue": {
+        "displayName": "设置用户选择日期时默认的时分秒",
+        "desc": "设置用户选择日期时默认的时分秒",
+        "typeDesc": "类型：moment, 默认值：moment()",
+        "type": "object"
+      },
+      "showToday": {
+        "displayName": "是否展示“今天”按钮",
+        "desc": "是否展示“今天”按钮",
+        "type": "boolean",
+        "value": true
+      },
+      "value": {
+        "displayName": "日期",
+        "desc": "日期",
+        "typeDesc": "类型：moment",
+        "type": "object",
+        "value": null,
+        "v-model": true
+      }
+    },
+    "slots": {
+      "dateRender": {
+        "displayName": "自定义日期单元格的内容",
+        "desc": "作用域插槽，自定义日期单元格的内容",
+        "args": [
+          {
+            "type": "object",
+            "name": "current",
+            "displayName": "当前时间"
+          },
+          {
+            "type": "object",
+            "name": "today",
+            "displayName": "今日时间"
+          }
+        ]
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "@"
+      },
+      "renderExtraFooter": {
+        "displayName": "在面板中添加额外的页脚",
+        "desc": "在面板中添加额外的页脚",
+        "args": [
+          {
+            "type": "string",
+            "name": "mode",
+            "displayName": "日期面板的状态"
+          }
+        ]
+      }
+    },
+    "events": {
+      "openChange": {
+        "displayName": "弹出日历和关闭日历的回调",
+        "desc": "弹出日历和关闭日历的回调",
+        "argsDesc": "function(status)"
+      },
+      "panelChange": {
+        "displayName": "日期面板变化时的回调",
+        "desc": "日期面板变化时的回调",
+        "argsDesc": "function(value, mode)"
+      },
+      "change": {
+        "displayName": "时间发生变化的回调",
+        "desc": "时间发生变化的回调",
+        "argsDesc": "function(date: moment, dateString: string)"
+      },
+      "ok": {
+        "displayName": "点击确定按钮的回调",
+        "desc": "点击确定按钮的回调",
+        "argsDesc": "function()"
+      }
+    },
+    "methods": {
+      "blur()": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus()": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    }
+  },
+  "yn-monthpicker": {
+    "name": "yn-monthpicker",
+    "displayName": "月份选择框",
+    "version": "1.0.0",
+    "desc": "月份选择框",
+    "properties": {
+      "allowClear": {
+        "displayName": "是否显示清除按钮",
+        "desc": "是否显示清除按钮",
+        "type": "boolean",
+        "value": true
+      },
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "disabled": {
+        "displayName": "禁用",
+        "desc": "禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "disabledDate": {
+        "displayName": "不可选择的日期",
+        "desc": "不可选择的日期",
+        "typeDesc": "(currentDate: moment) => boolean",
+        "type": "function"
+      },
+      "getCalendarContainer": {
+        "displayName": "定义浮层的容器",
+        "desc": "定义浮层的容器，默认为 body 上新建 div",
+        "typeDesc": "function(trigger)",
+        "type": "function"
+      },
+      "locale": {
+        "displayName": "国际化配置",
+        "desc": "国际化配置",
+        "type": "object"
+      },
+      "open": {
+        "displayName": "控制弹层是否展开",
+        "desc": "控制弹层是否展开",
+        "type": "boolean"
+      },
+      "placeholder": {
+        "displayName": "输入框提示文字",
+        "desc": "输入框提示文字",
+        "typeDesc": "string|RangePicker[]",
+        "type": "string|array"
+      },
+      "popupStyle": {
+        "displayName": "额外的弹出日历样式",
+        "desc": "额外的弹出日历样式",
+        "type": "object"
+      },
+      "dropdownClassName": {
+        "displayName": "额外的弹出日历 className",
+        "desc": "额外的弹出日历 className",
+        "type": "string"
+      },
+      "size": {
+        "displayName": "输入框大小",
+        "desc": "输入框大小，large 高度为 40px，small 为 24px，默认是 32px",
+        "type": "string"
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "VNode | slot",
+        "type": "object"
+      },
+      "defaultValue": {
+        "displayName": "默认日期",
+        "desc": "默认日期",
+        "typeDesc": "类型：moment",
+        "type": "object",
+        "value": null
+      },
+      "defaultPickerValue": {
+        "displayName": "默认面板日期",
+        "desc": "默认面板日期",
+        "typeDesc": "类型：moment",
+        "type": "object",
+        "value": null
+      },
+      "format": {
+        "displayName": "展示的日期格式",
+        "desc": "展示的日期格式，配置参考 moment.js",
+        "typeDesc": "默认值：'YYYY-MM'",
+        "type": "string"
+      },
+      "value": {
+        "displayName": "日期",
+        "desc": "日期",
+        "typeDesc": "类型：moment",
+        "type": "object",
+        "value": null,
+        "v-model": true
+      }
+    },
+    "slots": {
+      "dateRender": {
+        "displayName": "自定义日期单元格的内容",
+        "desc": "作用域插槽，自定义日期单元格的内容",
+        "args": [
+          {
+            "type": "object",
+            "name": "current",
+            "displayName": "当前时间"
+          },
+          {
+            "type": "object",
+            "name": "today",
+            "displayName": "今日时间"
+          }
+        ]
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "@"
+      },
+      "monthCellContentRender": {
+        "displayName": "自定义的月份内容渲染方法",
+        "desc": "自定义的月份内容渲染方法",
+        "args": [
+          {
+            "type": "object",
+            "name": "date",
+            "displayName": "数据"
+          },
+          {
+            "type": "object",
+            "name": "locale",
+            "displayName": "国际化配置"
+          }
+        ]
+      },
+      "renderExtraFooter": {
+        "displayName": "在面板中添加额外的页脚",
+        "desc": "在面板中添加额外的页脚",
+        "args": [
+          {
+            "type": "string",
+            "name": "mode",
+            "displayName": "日期面板的状态"
+          }
+        ]
+      }
+    },
+    "events": {
+      "openChange": {
+        "displayName": "弹出日历和关闭日历的回调",
+        "desc": "弹出日历和关闭日历的回调",
+        "argsDesc": "function(status)"
+      },
+      "panelChange": {
+        "displayName": "日期面板变化时的回调",
+        "desc": "日期面板变化时的回调",
+        "argsDesc": "function(value, mode)"
+      },
+      "change": {
+        "displayName": "时间发生变化的回调",
+        "desc": "时间发生变化的回调，发生在用户选择时间时",
+        "argsDesc": "function(date: moment, dateString: string)"
+      }
+    },
+    "methods": {
+      "blur()": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus()": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    }
+  },
+  "yn-weekpicker": {
+    "name": "yn-weekpicker",
+    "displayName": "星期选择框",
+    "version": "1.0.0",
+    "desc": "星期选择框",
+    "properties": {
+      "allowClear": {
+        "displayName": "是否显示清除按钮",
+        "desc": "是否显示清除按钮",
+        "type": "boolean",
+        "value": true
+      },
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "disabled": {
+        "displayName": "禁用",
+        "desc": "禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "disabledDate": {
+        "displayName": "不可选择的日期",
+        "desc": "不可选择的日期",
+        "typeDesc": "(currentDate: moment) => boolean",
+        "type": "function"
+      },
+      "getCalendarContainer": {
+        "displayName": "定义浮层的容器",
+        "desc": "定义浮层的容器，默认为 body 上新建 div",
+        "typeDesc": "function(trigger)",
+        "type": "function"
+      },
+      "locale": {
+        "displayName": "国际化配置",
+        "desc": "国际化配置",
+        "type": "object"
+      },
+      "open": {
+        "displayName": "控制弹层是否展开",
+        "desc": "控制弹层是否展开",
+        "type": "boolean"
+      },
+      "placeholder": {
+        "displayName": "输入框提示文字",
+        "desc": "输入框提示文字",
+        "typeDesc": "string|RangePicker[]",
+        "type": "string|array"
+      },
+      "popupStyle": {
+        "displayName": "额外的弹出日历样式",
+        "desc": "额外的弹出日历样式",
+        "type": "object"
+      },
+      "dropdownClassName": {
+        "displayName": "额外的弹出日历 className",
+        "desc": "额外的弹出日历 className",
+        "type": "string"
+      },
+      "size": {
+        "displayName": "输入框大小",
+        "desc": "输入框大小，large 高度为 40px，small 为 24px，默认是 32px",
+        "type": "string"
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "VNode | slot",
+        "type": "object"
+      },
+      "defaultValue": {
+        "displayName": "默认日期",
+        "desc": "默认日期",
+        "typeDesc": "类型：moment",
+        "type": "object",
+        "value": null
+      },
+      "defaultPickerValue": {
+        "displayName": "默认面板日期",
+        "desc": "默认面板日期",
+        "typeDesc": "类型：moment",
+        "type": "object",
+        "value": null
+      },
+      "format": {
+        "displayName": "展示的日期格式",
+        "desc": "展示的日期格式，配置参考 moment.js",
+        "typeDesc": "默认值：'YYYY-wo'",
+        "type": "string"
+      },
+      "value": {
+        "displayName": "日期",
+        "desc": "日期",
+        "typeDesc": "类型：moment",
+        "type": "object",
+        "value": null,
+        "v-model": true
+      }
+    },
+    "slots": {
+      "dateRender": {
+        "displayName": "自定义日期单元格的内容",
+        "desc": "作用域插槽，自定义日期单元格的内容",
+        "args": [
+          {
+            "type": "object",
+            "name": "current",
+            "displayName": "当前时间"
+          },
+          {
+            "type": "object",
+            "name": "today",
+            "displayName": "今日时间"
+          }
+        ]
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "@"
+      },
+      "renderExtraFooter": {
+        "displayName": "在面板中添加额外的页脚",
+        "desc": "在面板中添加额外的页脚",
+        "args": [
+          {
+            "type": "string",
+            "name": "mode",
+            "displayName": "日期面板的状态"
+          }
+        ]
+      }
+    },
+    "events": {
+      "openChange": {
+        "displayName": "弹出日历和关闭日历的回调",
+        "desc": "弹出日历和关闭日历的回调",
+        "argsDesc": "function(status)"
+      },
+      "panelChange": {
+        "displayName": "日期面板变化时的回调",
+        "desc": "日期面板变化时的回调",
+        "argsDesc": "function(value, mode)"
+      },
+      "change": {
+        "displayName": "时间发生变化的回调",
+        "desc": "时间发生变化的回调，发生在用户选择时间时",
+        "argsDesc": "function(date: moment, dateString: string)"
+      }
+    },
+    "methods": {
+      "blur()": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus()": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    }
+  },
+  "yn-rangepicker": {
+    "name": "yn-rangepicker",
+    "displayName": "日期范围选择框",
+    "version": "1.0.0",
+    "desc": "日期范围选择框",
+    "properties": {
+      "allowClear": {
+        "displayName": "是否显示清除按钮",
+        "desc": "是否显示清除按钮",
+        "type": "boolean",
+        "value": true
+      },
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "disabled": {
+        "displayName": "禁用",
+        "desc": "禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "disabledDate": {
+        "displayName": "不可选择的日期",
+        "desc": "不可选择的日期",
+        "typeDesc": "(currentDate: moment) => boolean",
+        "type": "function"
+      },
+      "getCalendarContainer": {
+        "displayName": "定义浮层的容器",
+        "desc": "定义浮层的容器，默认为 body 上新建 div",
+        "typeDesc": "function(trigger)",
+        "type": "function"
+      },
+      "locale": {
+        "displayName": "国际化配置",
+        "desc": "国际化配置",
+        "type": "object"
+      },
+      "open": {
+        "displayName": "控制弹层是否展开",
+        "desc": "控制弹层是否展开",
+        "type": "boolean"
+      },
+      "placeholder": {
+        "displayName": "输入框提示文字",
+        "desc": "输入框提示文字",
+        "typeDesc": "string|RangePicker[]",
+        "type": "string|array"
+      },
+      "popupStyle": {
+        "displayName": "额外的弹出日历样式",
+        "desc": "额外的弹出日历样式",
+        "type": "object"
+      },
+      "dropdownClassName": {
+        "displayName": "额外的弹出日历 className",
+        "desc": "额外的弹出日历 className",
+        "type": "string"
+      },
+      "size": {
+        "displayName": "输入框大小",
+        "desc": "输入框大小，large 高度为 40px，small 为 24px，默认是 32px",
+        "type": "string"
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "VNode | slot",
+        "type": "object"
+      },
+      "defaultValue": {
+        "displayName": "默认日期",
+        "desc": "默认日期",
+        "typeDesc": "类型：moment[]",
+        "type": "array"
+      },
+      "defaultPickerValue": {
+        "displayName": "默认面板日期",
+        "desc": "默认面板日期",
+        "typeDesc": "类型：moment[]",
+        "type": "array"
+      },
+      "disabledTime": {
+        "displayName": "不可选择的时间",
+        "desc": "不可选择的时间",
+        "typeDesc": "类型：function(dates: [moment, moment], partial: 'start'|'end')",
+        "type": "function"
+      },
+      "format": {
+        "displayName": "展示的日期格式",
+        "desc": "展示的日期格式",
+        "typeDesc": "默认值：'YYYY-MM-DD HH:mm:ss'",
+        "type": "string"
+      },
+      "ranges": {
+        "displayName": "预设时间范围快捷选择",
+        "desc": "预设时间范围快捷选择",
+        "typeDesc": "类型：{ [range: string]: moment[] } | { [range: string]: () => moment[] }",
+        "type": "object"
+      },
+      "showTime": {
+        "displayName": "增加时间选择功能",
+        "desc": "增加时间选择功能",
+        "typeDesc": "默认值：TimePicker Options",
+        "type": "object|boolean"
+      },
+      "showTime.defaultValue": {
+        "displayName": "设置用户选择日期时默认的时分秒",
+        "desc": "设置用户选择日期时默认的时分秒",
+        "typeDesc": "类型：moment[], 默认值：[moment(), moment()]",
+        "type": "array"
+      },
+      "value": {
+        "displayName": "日期",
+        "desc": "日期",
+        "typeDesc": "类型：moment[]",
+        "type": "array",
+        "v-model": true
+      }
+    },
+    "slots": {
+      "dateRender": {
+        "displayName": "自定义日期单元格的内容",
+        "desc": "作用域插槽，自定义日期单元格的内容",
+        "args": [
+          {
+            "type": "object",
+            "name": "current",
+            "displayName": "当前时间"
+          },
+          {
+            "type": "object",
+            "name": "today",
+            "displayName": "今日时间"
+          }
+        ]
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "@"
+      },
+      "renderExtraFooter": {
+        "displayName": "在面板中添加额外的页脚",
+        "desc": "在面板中添加额外的页脚",
+        "args": [
+          {
+            "type": "string",
+            "name": "mode",
+            "displayName": "日期面板的状态"
+          }
+        ]
+      }
+    },
+    "events": {
+      "openChange": {
+        "displayName": "弹出日历和关闭日历的回调",
+        "desc": "弹出日历和关闭日历的回调",
+        "argsDesc": "function(status)"
+      },
+      "panelChange": {
+        "displayName": "日期面板变化时的回调",
+        "desc": "日期面板变化时的回调",
+        "argsDesc": "function(value, mode)"
+      },
+      "calendarChange": {
+        "displayName": "待选日期发生变化的回调",
+        "desc": "待选日期发生变化的回调",
+        "argsDesc": "function(dates: [moment, moment], dateStrings: [string, string])"
+      },
+      "change": {
+        "displayName": "日期范围发生变化的回调",
+        "desc": "日期范围发生变化的回调",
+        "argsDesc": "function(dates: [moment, moment], dateStrings: [string, string])"
+      },
+      "ok": {
+        "displayName": "点击确定按钮的回调",
+        "desc": "点击确定按钮的回调",
+        "argsDesc": "function(dates: moment[])"
+      }
+    },
+    "methods": {
+      "blur()": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus()": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    }
+  },
+  "yn-form": {
+    "name": "yn-form",
+    "displayName": "Yn Form",
+    "version": "1.0.0",
+    "desc": "具有数据收集、校验和提交功能的表单，包含复选框、单选框、输入框、下拉选择框等元素。",
+    "properties": {
+      "form": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "object"
+      },
+      "hideRequiredMark": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "boolean"
+      },
+      "layout": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "string",
+        "value": "horizontal"
+      },
+      "selfUpdate": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "boolean",
+        "value": false
+      }
+    },
+    "slots": {},
+    "events": {
+      "submit": {
+        "desc": "@",
+        "data": {
+          "desc": "@",
+          "args": "Function(e:Event)"
+        }
+      }
+    },
+    "methods": {}
+  },
+  "yn-form-item": {
+    "name": "yn-form-item",
+    "displayName": "表单项",
+    "version": "1.0.0",
+    "desc": "注意：一个 Form.Item 建议只放一个被 getFieldDecorator 或 v-decorator 装饰过的 child，当有多个被装饰过的 child 时，help required validateStatus 无法自动生成。",
+    "properties": {
+      "colon": {
+        "displayName": "label 后面的冒号",
+        "desc": "配合 label 属性使用，表示是否显示 label 后面的冒号",
+        "type": "boolean",
+        "value": true
+      },
+      "extra": {
+        "displayName": "额外的提示信息",
+        "desc": "额外的提示信息，和 help 类似，当需要错误信息和提示文案同时出现时，可以使用这个。",
+        "type": "string"
+      },
+      "hasFeedback": {
+        "displayName": "展示校验状态图标",
+        "desc": "配合 validateStatus 属性使用，展示校验状态图标，建议只配合 Input 组件使用",
+        "type": "boolean",
+        "value": false
+      },
+      "help": {
+        "displayName": "提示信息",
+        "desc": "提示信息，如不设置，则会根据校验规则自动生成",
+        "type": "string"
+      },
+      "label": {
+        "displayName": "label 标签的文本",
+        "desc": "label 标签的文本",
+        "type": "string"
+      },
+      "labelCol": {
+        "displayName": "label 标签布局",
+        "desc": "label 标签布局，同 <Col> 组件，设置 span offset 值，如 {span: 3, offset: 12} 或 sm: {span: 3, offset: 12}",
+        "type": "object"
+      },
+      "required": {
+        "displayName": "是否必填",
+        "desc": "是否必填，如不设置，则会根据校验规则自动生成",
+        "type": "boolean"
+      },
+      "validateStatus": {
+        "displayName": "校验状态",
+        "desc": "校验状态，如不设置，则会根据校验规则自动生成，可选：'success' 'warning' 'error' 'validating'",
+        "type": "string"
+      },
+      "wrapperCol": {
+        "displayName": "为输入控件设置布局样式",
+        "desc": "需要为输入控件设置布局样式时，使用该属性，用法同 labelCol",
+        "type": "object"
+      },
+      "selfUpdate": {
+        "displayName": "自定义字段更新逻辑",
+        "desc": "自定义字段更新逻辑，你可以通过 Form 的 selfUpdate 进行统一设置。当和 Form 同时设置时，以 Item 为准。 说明见下 需 1.3.17 版本以上",
+        "type": "boolean",
+        "value": false
+      }
+    },
+    "slots": {
+      "extra": {
+        "displayName": "额外的提示信息",
+        "desc": "额外的提示信息，和 help 类似，当需要错误信息和提示文案同时出现时，可以使用这个。"
+      },
+      "help": {
+        "displayName": "提示信息",
+        "desc": "提示信息，如不设置，则会根据校验规则自动生成"
+      },
+      "label": {
+        "displayName": "label 标签的文本",
+        "desc": "label 标签的文本"
+      }
+    },
+    "methods": {}
+  },
+  "yn-input": {
+    "name": "yn-input",
+    "displayName": "文本输入框",
+    "version": "1.0.0",
+    "desc": "通过鼠标或键盘输入内容，是最基础的表单域的包装。",
+    "properties": {
+      "addonAfter": {
+        "displayName": "后置标签",
+        "desc": "带标签的 input，设置后置标签",
+        "type": "string"
+      },
+      "addonBefore": {
+        "displayName": "前置标签",
+        "desc": "带标签的 input，设置前置标签",
+        "type": "string"
+      },
+      "defaultValue": {
+        "displayName": "默认值",
+        "desc": "输入框默认内容",
+        "type": "string"
+      },
+      "disabled": {
+        "displayName": "禁用",
+        "desc": "是否禁用状态",
+        "type": "boolean",
+        "value": false
+      },
+      "id": {
+        "displayName": "标识",
+        "desc": "输入框的标识",
+        "type": "string"
+      },
+      "prefix": {
+        "displayName": "前缀",
+        "desc": "带有前缀图标的 input",
+        "type": "string"
+      },
+      "size": {
+        "displayName": "大小",
+        "desc": "控件大小。注：标准表单内的输入框大小限制为 large。可选 large default small",
+        "type": "string",
+        "value": "default"
+      },
+      "suffix": {
+        "displayName": "后缀",
+        "desc": "带有后缀图标的 input",
+        "type": "string"
+      },
+      "type": {
+        "displayName": "类型",
+        "desc": "声明 input 类型，同原生 input 标签的 type 属性，见：MDN(请直接使用 Input.TextArea 代替 type='textarea')。",
+        "type": "string",
+        "value": "text"
+      },
+      "value": {
+        "displayName": "内容",
+        "desc": "输入框内容",
+        "type": "string",
+        "v-model": true
+      }
+    },
+    "slots": {
+      "addonAfter": {
+        "displayName": "后置标签",
+        "desc": "带标签的 input，设置后置标签"
+      },
+      "addonBefore": {
+        "displayName": "前置标签",
+        "desc": "带标签的 input，设置前置标签"
+      },
+      "prefix": {
+        "displayName": "前缀",
+        "desc": "带有前缀图标的 input"
+      },
+      "suffix": {
+        "displayName": "后缀",
+        "desc": "带有后缀图标的 input"
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "内容变化回调",
+        "desc": "输入框内容变化时的回调",
+        "data": {
+          "desc": {
+            "desc": "事件"
+          },
+          "type": "object"
+        }
+      },
+      "pressEnter": {
+        "displayName": "回车回调",
+        "desc": "按下回车的回调",
+        "data": {
+          "desc": {
+            "desc": "事件"
+          },
+          "type": "object"
+        }
+      }
+    },
+    "methods": {}
+  },
+  "yn-input-textarea": {
+    "name": "yn-input-textarea",
+    "displayName": "文本输入框",
+    "version": "1.0.0",
+    "desc": "多行输入",
+    "properties": {
+      "autosize": {
+        "displayName": "自适应内容高度",
+        "desc": "自适应内容高度，可设置为 true|false 或对象：{ minRows: 2, maxRows: 6 }",
+        "type": "boolean|object",
+        "value": false
+      },
+      "defaultValue": {
+        "displayName": "默认值",
+        "desc": "入框默认内容",
+        "type": "string"
+      },
+      "value": {
+        "displayName": "输入框内容",
+        "desc": "输入框内容",
+        "type": "string",
+        "v-model": true
+      }
+    },
+    "slots": {},
+    "events": {
+      "pressEnter": {
+        "displayName": "回车回调",
+        "desc": "按下回车的回调"
+      }
+    },
+    "methods": {}
+  },
+  "yn-input-search": {
+    "name": "yn-input-search",
+    "displayName": "查询Input",
+    "version": "1.0.0",
+    "desc": "查询输入框",
+    "properties": {
+      "enterButton": {
+        "displayName": "确认按钮",
+        "desc": "是否有确认按钮，可设为按钮文字",
+        "type": "string"
+      }
+    },
+    "slots": {
+      "enterButton": {
+        "displayName": "确认按钮",
+        "desc": "可设置按钮文字"
+      }
+    },
+    "events": {
+      "search": {
+        "displayName": "查询事件",
+        "desc": "点击搜索或按下回车键时的回调。unction(value, event)"
+      }
+    },
+    "methods": {}
+  },
+  "yn-input-group": {
+    "name": "yn-input-group",
+    "displayName": "组合输入框",
+    "version": "1.0.0",
+    "desc": "组合输入框",
+    "properties": {
+      "compact": {
+        "displayName": "紧凑模式",
+        "desc": "是否用紧凑模式",
+        "type": "boolean",
+        "value": false
+      },
+      "size": {
+        "displayName": "大小",
+        "desc": "Input.Group 中所有的 Input 的大小，可选 large default small",
+        "type": "string",
+        "value": "default"
+      }
+    },
+    "slots": {},
+    "events": {},
+    "methods": {}
+  },
+  "yn-input-number": {
+    "name": "yn-input-number",
+    "displayName": "Yn Input Number",
+    "version": "1.0.0",
+    "desc": "通过鼠标或键盘，输入范围内的数值。",
+    "properties": {
+      "autoFocus": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "boolean",
+        "value": false
+      },
+      "defaultValue": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "number"
+      },
+      "disabled": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "boolean",
+        "value": false
+      },
+      "formatter": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "function",
+        "typeDesc": "function(value: number | string): string"
+      },
+      "max": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "number",
+        "valueDesc": "Infinity"
+      },
+      "min": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "number",
+        "valueDesc": "Infinity"
+      },
+      "parser": {
+        "displayName": "@",
+        "desc": "@",
+        "typeDesc": "function( string): number"
+      },
+      "precision": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "number"
+      },
+      "decimalSeparator": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "string"
+      },
+      "size": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "string"
+      },
+      "step": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "number|string"
+      },
+      "value": {
+        "displayName": "@",
+        "desc": "@",
+        "type": "number",
+        "v-model": true
+      }
+    },
+    "slots": {},
+    "events": {
+      "change": {
+        "displayName": "@",
+        "desc": "@",
+        "args": "Function(value: number | string)"
+      }
+    },
+    "methods": {
+      "blur": {
+        "desc": "@"
+      },
+      "focus": {
+        "desc": "@"
+      }
+    }
+  },
+  "yn-radio": {
+    "name": "yn-radio",
+    "displayName": "单选框",
+    "version": "1.0.0",
+    "desc": "单选框",
+    "properties": {
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "checked": {
+        "displayName": "指定当前是否选中",
+        "desc": "指定当前是否选中",
+        "type": "boolean",
+        "value": false
+      },
+      "defaultChecked": {
+        "displayName": "初始是否选中",
+        "desc": "初始是否选中",
+        "type": "boolean",
+        "value": false
+      },
+      "value": {
+        "displayName": "根据 value 进行比较，判断是否选中",
+        "desc": "根据 value 进行比较，判断是否选中",
+        "typeDesc": "any",
+        "type": "object"
+      }
+    },
+    "methods": {
+      "blur()": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus()": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    }
+  },
+  "yn-radio-group": {
+    "name": "yn-radio-group",
+    "displayName": "单选组合",
+    "version": "1.0.0",
+    "desc": "单选组合",
+    "properties": {
+      "defaultValue": {
+        "displayName": "默认选中的值",
+        "desc": "默认选中的值",
+        "typeDesc": "any",
+        "type": "object"
+      },
+      "disabled": {
+        "displayName": "禁选所有子单选器",
+        "desc": "禁选所有子单选器",
+        "type": "boolean",
+        "value": false
+      },
+      "name": {
+        "displayName": "RadioGroup 下所有 input[type='radio'] 的 name 属性",
+        "desc": "RadioGroup 下所有 input[type='radio'] 的 name 属性",
+        "type": "string"
+      },
+      "options": {
+        "displayName": "以配置形式设置子元素",
+        "desc": "以配置形式设置子元素",
+        "typeDesc": "string[] | Array<{ label: string value: string disabled?: boolean }>",
+        "type": "array"
+      },
+      "size": {
+        "displayName": "大小",
+        "desc": "大小，只对按钮样式生效",
+        "typeDesc": "large | default | small",
+        "type": "string",
+        "value": "default"
+      },
+      "value": {
+        "displayName": "用于设置当前选中的值",
+        "desc": "用于设置当前选中的值",
+        "typeDesc": "any",
+        "type": "object",
+        "v-model": true
+      },
+      "buttonStyle": {
+        "displayName": "RadioButton 的风格样式",
+        "desc": "RadioButton 的风格样式，目前有描边和填色两种风格",
+        "typeDesc": "outline | solid",
+        "type": "string",
+        "value": "outline"
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "选项变化时的回调函数",
+        "desc": "单选框组合选项变化时的回调函数",
+        "argsDesc": "Function(e:Event)"
+      }
+    },
+    "methods": {}
+  },
+  "yn-rate": {
+    "name": "yn-rate",
+    "displayName": "评分",
+    "version": "1.0.0",
+    "desc": "评分组件。",
+    "properties": {
+      "allowClear": {
+        "displayName": "允许再次点击后清除",
+        "desc": "是否允许再次点击后清除",
+        "type": "boolean",
+        "value": true
+      },
+      "allowHalf": {
+        "displayName": "允许半选",
+        "desc": "是否允许半选",
+        "type": "boolean",
+        "value": false
+      },
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "character": {
+        "displayName": "自定义字符",
+        "desc": "自定义字符",
+        "typeDesc": "类型是String or slot='character',默认值是<Icon type='star'/>",
+        "type": "string"
+      },
+      "count": {
+        "displayName": "star 总数",
+        "desc": "star 总数",
+        "type": "number",
+        "value": 5
+      },
+      "defaultValue": {
+        "displayName": "默认值",
+        "desc": "默认值",
+        "type": "number",
+        "value": 0
+      },
+      "disabled": {
+        "displayName": "只读，无法进行交互",
+        "desc": "只读，无法进行交互",
+        "type": "boolean",
+        "value": false
+      },
+      "tooltips": {
+        "displayName": "自定义每项的提示信息",
+        "desc": "自定义每项的提示信息",
+        "type": "array"
+      },
+      "value": {
+        "displayName": "当前数，受控值",
+        "desc": "当前数，受控值",
+        "type": "number",
+        "v-model": true
+      }
+    },
+    "slots": {
+      "character": {
+        "displayName": "自定义字符",
+        "desc": "自定义字符",
+        "typeDesc": "类型是String or slot='character',默认值是<Icon type='star'/>"
+      }
+    },
+    "events": {
+      "blur": {
+        "displayName": "失去焦点的时回调",
+        "desc": "失去焦点的时回调",
+        "argsDesc": "Function()"
+      },
+      "change": {
+        "displayName": "选择时的回调",
+        "desc": "选择时的回调",
+        "argsDesc": "Function(value: number)"
+      },
+      "focus": {
+        "displayName": "获得焦点时回调",
+        "desc": "获得焦点时回调",
+        "argsDesc": "Function()"
+      },
+      "hoverChange": {
+        "displayName": "鼠标经过时数值变化的回调",
+        "desc": "鼠标经过时数值变化的回调",
+        "argsDesc": "Function(value: number)"
+      },
+      "keydown": {
+        "displayName": "按键回调",
+        "desc": "按键回调",
+        "argsDesc": "Function(event)"
+      }
+    },
+    "methods": {
+      "blur()": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus()": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    }
+  },
+  "yn-switch": {
+    "name": "yn-switch",
+    "displayName": "Yn Switch",
+    "version": "1.0.0",
+    "desc": "开关选择器。",
+    "properties": {
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "组件自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "checked": {
+        "displayName": "指定当前选中",
+        "desc": "指定当前是否选中",
+        "type": "boolean",
+        "value": false,
+        "v-model": true
+      },
+      "checkedChildren": {
+        "displayName": "选中时的内容",
+        "desc": "选中时的内容",
+        "type": "string"
+      },
+      "defaultChecked": {
+        "displayName": "初始选中",
+        "desc": "初始是否选中",
+        "type": "boolean",
+        "value": false
+      },
+      "disabled": {
+        "displayName": "禁用",
+        "desc": "是否禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "loading": {
+        "displayName": "加载中的开关",
+        "desc": "加载中的开关",
+        "type": "boolean",
+        "value": false
+      },
+      "size": {
+        "displayName": "开关大小",
+        "desc": "开关大小，可选值：default small",
+        "type": "string",
+        "value": "default"
+      },
+      "unCheckedChildren": {
+        "displayName": "非选中时的内容",
+        "desc": "非选中时的内容",
+        "type": "string"
+      }
+    },
+    "slots": {
+      "checkedChildren": {
+        "displayName": "选中时的内容",
+        "desc": "选中时的内容"
+      },
+      "unCheckedChildren": {
+        "displayName": "非选中时的内容",
+        "desc": "非选中时的内容"
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "变化时回调函数",
+        "desc": "变化时回调函数",
+        "argsDesc": "Function(checked:Boolean, event: Event)"
+      },
+      "click": {
+        "displayName": "点击时回调函数",
+        "desc": "点击时回调函数",
+        "argsDesc": "Function(checked: boolean, event: Event)"
+      }
+    },
+    "methods": {
+      "blur": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    }
+  },
+  "yn-select": {
+    "name": "yn-select",
+    "displayName": "选择器",
+    "version": "1.0.0",
+    "desc": "下拉选择器。",
+    "properties": {
+      "allowClear": {
+        "displayName": "支持清除",
+        "desc": "支持清除",
+        "type": "boolean",
+        "value": false
+      },
+      "autoClearSearchValue": {
+        "displayName": "选中项后清空搜索框",
+        "desc": "是否在选中项后清空搜索框，只在 mode 为 multiple 或 tags 时有效。",
+        "type": "boolean",
+        "value": true
+      },
+      "autoFocus": {
+        "displayName": "默认获取焦点",
+        "desc": "默认获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "defaultActiveFirstOption": {
+        "displayName": "默认高亮第一个选项",
+        "desc": "是否默认高亮第一个选项。",
+        "type": "boolean",
+        "value": true
+      },
+      "defaultValue": {
+        "displayName": "默认选中的条目",
+        "desc": "指定默认选中的条目",
+        "type": "string|number|array"
+      },
+      "disabled": {
+        "displayName": "禁用",
+        "desc": "是否禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "dropdownClassName": {
+        "displayName": "下拉菜单的 className 属性",
+        "desc": "下拉菜单的 className 属性",
+        "type": "string"
+      },
+      "dropdownMatchSelectWidth": {
+        "displayName": "下拉菜单和选择器同宽",
+        "desc": "下拉菜单和选择器同宽",
+        "type": "boolean",
+        "value": true
+      },
+      "dropdownRender": {
+        "displayName": "自定义下拉框内容",
+        "desc": "自定义下拉框内容, (menuNode: VNode, props) => VNode",
+        "type": "function"
+      },
+      "dropdownStyle": {
+        "displayName": "下拉菜单的 style 属性",
+        "desc": "下拉菜单的 style 属性",
+        "type": "object"
+      },
+      "filterOption": {
+        "displayName": "根据输入项进行筛选",
+        "desc": "是否根据输入项进行筛选。当其为一个函数时，会接收 inputValue option 两个参数，当 option 符合筛选条件时，应返回 true，反之则返回 false。 boolean or function(inputValue, option)",
+        "type": "boolean|function",
+        "value": true
+      },
+      "firstActiveValue": {
+        "displayName": "默认高亮的选项",
+        "desc": "默认高亮的选项",
+        "type": "string|array"
+      },
+      "getPopupContainer": {
+        "displayName": "菜单渲染父节点",
+        "desc": "菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位。 Function(triggerNode), 默认值() => document.body",
+        "type": "function"
+      },
+      "labelInValue": {
+        "displayName": "把每个选项的 label 包装到 value 中",
+        "desc": "是否把每个选项的 label 包装到 value 中，会把 Select 的 value 类型从 string 变为 {key: string, label: vNodes} 的格式",
+        "type": "boolean",
+        "value": false
+      },
+      "maxTagCount": {
+        "displayName": "最多显示多少个 tag",
+        "desc": "最多显示多少个 tag",
+        "type": "number"
+      },
+      "maxTagPlaceholder": {
+        "displayName": "隐藏 tag 时显示的内容",
+        "desc": "隐藏 tag 时显示的内容, slot/function(omittedValues)",
+        "type": "function"
+      },
+      "maxTagTextLength": {
+        "displayName": "最大显示的 tag 文本长度",
+        "desc": "最大显示的 tag 文本长度",
+        "type": "number"
+      },
+      "mode": {
+        "displayName": "设置 Select 的模式为多选或标签",
+        "desc": "设置 Select 的模式为多选或标签, 'default' | 'multiple' | 'tags' | 'combobox'",
+        "type": "string"
+      },
+      "notFoundContent": {
+        "displayName": "当下拉列表为空时显示的内容",
+        "desc": "当下拉列表为空时显示的内容, 默认值'Not Found'",
+        "type": "string"
+      },
+      "optionFilterProp": {
+        "displayName": "搜索时过滤对应的 option 属性",
+        "desc": "搜索时过滤对应的 option 属性，如设置为 children 表示对内嵌内容进行搜索",
+        "type": "string"
+      },
+      "optionLabelProp": {
+        "displayName": "回填到选择框的 Option 的属性值",
+        "desc": "回填到选择框的 Option 的属性值，默认是 Option 的子元素。比如在子元素需要高亮效果时，此值可以设为 value。 children （combobox 模式下为 value）",
+        "type": "string"
+      },
+      "placeholder": {
+        "displayName": "选择框默认文字",
+        "desc": "选择框默认文字",
+        "type": "string"
+      },
+      "showSearch": {
+        "displayName": "使单选模式可搜索",
+        "desc": "使单选模式可搜索",
+        "type": "boolean",
+        "value": false
+      },
+      "showArrow": {
+        "displayName": "显示下拉小箭头",
+        "desc": "是否显示下拉小箭头",
+        "type": "boolean",
+        "value": true
+      },
+      "size": {
+        "displayName": "选择框大小",
+        "desc": "选择框大小，可选 large small",
+        "type": "string",
+        "value": "default"
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标,VNode ",
+        "type": "object"
+      },
+      "removeIcon": {
+        "displayName": "自定义的多选框清除图标",
+        "desc": "自定义的多选框清除图标,VNode ",
+        "type": "object"
+      },
+      "clearIcon": {
+        "displayName": "自定义的多选框清空图标",
+        "desc": "自定义的多选框清空图标,VNode",
+        "type": "object"
+      },
+      "menuItemSelectedIcon": {
+        "displayName": "自定义当前选中的条目图标",
+        "desc": "自定义当前选中的条目图标,VNode",
+        "type": "object"
+      },
+      "tokenSeparators": {
+        "displayName": "分隔符",
+        "desc": "在 tags 和 multiple 模式下自动分词的分隔符",
+        "type": "array"
+      },
+      "value": {
+        "displayName": "指定当前选中的条目",
+        "desc": "指定当前选中的条目",
+        "type": "string|number|array",
+        "v-model": true
+      },
+      "options": {
+        "displayName": "options 数据",
+        "desc": "options 数据，如果设置则不需要手动构造 selectOption 节点, array<{value, label, [disabled, key, title]}>",
+        "type": "array"
+      },
+      "defaultOpen": {
+        "displayName": "默认展开下拉菜单",
+        "desc": "是否默认展开下拉菜单",
+        "type": "boolean"
+      },
+      "open": {
+        "displayName": "展开下拉菜单",
+        "desc": "是否展开下拉菜单",
+        "type": "boolean"
+      }
+    },
+    "slots": {
+      "maxTagPlaceholder": {
+        "displayName": "隐藏 tag 时显示的内容",
+        "desc": "隐藏 tag 时显示的内容, slot/function(omittedValues)"
+      },
+      "notFoundContent": {
+        "displayName": "当下拉列表为空时显示的内容",
+        "desc": "当下拉列表为空时显示的内容"
+      },
+      "placeholder": {
+        "displayName": "选择框默认文字",
+        "desc": "选择框默认文字"
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标,VNode "
+      },
+      "removeIcon": {
+        "displayName": "自定义的多选框清除图标",
+        "desc": "自定义的多选框清除图标,VNode "
+      },
+      "clearIcon": {
+        "displayName": "自定义的多选框清空图标",
+        "desc": "自定义的多选框清空图标,VNode"
+      },
+      "menuItemSelectedIcon": {
+        "displayName": "自定义当前选中的条目图标",
+        "desc": "自定义当前选中的条目图标,VNode"
+      }
+    },
+    "events": {
+      "blur": {
+        "displayName": "失去焦点的时回调",
+        "desc": "失去焦点的时回调",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "change": {
+        "displayName": "内容变化回调",
+        "desc": "选中 option，或 input 的 value 变化（combobox 模式下）时，调用此函数， function(value, option:Option/Array<Option>)",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "deselect": {
+        "displayName": "取消选中时调用",
+        "desc": "取消选中时调用，参数为选中项的 value (或 key) 值，仅在 multiple 或 tags 模式下生效， function(value，option:Option)",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "focus": {
+        "displayName": "获得焦点时回调",
+        "desc": "获得焦点时回调",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "inputKeydown": {
+        "displayName": "键盘按下时回调",
+        "desc": "键盘按下时回调",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "mouseenter": {
+        "displayName": "鼠标移入时回调",
+        "desc": "鼠标移入时回调",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "mouseleave": {
+        "displayName": "鼠标移出时回调",
+        "desc": "鼠标移出时回调",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "popupScroll": {
+        "displayName": "下拉列表滚动时的回调",
+        "desc": "下拉列表滚动时的回调",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "search": {
+        "displayName": "文本框值变化时回调",
+        "desc": "文本框值变化时回调，function(value: string)",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "select": {
+        "displayName": "被选中时调用",
+        "desc": "被选中时调用，参数为选中项的 value (或 key) 值，function(value, option:Option)",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "dropdownVisibleChange": {
+        "displayName": "展开下拉菜单的回调",
+        "desc": "展开下拉菜单的回调，function(open)",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "methods": {
+      "blur()": {
+        "displayName": "取消焦点",
+        "desc": "取消焦点"
+      },
+      "focus()": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    }
+  },
+  "yn-select-option": {
+    "name": "yn-select-option",
+    "displayName": "选择选项",
+    "version": "1.0.0",
+    "desc": "选择选项",
+    "properties": {
+      "disabled": {
+        "displayName": "禁用",
+        "desc": "是否禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "key": {
+        "displayName": "key值",
+        "desc": "和 value 含义一致。如果 Vue 需要你设置此项，此项值与 value 的值相同，然后可以省略 value 设置",
+        "type": "string"
+      },
+      "title": {
+        "displayName": "标题",
+        "desc": "选中该 Option 后，Select 的 title",
+        "type": "string"
+      },
+      "value": {
+        "displayName": "默认值",
+        "desc": "默认根据此属性值进行筛选",
+        "type": "string|number"
+      },
+      "class": {
+        "displayName": "类名",
+        "desc": "Option 器类名",
+        "type": "string"
+      }
+    },
+    "slots": {},
+    "events": {},
+    "methods": {}
+  },
+  "yn-select-optgroup": {
+    "name": "yn-select-optgroup",
+    "displayName": "选项组",
+    "version": "1.0.0",
+    "desc": "选项组",
+    "properties": {
+      "key": {
+        "displayName": "key值",
+        "desc": "key值",
+        "type": "string"
+      },
+      "label": {
+        "displayName": "组名",
+        "desc": "组名",
+        "type": "string|function"
+      }
+    },
+    "slots": {
+      "label": {
+        "displayName": "组名",
+        "desc": "组名"
+      }
+    },
+    "events": {},
+    "methods": {}
+  },
+  "yn-avatar": {
+    "name": "yn-avatar",
+    "displayName": "头像",
+    "version": "1.0.0",
+    "desc": "用来代表用户或事物，支持图片、图标或字符展示。",
+    "properties": {
+      "icon": {
+        "displayName": "头像图标类型",
+        "desc": "设置头像的图标类型，参考 Icon 组件",
+        "type": "string"
+      },
+      "shape": {
+        "displayName": "头像形状",
+        "desc": "指定头像的形状, Enum{ 'circle', 'square' }",
+        "type": "string",
+        "value": "circle"
+      },
+      "size": {
+        "displayName": "头像大小",
+        "desc": "设置头像的大小, Enum{ 'large', 'small', 'default' }",
+        "type": "number|string",
+        "value": "default"
+      },
+      "src": {
+        "displayName": "头像资源地址",
+        "desc": "图片类头像的资源地址",
+        "type": "string"
+      },
+      "srcSet": {
+        "displayName": "头像响应式资源地址",
+        "desc": "设置图片类头像响应式资源地址",
+        "type": "string"
+      },
+      "alt": {
+        "displayName": "替代文本",
+        "desc": "图像无法显示时的替代文本",
+        "type": "string"
+      },
+      "loadError": {
+        "displayName": "图片加载失败的事件",
+        "desc": "图片加载失败的事件，返回 false 会关闭组件默认的 fallback 行为, () => boolean",
+        "type": "function"
+      }
+    },
+    "methods": {}
+  },
+  "yn-badge": {
+    "name": "yn-badge",
+    "displayName": "徽标数",
+    "version": "1.0.0",
+    "desc": "图标右上角的圆形徽标数字。",
+    "properties": {
+      "count": {
+        "displayName": "展示数字",
+        "desc": "展示的数字，大于 overflowCount 时显示为 ${overflowCount}+，为 0 时隐藏",
+        "type": "number|string"
+      },
+      "dot": {
+        "displayName": "小红点",
+        "desc": "不展示数字，只有一个小红点",
+        "type": "boolean",
+        "value": false
+      },
+      "offset": {
+        "displayName": "位置偏移",
+        "desc": "设置状态点的位置偏移，格式为 [x, y], [number|string, number|string]",
+        "type": "array"
+      },
+      "overflowCount": {
+        "displayName": "封顶的数字值",
+        "desc": "展示封顶的数字值",
+        "type": "number",
+        "value": 99
+      },
+      "showZero": {
+        "displayName": "当数值为 0 时，是否展示 Badge",
+        "desc": "当数值为 0 时，是否展示 Badge",
+        "type": "boolean",
+        "value": false
+      },
+      "status": {
+        "displayName": "状态点",
+        "desc": "设置 Badge 为状态点, Enum{ 'success', 'processing, 'default', 'error', 'warning' }",
+        "type": "string"
+      },
+      "text": {
+        "displayName": "状态点的文本",
+        "desc": "在设置了 status 的前提下有效，设置状态点的文本",
+        "type": "string"
+      },
+      "numberStyle": {
+        "displayName": "状态点的样式",
+        "desc": "设置状态点的样式",
+        "type": "object"
+      },
+      "title": {
+        "displayName": "状态点上时显示的文字",
+        "desc": "设置鼠标放在状态点上时显示的文字",
+        "type": "string",
+        "value": "count"
+      }
+    },
+    "slots": {
+      "count": {
+        "displayName": "徽标数",
+        "desc": "图标右上角的圆形徽标数字。"
+      }
+    },
+    "methods": {}
+  },
+  "yn-calendar": {
+    "name": "yn-calendar",
+    "displayName": "日历",
+    "version": "1.0.0",
+    "desc": "按照日历形式展示数据的容器。",
+    "properties": {
+      "dateCellRender": {
+        "displayName": "日期单元格渲染",
+        "desc": "作用域插槽，用来自定义渲染日期单元格，返回内容会被追加到单元格, function(date: moment)",
+        "type": "function"
+      },
+      "dateFullCellRender": {
+        "displayName": "全日期单元格渲染",
+        "desc": "作用域插槽，自定义渲染日期单元格，返回内容覆盖单元格, function(date: moment)",
+        "type": "function"
+      },
+      "defaultValue": {
+        "displayName": "默认日期",
+        "desc": "默认展示的日期, 类型:moment 默认值：默认日期",
+        "type": "object",
+        "value": null
+      },
+      "disabledDate": {
+        "displayName": "不可选日期",
+        "desc": "不可选择的日期, (currentDate: moment) => boolean",
+        "type": "function"
+      },
+      "fullscreen": {
+        "displayName": "全屏显示",
+        "desc": "是否全屏显示",
+        "type": "boolean",
+        "value": true
+      },
+      "locale": {
+        "displayName": "国际化配置",
+        "desc": "国际化配置",
+        "type": "object",
+        "value": null
+      },
+      "mode": {
+        "displayName": "初始模式",
+        "desc": "初始模式，month/year",
+        "type": "string",
+        "value": "month"
+      },
+      "monthCellRender": {
+        "displayName": "月单元格渲染",
+        "desc": "作用域插槽，自定义渲染月单元格，返回内容会被追加到单元格, function(date: moment)",
+        "type": "function"
+      },
+      "monthFullCellRender": {
+        "displayName": "全月单元格渲染",
+        "desc": "作用域插槽，自定义渲染月单元格，返回内容覆盖单元格, function(date: moment)",
+        "type": "function"
+      },
+      "validRange": {
+        "displayName": "可显示日期",
+        "desc": "设置可以显示的日期, [moment, moment]",
+        "type": "array"
+      },
+      "value": {
+        "displayName": "展示日期",
+        "desc": "展示日期",
+        "type": "object",
+        "value": null,
+        "v-model": true
+      }
+    },
+    "events": {
+      "panelChange": {
+        "displayName": "日期面板变化回调",
+        "desc": "日期面板变化回调, function(date: moment, mode: string)",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "select": {
+        "displayName": "点击选择日期回调",
+        "desc": "点击选择日期回调, function(date: moment）",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "change": {
+        "displayName": "日期变化时的回调",
+        "desc": "日期变化时的回调, 面板变化有可能导致日期变化, function(date: moment）",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "methods": {}
+  },
+  "yn-card": {
+    "name": "yn-card",
+    "displayName": "卡片",
+    "version": "1.0.0",
+    "desc": "通用卡片容器",
+    "properties": {
+      "activeTabKey": {
+        "displayName": "当前激活页签的 key",
+        "desc": "当前激活页签的 key",
+        "type": "string"
+      },
+      "headStyle": {
+        "displayName": "标题区域样式",
+        "desc": "自定义标题区域样式",
+        "type": "object"
+      },
+      "bodyStyle": {
+        "displayName": "内容区域样式",
+        "desc": "内容区域自定义样式",
+        "type": "object"
+      },
+      "bordered": {
+        "displayName": "边框",
+        "desc": "是否有边框",
+        "type": "boolean",
+        "value": true
+      },
+      "defaultActiveTabKey": {
+        "displayName": "初始化选中页签的 key",
+        "desc": "初始化选中页签的 key，如果没有设置 activeTabKey",
+        "type": "string",
+        "value": "第一个页签"
+      },
+      "extra": {
+        "displayName": "卡片右上角的操作区域",
+        "desc": "卡片右上角的操作区域",
+        "type": "string"
+      },
+      "hoverable": {
+        "displayName": "鼠标移过时可浮起",
+        "desc": "鼠标移过时可浮起",
+        "type": "boolean",
+        "value": false
+      },
+      "loading": {
+        "displayName": "加载中",
+        "desc": "当卡片内容还在加载中时，可以用 loading 展示一个占位",
+        "type": "boolean",
+        "value": false
+      },
+      "tabList": {
+        "displayName": "页签标题列表",
+        "desc": "页签标题列表, 可以通过scopedSlots属性自定义tab, Array<{key: string, tab: any, scopedSlots: {tab: 'XXX'}}>",
+        "type": "array"
+      },
+      "title": {
+        "displayName": "卡片标题",
+        "desc": "卡片标题",
+        "type": "string"
+      },
+      "type": {
+        "displayName": "卡片类型",
+        "desc": "卡片类型，可设置为 inner 或 不设置",
+        "type": "string"
+      }
+    },
+    "slots": {
+      "actions": {
+        "displayName": "卡片操作组",
+        "desc": "卡片操作组，位置在卡片底部"
+      },
+      "cover": {
+        "displayName": "封面",
+        "desc": "卡片封面"
+      },
+      "extra": {
+        "displayName": "卡片右上角的操作区域",
+        "desc": "卡片右上角的操作区域"
+      },
+      "title": {
+        "displayName": "卡片标题",
+        "desc": "卡片标题"
+      }
+    },
+    "events": {
+      "tabChange": {
+        "displayName": "页签切换的回调",
+        "desc": "页签切换的回调",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "methods": {}
+  },
+  "yn-empty": {
+    "name": "yn-empty",
+    "displayName": "空状态",
+    "version": "1.0.0",
+    "desc": "空状态时的展示占位图。",
+    "properties": {
+      "description": {
+        "displayName": "自定义描述内容",
+        "desc": "自定义描述内容",
+        "type": "string"
+      },
+      "image": {
+        "displayName": "设置显示图片",
+        "desc": "设置显示图片，为 string 时表示自定义图片地址",
+        "type": "string",
+        "value": "false"
+      }
+    },
+    "slots": {
+      "description": {
+        "displayName": "自定义描述内容",
+        "desc": "自定义描述内容"
+      },
+      "image": {
+        "displayName": "设置显示图片",
+        "desc": "设置显示图片，为 string 时表示自定义图片地址"
+      }
+    },
+    "events": {},
+    "methods": {}
+  },
+  "yn-tabs": {
+    "name": "yn-tabs",
+    "displayName": "标签页",
+    "version": "1.0.0",
+    "desc": "选项卡切换组件。",
+    "properties": {
+      "activeKey": {
+        "displayName": "当前激活 tab 面板的 key",
+        "desc": "当前激活 tab 面板的 key",
+        "type": "string",
+        "v-model": true
+      },
+      "animated": {
+        "displayName": "是否使用动画切换 Tabs",
+        "desc": "是否使用动画切换 Tabs，在 tabPosition=top|bottom 时有效",
+        "typeDesc": "属性类型是 boolean | {inkBar:boolean, tabPane:boolean}，默认值是true, 当 type='card' 时为 false",
+        "type": "boolean|object",
+        "value": true
+      },
+      "defaultActiveKey": {
+        "displayName": "初始化选中面板的 key",
+        "desc": "初始化选中面板的 key，如果没有设置 activeKey",
+        "type": "string",
+        "value": "第一个面板"
+      },
+      "hideAdd": {
+        "displayName": "是否隐藏加号图标",
+        "desc": "是否隐藏加号图标，在 type='editable-card' 时有效",
+        "type": "boolean",
+        "value": false
+      },
+      "size": {
+        "displayName": "大小",
+        "desc": "大小，提供 large default 和 small 三种大小",
+        "type": "string",
+        "value": "default"
+      },
+      "tabBarStyle": {
+        "displayName": "tab bar 的样式对象",
+        "desc": "tab bar 的样式对象",
+        "type": "object"
+      },
+      "tabPosition": {
+        "displayName": "页签位置",
+        "desc": "页签位置，可选值有 top right bottom left",
+        "type": "string",
+        "value": "top"
+      },
+      "type": {
+        "displayName": "页签的基本样式",
+        "desc": "页签的基本样式，可选 line、card editable-card 类型",
+        "type": "string",
+        "value": "line"
+      },
+      "tabBarGutter": {
+        "displayName": "tabs 之间的间隙",
+        "desc": "tabs 之间的间隙",
+        "type": "number"
+      }
+    },
+    "slots": {
+      "tabBarExtraContent": {
+        "displayName": "tab bar 上额外的元素",
+        "desc": "tab bar 上额外的元素"
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "切换面板的回调",
+        "desc": "切换面板的回调",
+        "argsDesc": "Function(activeKey) {}"
+      },
+      "edit": {
+        "displayName": "新增和删除页签的回调",
+        "desc": "新增和删除页签的回调，在 type='editable-card' 时有效",
+        "argsDesc": "(targetKey, action): void"
+      },
+      "nextClick": {
+        "displayName": "next 按钮被点击的回调",
+        "desc": "next 按钮被点击的回调",
+        "argsDesc": "Function"
+      },
+      "prevClick": {
+        "displayName": "prev 按钮被点击的回调",
+        "desc": "prev 按钮被点击的回调",
+        "argsDesc": "Function"
+      },
+      "tabClick": {
+        "displayName": "tab 按钮被点击的回调",
+        "desc": "tab 按钮被点击的回调",
+        "argsDesc": "Function"
+      }
+    },
+    "methods": {}
+  },
+  "yn-tabs-tabpane": {
+    "name": "yn-tabs-tabpane",
+    "displayName": "标签面板",
+    "version": "1.0.0",
+    "desc": "标签面板。",
+    "properties": {
+      "forceRender": {
+        "displayName": "被隐藏时是否渲染 DOM 结构",
+        "desc": "被隐藏时是否渲染 DOM 结构",
+        "type": "boolean",
+        "value": false
+      },
+      "key": {
+        "displayName": "对应 activeKey",
+        "desc": "对应 activeKey",
+        "type": "string"
+      },
+      "tab": {
+        "displayName": "选项卡头显示文字",
+        "desc": "选项卡头显示文字",
+        "type": "string"
+      }
+    },
+    "slots": {
+      "tab": {
+        "displayName": "选项卡头显示文字",
+        "desc": "选项卡头显示文字"
+      }
+    },
+    "methods": {}
+  },
+  "yn-tooltip": {
+    "name": "yn-tooltip",
+    "displayName": "Yn Tooltip",
+    "version": "1.0.0",
+    "desc": "简单的文字提示气泡框。",
+    "properties": {
+      "title": {
+        "displayName": "@",
+        "desc": "提示文字",
+        "type": "string"
+      },
+      "arrowPointAtCenter": {
+        "displayName": "@",
+        "desc": "箭头是否指向目标元素中心",
+        "type": "boolean",
+        "value": false
+      },
+      "autoAdjustOverflow": {
+        "displayName": "@",
+        "desc": "气泡被遮挡时自动调整位置",
+        "type": "boolean",
+        "value": true
+      },
+      "defaultVisible": {
+        "displayName": "@",
+        "desc": "默认是否显隐",
+        "type": "boolean",
+        "value": false
+      },
+      "getPopupContainer": {
+        "displayName": "@",
+        "desc": "浮层渲染父节点，默认渲染到 body 上。Function(triggerNode)。默认值：() => document.body",
+        "type": "function"
+      },
+      "mouseEnterDelay": {
+        "displayName": "@",
+        "desc": "鼠标移入后延时多少才显示 Tooltip，单位：秒",
+        "type": "number",
+        "value": 0
+      },
+      "mouseLeaveDelay": {
+        "displayName": "@",
+        "desc": "鼠标移出后延时多少才隐藏 Tooltip，单位：秒",
+        "type": "number",
+        "value": 0.1
+      },
+      "overlayClassName": {
+        "displayName": "@",
+        "desc": "卡片类名",
+        "type": "string"
+      },
+      "overlayStyle": {
+        "displayName": "@",
+        "desc": "卡片样式",
+        "type": "string"
+      },
+      "placement": {
+        "displayName": "@",
+        "desc": "气泡框位置，可选 top left right bottom topLeft topRight bottomLeft bottomRight leftTop leftBottom rightTop rightBottom",
+        "type": "string",
+        "value": "top"
+      },
+      "trigger": {
+        "displayName": "@",
+        "desc": "触发行为，可选 hover/focus/click/contextmenu",
+        "type": "string",
+        "value": "hover"
+      },
+      "visible": {
+        "displayName": "@",
+        "desc": "用于手动控制浮层显隐",
+        "type": "boolean",
+        "value": false,
+        "v-model": true
+      },
+      "destroyTooltipOnHide": {
+        "displayName": "@",
+        "desc": "隐藏后是否销毁tooltip",
+        "type": "boolean",
+        "value": false
+      },
+      "align": {
+        "displayName": "@",
+        "desc": "该值将合并到 placement 的配置中，设置参考 dom-align",
+        "type": "object"
+      }
+    },
+    "slots": {
+      "title": {
+        "displayName": "@",
+        "desc": "提示文字"
+      }
+    },
+    "events": {
+      "visibleChange": {
+        "displayName": "@",
+        "desc": "显示隐藏的回调",
+        "data": {
+          "desc": "visible",
+          "type": "boolean"
+        }
+      }
+    },
+    "methods": {}
+  },
+  "yn-tag": {
+    "name": "yn-tag",
+    "displayName": "标签",
+    "version": "1.0.0",
+    "desc": "进行标记和分类的小标签。",
+    "properties": {
+      "afterClose": {
+        "displayName": "关闭动画完成后的回调",
+        "desc": "关闭动画完成后的回调, () => void",
+        "type": "function"
+      },
+      "closable": {
+        "displayName": "关闭标签",
+        "desc": "标签是否可以关闭",
+        "type": "boolean",
+        "value": false
+      },
+      "color": {
+        "displayName": "标签色",
+        "desc": "标签色",
+        "type": "string"
+      },
+      "visible": {
+        "displayName": "显示标签",
+        "desc": "是否显示标签",
+        "type": "boolean",
+        "value": true,
+        "v-model": true
+      }
+    },
+    "events": {
+      "close": {
+        "displayName": "关闭时的回调",
+        "desc": "关闭时的回调, (e) => void",
+        "data": {
+          "desc": {
+            "desc": "事件"
+          },
+          "type": "object"
+        }
+      }
+    },
+    "methods": {}
+  },
+  "yn-tag-checkabletag": {
+    "name": "yn-tag-checkabletag",
+    "displayName": "可选择标签",
+    "version": "1.0.0",
+    "desc": "可选择标签",
+    "properties": {
+      "checked": {
+        "displayName": "选中状态",
+        "desc": "设置标签的选中状态",
+        "v-model": true
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "点击标签时触发的回调",
+        "desc": "点击标签时触发的回调, (checked) => void",
+        "data": {
+          "desc": {
+            "desc": "事件"
+          },
+          "type": "object"
+        }
+      }
+    },
+    "methods": {}
+  },
+  "yn-tag-list": {
+    "name": "yn-tag-list",
+    "displayName": "标签列表",
+    "version": "1.0.0",
+    "desc": "用于展示标签列表，支持添加，校验和删除",
+    "properties": {
+      "tags": {
+        "displayName": "标签列表",
+        "desc": "标签列表",
+        "type": "array",
+        "v-model": true
+      },
+      "tagPreClose": {
+        "displayName": "标签关闭前校验",
+        "desc": "参数为：{tag, index}，返回true或者Promise.resolve(true)表示可以删除",
+        "type": "function"
+      },
+      "tagPreSave": {
+        "displayName": "标签保存前校验",
+        "desc": "参数为：新添加的tag值，返回true或者Promise.resolve(true)表示可以保存",
+        "type": "function"
+      },
+      "message": {
+        "displayName": "消息对象",
+        "desc": "三个属性：validating，success和warning",
+        "type": "object"
+      }
+    },
+    "events": {},
+    "methods": {}
+  },
+  "yn-tree": {
+    "name": "yn-tree",
+    "displayName": "树形控件",
+    "version": "1.0.0",
+    "desc": "用清晰的层级结构展示信息，可展开或折叠。",
+    "properties": {
+      "treeData": {
+        "displayName": "节点的配置描述",
+        "desc": "节点的配置描述，具体项见下表, 1.1.4之前的版本使用treeNodes",
+        "type": "array"
+      },
+      "autoExpandParent": {
+        "displayName": "自动展开父节点",
+        "desc": "是否自动展开父节点",
+        "type": "boolean",
+        "value": true
+      },
+      "checkable": {
+        "displayName": "节点前添加 Checkbox 复选框",
+        "desc": "节点前添加 Checkbox 复选框",
+        "type": "boolean",
+        "value": false
+      },
+      "checkedKeys": {
+        "displayName": "选中复选框的树节点",
+        "desc": "（受控）选中复选框的树节点（注意：父子节点有关联，如果传入父节点key，则子节点自动选中；相应当子节点key都传入，父节点也自动选中。当设置checkable和checkStrictly，它是一个有checked和halfChecked属性的对象，并且父子节点的选中与否不再关联",
+        "type": "array|object",
+        "typeDesc": "string[] | number[] | {checked: string[] | number[], halfChecked: string[] | number[]}",
+        "v-model": true
+      },
+      "checkStrictly": {
+        "displayName": "checkable状态下节点选择完全受控",
+        "desc": "checkable状态下节点选择完全受控（父子节点选中状态不再关联）",
+        "type": "boolean",
+        "value": false
+      },
+      "defaultCheckedKeys": {
+        "displayName": "默认选中复选框的树节点",
+        "desc": "默认选中复选框的树节点",
+        "type": "array"
+      },
+      "defaultExpandAll": {
+        "displayName": "默认展开所有树节点",
+        "desc": "默认展开所有树节点",
+        "type": "boolean",
+        "value": false
+      },
+      "defaultExpandedKeys": {
+        "displayName": "默认展开指定的树节点",
+        "desc": "默认展开指定的树节点",
+        "type": "array"
+      },
+      "defaultExpandParent": {
+        "displayName": "默认展开父节点",
+        "desc": "默认展开父节点",
+        "type": "boolean",
+        "value": true
+      },
+      "defaultSelectedKeys": {
+        "displayName": "默认选中的树节点",
+        "desc": "默认选中的树节点",
+        "type": "array"
+      },
+      "disabled": {
+        "displayName": "将树禁用",
+        "desc": "将树禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "draggable": {
+        "displayName": "设置节点可拖拽",
+        "desc": "设置节点可拖拽",
+        "type": "boolean",
+        "value": false
+      },
+      "expandedKeys": {
+        "displayName": "(.sync)展开指定的树节点",
+        "desc": "(.sync)（受控）展开指定的树节点",
+        "type": "array"
+      },
+      "filterTreeNode": {
+        "displayName": "按需筛选树节点",
+        "desc": "按需筛选树节点（高亮），返回true, function(node)",
+        "type": "function"
+      },
+      "loadData": {
+        "displayName": "异步加载数据",
+        "desc": "异步加载数据, function(node)",
+        "type": "function"
+      },
+      "loadedKeys": {
+        "displayName": "已经加载的节点",
+        "desc": "（受控）已经加载的节点，需要配合 loadData 使用",
+        "type": "array"
+      },
+      "multiple": {
+        "displayName": "支持点选多个节点",
+        "desc": "支持点选多个节点（节点本身）",
+        "type": "boolean",
+        "value": false
+      },
+      "selectedKeys": {
+        "displayName": "(.sync)设置选中的树节点",
+        "desc": "(.sync)（受控）设置选中的树节点",
+        "type": "array"
+      },
+      "showIcon": {
+        "displayName": "展示图标",
+        "desc": "是否展示 TreeNode title 前的图标，没有默认样式，如设置为 true，需要自行定义图标相关样式",
+        "type": "boolean",
+        "value": false
+      },
+      "showLine": {
+        "displayName": "展示连接线",
+        "desc": "是否展示连接线",
+        "type": "boolean",
+        "value": false
+      }
+    },
+    "slots": {
+      "contextMenu": {
+        "displayName": "右键菜单",
+        "desc": "用于点击树节点之后右键弹出菜单项",
+        "args": [
+          {
+            "name": "node",
+            "type": "object",
+            "typeDesc": "Node",
+            "displayName": "树形控件",
+            "desc": "用清晰的层级结构展示信息，可展开或折叠。"
+          },
+          {
+            "name": "tree",
+            "type": "object",
+            "typeDesc": "Tree",
+            "displayName": "树形控件",
+            "desc": "用清晰的层级结构展示信息，可展开或折叠。"
+          }
+        ]
+      }
+    },
+    "events": {
+      "check": {
+        "displayName": "选中事件",
+        "desc": "点击复选框触发",
+        "argsDesc": "function(checkedKeys, e:{checked: bool, checkedNodes, node, event})"
+      },
+      "dragend": {
+        "displayName": "dragend 触发时调用",
+        "desc": "dragend 触发时调用, function({event, node})",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "dragenter": {
+        "displayName": "dragenter 触发时调用",
+        "desc": "dragenter 触发时调用, function({event, node, expandedKeys})",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "dragleave": {
+        "displayName": "dragleave 触发时调用",
+        "desc": "dragleave 触发时调用, function({event, node})",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "dragover": {
+        "displayName": "dragover 触发时调用",
+        "desc": "dragover 触发时调用, function({event, node})",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "dragstart": {
+        "displayName": "开始拖拽时调用",
+        "desc": "开始拖拽时调用, function({event, node})",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "drop": {
+        "displayName": "drop 触发时调用",
+        "desc": "drop 触发时调用, function({event, node, dragNode, dragNodesKeys})",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "expand": {
+        "displayName": "展开/收起节点时触发",
+        "desc": "展开/收起节点时触发, function(expandedKeys, {expanded: bool, node})",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "load": {
+        "displayName": "节点加载完毕时触发",
+        "desc": "节点加载完毕时触发, function(loadedKeys, {event, node})",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "rightClick": {
+        "displayName": "响应右键点击",
+        "desc": "响应右键点击, function({event, node})",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      },
+      "select": {
+        "displayName": "点击树节点触发",
+        "desc": "点击树节点触发, function(selectedKeys, e:{selected: bool, selectedNodes, node, event})",
+        "data": {
+          "desc": {
+            "desc": "事件",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "methods": {
+      "addChild": {
+        "displayName": "添加子节点",
+        "desc": "添加子节点在最后",
+        "args": [
+          {
+            "name": "parentNode",
+            "type": "object",
+            "displayName": "父节点",
+            "desc": "父节点"
+          },
+          {
+            "name": "childNode",
+            "type": "object",
+            "displayName": "孩子节点",
+            "desc": "孩子节点"
+          }
+        ]
+      },
+      "addSibling": {
+        "displayName": "树形控件",
+        "desc": "用清晰的层级结构展示信息，可展开或折叠。",
+        "args": [
+          {
+            "name": "curNode",
+            "type": "object",
+            "displayName": "树形控件",
+            "desc": "用清晰的层级结构展示信息，可展开或折叠。"
+          },
+          {
+            "name": "siblingNode",
+            "type": "object",
+            "displayName": "树形控件",
+            "desc": "用清晰的层级结构展示信息，可展开或折叠。"
+          }
+        ]
+      },
+      "removeNode": {
+        "displayName": "删除节点",
+        "desc": "删除节点",
+        "args": [
+          {
+            "name": "curNode",
+            "type": "object",
+            "displayName": "节点",
+            "desc": "即将删除的节点"
+          }
+        ]
+      }
+    }
+  },
+  "yn-tree-treenode": {
+    "name": "yn-tree-treenode",
+    "displayName": "结点描述数据对象",
+    "version": "1.0.0",
+    "desc": "结点描述数据对象",
+    "properties": {
+      "class": {
+        "displayName": "节点的 class",
+        "desc": "节点的 class",
+        "type": "string"
+      },
+      "style": {
+        "displayName": "节点的 style",
+        "desc": "节点的 style",
+        "type": "string|object"
+      },
+      "disableCheckbox": {
+        "displayName": "禁掉 checkbox",
+        "desc": "禁掉 checkbox",
+        "type": "boolean",
+        "value": false
+      },
+      "disabled": {
+        "displayName": "禁掉响应",
+        "desc": "禁掉响应",
+        "type": "boolean",
+        "value": false
+      },
+      "isLeaf": {
+        "displayName": "设置为叶子节点",
+        "desc": "设置为叶子节点(设置了loadData时有效)",
+        "type": "boolean",
+        "value": false
+      },
+      "key": {
+        "displayName": "节点的 key 值",
+        "desc": "被树的 (default)ExpandedKeys / (default)CheckedKeys / (default)SelectedKeys 属性所用。注意：整个树范围内的所有节点的 key 值不能重复！内部计算出的节点位置",
+        "type": "string|number"
+      },
+      "selectable": {
+        "displayName": "节点被选中",
+        "desc": "设置节点是否可被选中",
+        "type": "boolean",
+        "value": true
+      },
+      "title": {
+        "displayName": "标题",
+        "desc": "标题",
+        "type": "string"
+      },
+      "slots": {
+        "displayName": "支持slot的属性",
+        "desc": "使用treeNodes时，可以通过该属性配置支持slot的属性，如 slots: { title: 'XXX'}",
+        "type": "object"
+      },
+      "scopedSlots": {
+        "displayName": "支持slot-scope的属性",
+        "desc": "使用columns时，可以通过该属性配置支持slot-scope的属性，如 scopedSlots: { title: 'XXX'}",
+        "type": "object"
+      },
+      "on": {
+        "displayName": "事件对象",
+        "desc": "事件对象，仅在treeNodes使用方式中生效，如{click: () => {}}",
+        "type": "object"
+      }
+    },
+    "slots": {
+      "icon": {
+        "displayName": "自定义图标",
+        "desc": "自定义图标。可接收组件，props 为当前节点 props"
+      },
+      "title": {
+        "displayName": "标题",
+        "desc": "标题"
+      }
+    },
+    "methods": {}
+  },
+  "yn-tree-directorytree": {
+    "name": "yn-tree-directorytree",
+    "displayName": "目录树",
+    "version": "1.0.0",
+    "desc": "目录树",
+    "properties": {
+      "expandAction": {
+        "displayName": "目录展开逻辑",
+        "desc": "目录展开逻辑，可选 false 'click' 'doubleclick'",
+        "type": "string",
+        "value": "click"
+      }
+    },
+    "methods": {}
+  },
+  "yn-modal": {
+    "name": "yn-modal",
+    "displayName": "对话框",
+    "version": "1.0.0",
+    "desc": "模态对话框。",
+    "properties": {
+      "afterClose": {
+        "displayName": "Modal 完全关闭后的回调",
+        "desc": "Modal 完全关闭后的回调",
+        "type": "function"
+      },
+      "bodyStyle": {
+        "displayName": "Modal body 样式",
+        "desc": "Modal body 样式",
+        "type": "object"
+      },
+      "cancelText": {
+        "displayName": "取消按钮文字",
+        "desc": "取消按钮文字",
+        "type": "string",
+        "value": "取消"
+      },
+      "centered": {
+        "displayName": "垂直居中展示 Modal",
+        "desc": "垂直居中展示 Modal",
+        "type": "boolean",
+        "value": false
+      },
+      "closable": {
+        "displayName": "是否显示右上角的关闭按钮",
+        "desc": "是否显示右上角的关闭按钮",
+        "type": "boolean",
+        "value": true
+      },
+      "confirmLoading": {
+        "displayName": "确定按钮 loading",
+        "desc": "确定按钮 loading",
+        "type": "boolean"
+      },
+      "destroyOnClose": {
+        "displayName": "关闭时销毁 Modal 里的子元素",
+        "desc": "关闭时销毁 Modal 里的子元素",
+        "type": "boolean",
+        "value": false
+      },
+      "footer": {
+        "displayName": "底部内容",
+        "desc": "底部内容，当不需要默认底部按钮时，可以设为 :footer='null'",
+        "type": "string"
+      },
+      "forceRender": {
+        "displayName": "强制渲染 Modal",
+        "desc": "强制渲染 Modal",
+        "type": "boolean",
+        "value": false
+      },
+      "getContainer": {
+        "displayName": "指定 Modal 挂载的 HTML 节点",
+        "desc": "指定 Modal 挂载的 HTML 节点",
+        "typeDesc": "type是(instance): HTMLElement，默认值是() => document.body",
+        "type": "function"
+      },
+      "keyboard": {
+        "displayName": "是否支持键盘 esc 关闭",
+        "desc": "是否支持键盘 esc 关闭",
+        "type": "boolean",
+        "value": true
+      },
+      "mask": {
+        "displayName": "是否展示遮罩",
+        "desc": "是否展示遮罩",
+        "type": "boolean",
+        "value": true
+      },
+      "maskClosable": {
+        "displayName": "点击蒙层是否允许关闭",
+        "desc": "点击蒙层是否允许关闭",
+        "type": "boolean",
+        "value": true
+      },
+      "maskStyle": {
+        "displayName": "遮罩样式",
+        "desc": "遮罩样式",
+        "type": "object"
+      },
+      "okText": {
+        "displayName": "确认按钮文字",
+        "desc": "确认按钮文字",
+        "type": "string",
+        "value": "确定"
+      },
+      "okType": {
+        "displayName": "确认按钮类型",
+        "desc": "确认按钮类型",
+        "type": "string",
+        "value": "primary"
+      },
+      "okButtonProps": {
+        "displayName": "ok 按钮 props",
+        "desc": "ok 按钮 props, 遵循 jsx规范",
+        "typeDesc": "{props: ButtonProps, on: {}}",
+        "type": "object"
+      },
+      "cancelButtonProps": {
+        "displayName": "cancel 按钮 props",
+        "desc": "cancel 按钮 props, 遵循 jsx规范",
+        "typeDesc": "{props: ButtonProps, on: {}}",
+        "type": "object"
+      },
+      "title": {
+        "displayName": "标题",
+        "desc": "标题",
+        "type": "string"
+      },
+      "visible": {
+        "displayName": "对话框是否可见",
+        "desc": "对话框是否可见",
+        "type": "boolean",
+        "v-model": true
+      },
+      "width": {
+        "displayName": "宽度",
+        "desc": "宽度",
+        "type": "string|number",
+        "value": 520
+      },
+      "wrapClassName": {
+        "displayName": "对话框外层容器的类名",
+        "desc": "对话框外层容器的类名",
+        "type": "string"
+      },
+      "zIndex": {
+        "displayName": "设置 Modal 的 z-index",
+        "desc": "设置 Modal 的 z-index",
+        "type": "number",
+        "value": 1000
+      }
+    },
+    "slots": {
+      "cancelText": {
+        "displayName": "取消按钮文字",
+        "desc": "取消按钮文字"
+      },
+      "footer": {
+        "displayName": "底部内容",
+        "desc": "底部内容，当不需要默认底部按钮时，可以设为 :footer='null'"
+      },
+      "okText": {
+        "displayName": "确认按钮文字",
+        "desc": "确认按钮文字"
+      },
+      "title": {
+        "displayName": "标题",
+        "desc": "标题"
+      }
+    },
+    "events": {
+      "cancel": {
+        "displayName": "点击遮罩层或右上角叉或取消按钮的回调",
+        "desc": "点击遮罩层或右上角叉或取消按钮的回调",
+        "argsDesc": "function(e)"
+      },
+      "ok": {
+        "displayName": "点击确定回调",
+        "desc": "点击确定回调",
+        "argsDesc": "function(e)"
+      }
+    },
+    "methods": {
+      "autoFocusButton": {
+        "displayName": "指定自动获得焦点的按钮",
+        "desc": "指定自动获得焦点的按钮",
+        "typeDesc": "string: ok cancel",
+        "type": "string",
+        "value": "ok"
+      },
+      "cancelText": {
+        "displayName": "取消按钮文字",
+        "desc": "取消按钮文字",
+        "type": "string",
+        "value": "取消"
+      },
+      "centered": {
+        "displayName": "垂直居中展示 Modal",
+        "desc": "垂直居中展示 Modal",
+        "type": "boolean",
+        "value": false
+      },
+      "closable": {
+        "displayName": "是否显示右上角的关闭按钮",
+        "desc": "是否显示右上角的关闭按钮",
+        "type": "boolean",
+        "value": false
+      },
+      "class": {
+        "displayName": "容器类名",
+        "desc": "容器类名",
+        "type": "string"
+      },
+      "content": {
+        "displayName": "内容",
+        "desc": "内容",
+        "typeDesc": "string |vNode |function(h)",
+        "type": "string |object|function"
+      },
+      "icon": {
+        "displayName": "自定义图标",
+        "desc": "自定义图标（1.14.0 新增）",
+        "typeDesc": "属性类型是 string|()=>VNode，默认值为<Icon type='question-circle'>",
+        "type": "string |function"
+      },
+      "iconType": {
+        "displayName": "图标类型",
+        "desc": "图标类型（1.14.0 后废弃，请使用 icon）",
+        "type": "string",
+        "value": "question-circle"
+      },
+      "mask": {
+        "displayName": "是否展示遮罩",
+        "desc": "是否展示遮罩",
+        "type": "boolean",
+        "value": true
+      },
+      "maskClosable": {
+        "displayName": "点击蒙层是否允许关闭",
+        "desc": "点击蒙层是否允许关闭",
+        "type": "boolean",
+        "value": false
+      },
+      "keyboard": {
+        "displayName": "是否支持键盘 esc 关闭",
+        "desc": "是否支持键盘 esc 关闭",
+        "type": "boolean",
+        "value": true
+      },
+      "okText": {
+        "displayName": "确认按钮文字",
+        "desc": "确认按钮文字",
+        "type": "string",
+        "value": "确定"
+      },
+      "okType": {
+        "displayName": "确认按钮类型",
+        "desc": "确认按钮类型",
+        "type": "string",
+        "value": "primary"
+      },
+      "okButtonProps": {
+        "displayName": "ok 按钮 props",
+        "desc": "ok 按钮 props",
+        "typeDesc": "{props: ButtonProps, on: {}}",
+        "type": "object"
+      },
+      "cancelButtonProps": {
+        "displayName": "cancel 按钮 props",
+        "desc": "cancel 按钮 props",
+        "typeDesc": "{props: ButtonProps, on: {}}",
+        "type": "object"
+      },
+      "title": {
+        "displayName": "标题",
+        "desc": "标题",
+        "typeDesc": "string|vNode |function(h)",
+        "type": "string |object|function"
+      },
+      "width": {
+        "displayName": "宽度",
+        "desc": "宽度",
+        "type": "string |number",
+        "value": 416
+      },
+      "zIndex": {
+        "displayName": "设置 Modal 的 z-index",
+        "desc": "设置 Modal 的 z-index",
+        "type": "number",
+        "value": 1000
+      },
+      "onCancel": {
+        "displayName": "取消回调",
+        "desc": "取消回调，参数为关闭函数，返回 promise 时 resolve 后自动关闭",
+        "type": "function"
+      },
+      "onOk": {
+        "displayName": "点击确定回调",
+        "desc": "点击确定回调，参数为关闭函数，返回 promise 时 resolve 后自动关闭",
+        "type": "function"
+      }
+    }
+  },
+  "yn-drawer": {
+    "name": "yn-drawer",
+    "displayName": "抽屉",
+    "version": "1.0.0",
+    "desc": "屏幕边缘滑出的浮层面板。",
+    "properties": {
+      "closable": {
+        "displayName": "关闭按钮",
+        "desc": "是否显示右上角的关闭按钮",
+        "type": "boolean",
+        "value": true
+      },
+      "destroyOnClose": {
+        "displayName": "关闭销毁子元素",
+        "desc": "关闭时销毁 Drawer 里的子元素",
+        "type": "boolean",
+        "value": false
+      },
+      "getContainer": {
+        "displayName": "指定挂载节点",
+        "desc": "指定 Drawer 挂载的 HTML 节点, HTMLElement | () => HTMLElement | Selectors",
+        "type": "string|object|function",
+        "value": "body"
+      },
+      "maskClosable": {
+        "displayName": "关闭蒙层",
+        "desc": "点击蒙层是否允许关闭",
+        "type": "boolean",
+        "value": true
+      },
+      "mask": {
+        "displayName": "遮罩",
+        "desc": "是否展示遮罩",
+        "type": "boolean",
+        "value": true
+      },
+      "maskStyle": {
+        "displayName": "遮罩样式",
+        "desc": "遮罩样式",
+        "type": "object"
+      },
+      "title": {
+        "displayName": "标题",
+        "desc": "标题",
+        "type": "string"
+      },
+      "visible": {
+        "displayName": "Drawer 可见",
+        "desc": "Drawer 是否可见",
+        "type": "boolean"
+      },
+      "wrapClassName": {
+        "displayName": "外层容器的类名",
+        "desc": "对话框外层容器的类名",
+        "type": "string"
+      },
+      "wrapStyle": {
+        "displayName": "外层容器的style",
+        "desc": "对话框外层容器的style",
+        "type": "object"
+      },
+      "width": {
+        "displayName": "宽度",
+        "desc": "宽度",
+        "type": "string|number",
+        "value": 256
+      },
+      "height": {
+        "displayName": "高度",
+        "desc": "高度, 在 placement 为 top 或 bottom 时使用",
+        "type": "string|number",
+        "value": 256
+      },
+      "zIndex": {
+        "displayName": "设置 Drawer 的 z-index",
+        "desc": "设置 Drawer 的 z-index",
+        "type": "number",
+        "value": 1000
+      },
+      "placement": {
+        "displayName": "方向",
+        "desc": "抽屉的方向",
+        "type": "string",
+        "value": "right"
+      },
+      "handle": {
+        "displayName": "控制抽屉打开关闭",
+        "desc": "设置后抽屉直接挂载到DOM上，你可以通过该handle控制抽屉打开关闭, type为VNode"
+      }
+    },
+    "slots": {
+      "title": {
+        "displayName": "标题",
+        "desc": "标题"
+      },
+      "handle": {
+        "displayName": "控制抽屉打开关闭",
+        "desc": "设置后抽屉直接挂载到DOM上，你可以通过该handle控制抽屉打开关闭"
+      }
+    },
+    "events": {
+      "close": {
+        "displayName": "抽屉",
+        "desc": "屏幕边缘滑出的浮层面板。"
+      }
+    }
+  },
+  "yn-echart": {
+    "name": "yn-echart",
+    "displayName": "图表组件",
+    "version": "1.0.0",
+    "desc": "元年图表组件",
+    "properties": {
+      "initOptions": {
+        "displayName": "初始选项",
+        "desc": "EChart对应的初始选项",
+        "type": "object",
+        "properties": {
+          "render": {
+            "displayName": "图表render方式",
+            "desc": "render方式可选值为canvas和svg",
+            "type": "string",
+            "valueDesc": "默认值为canvas，另一个可选值为svg"
+          }
+        }
+      },
+      "theme": {
+        "displayName": "主题",
+        "desc": "EChart对应的主题",
+        "type": "string"
+      },
+      "options": {
+        "displayName": "选项",
+        "desc": "图表组件选项。修改该值会触发ECharts的setOption方法",
+        "type": "object",
+        "required": true,
+        "properties": {
+          "title": {
+            "displayName": "标题组件，包含主标题和副标题。",
+            "desc": "在 ECharts 3 中可以存在任意多个标题组件，这在需要标题进行排版，或者单个实例中的多个图表都需要标题时会比较有用。",
+            "type": "object",
+            "properties": {
+              "id": {
+                "displayName": "组件ID",
+                "desc": "默认不指定。指定则可用于在 option 或者 API 中引用组件。",
+                "type": "string"
+              },
+              "show": {
+                "displayName": "显示",
+                "desc": "是否显示标题组件。",
+                "type": "boolean",
+                "valueDesc": "EChart 默认值为true"
+              },
+              "text": {
+                "displayName": "主标题文本",
+                "desc": "主标题文本，支持使用 \n 换行。",
+                "type": "string"
+              },
+              "link": {
+                "displayName": "链接",
+                "desc": "主标题文本超链接。",
+                "type": "string"
+              },
+              "target": {
+                "displayName": "目标",
+                "desc": "指定窗口打开主标题超链接。",
+                "type": "string",
+                "valueDesc": "blank",
+                "valueList": [
+                  "self",
+                  "blank"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "group": {
+        "displayName": "分组",
+        "desc": "对应ECharts的分组",
+        "type": "string"
+      },
+      "autoresize": {
+        "displayName": "自动调整大小",
+        "desc": "是否根据ECharts的根节点自动调整大小",
+        "type": "boolean",
+        "valueDesc": "默认值为false"
+      },
+      "manual-update": {
+        "displayName": "手动更新",
+        "desc": "数据量大的时候可以绕考Vue的响应式，需要通过ref获取组件实例并调用Vue echarts的mergeOptions方法来更新图",
+        "type": "boolean",
+        "valueDesc": "默认值为false"
+      }
+    },
+    "slots": {},
+    "events": {},
+    "methods": {}
+  }
+}

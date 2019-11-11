@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const vscode_1 = require("vscode");
-const TAGS = require("./config/yn-components.json");
+const TAGS = require("./metadata/vscMetadata.json");
 // import ATTRS from "./config/ui-attributes.js";
 const prettyHTML = require("pretty");
 const YN_P1 = "元年 P1";
@@ -106,8 +106,8 @@ class P1CompletionItemProvider {
         this.attrReg = /(?:\(|\s*)(\w+)=['"][^'"]*/;
         this.tagStartReg = /<([\w-]*)$/;
         this.pugTagStartReg = /^\s*[\w-]*$/;
-        this.size = 0;
-        this.quotes = "";
+        this.size = 2;
+        this.quotes = `"`;
     }
     getPreTag() {
         let line = this._position.line;
@@ -163,10 +163,10 @@ class P1CompletionItemProvider {
     }
     getTagSuggestion() {
         let suggestions = [];
-        let id = 100;
+        // let id = 100;
         for (let tag in TAGS) {
-            suggestions.push(this.buildTagSuggestion(tag, TAGS[tag], id));
-            id++;
+            suggestions.push(this.buildTagSuggestion(tag, TAGS[tag]));
+            // id++;
         }
         return suggestions;
     }
@@ -216,14 +216,14 @@ class P1CompletionItemProvider {
         // }
         return suggestions;
     }
-    buildTagSuggestion(tag, tagVal, id) {
+    buildTagSuggestion(tag, tagVal) {
         const snippets = [];
         let index = 0;
         let that = this;
-        function build(tag, { subtags, defaults }, snippets) {
+        function build(tag, { subtags, defaultFields }, snippets) {
             let attrs = "";
-            defaults &&
-                defaults.forEach((item, i) => {
+            defaultFields &&
+                defaultFields.forEach((item, i) => {
                     attrs += ` ${item}=${that.quotes}$${index + i + 1}${that.quotes}`;
                 });
             snippets.push(`${index > 0 ? "<" : ""}${tag}${attrs}>`);
@@ -233,13 +233,21 @@ class P1CompletionItemProvider {
             snippets.push(`</${tag}>`);
         }
         build(tag, tagVal, snippets);
+        let documentation = new vscode_1.MarkdownString(`### 描述
+    ${tagVal.displayName}`);
+        documentation.appendText("\n");
+        documentation.appendMarkdown(`### 详情`);
+        documentation.appendText("\n");
+        documentation.appendText(tagVal.desc);
+        documentation.appendText(" 详见：");
+        documentation.appendMarkdown(`[Cookbook](http://192.168.12.28:8888/#/others/cookbook?type=components&key=${tag})`);
         return {
             label: tag,
-            sortText: `0${id}${tag}`,
+            // sortText: `0${tag}`,
             insertText: new vscode_1.SnippetString(prettyHTML("<" + snippets.join(""), { indent_size: this.size }).substr(1)),
             kind: vscode_1.CompletionItemKind.Snippet,
             detail: YN_P1,
-            documentation: tagVal.description
+            documentation
         };
     }
     buildAttrSuggestion({ attr, tag, bind, method }, { description, type, optionType, defaultValue }) {
@@ -320,10 +328,10 @@ class P1CompletionItemProvider {
         this._position = position;
         // const config = workspace.getConfiguration("antdv-helper");
         // this.size = config.get("indent-size");
-        this.size = 2;
+        // this.size = 2;
         // const normalQuotes = config.get("quotes") === "double" ? '"' : "'";
         // this.quotes = normalQuotes;
-        this.quotes = `"`;
+        // this.quotes = `"`;
         let tag = this.getPreTag();
         let attr = this.getPreAttr();
         if (tag && attr && this.isAttrValueStart(tag, attr)) {

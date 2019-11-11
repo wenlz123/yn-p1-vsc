@@ -19,9 +19,10 @@ import {
   CompletionItemKind,
   SnippetString,
   Range,
-  EventEmitter
+  EventEmitter,
+  MarkdownString
 } from "vscode";
-import * as TAGS from "./config/yn-components.json";
+import * as TAGS from "./metadata/vscMetadata.json";
 // import ATTRS from "./config/ui-attributes.js";
 
 const prettyHTML = require("pretty");
@@ -162,8 +163,8 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
   private attrReg: RegExp = /(?:\(|\s*)(\w+)=['"][^'"]*/;
   private tagStartReg: RegExp = /<([\w-]*)$/;
   private pugTagStartReg: RegExp = /^\s*[\w-]*$/;
-  private size: number = 0;
-  private quotes: string = "";
+  private size: number = 2;
+  private quotes: string = `"`;
 
   getPreTag(): TagObject | undefined {
     let line = this._position.line;
@@ -239,10 +240,10 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
   getTagSuggestion() {
     let suggestions = [];
 
-    let id = 100;
+    // let id = 100;
     for (let tag in TAGS) {
-      suggestions.push(this.buildTagSuggestion(tag, TAGS[tag], id));
-      id++;
+      suggestions.push(this.buildTagSuggestion(tag, TAGS[tag]));
+      // id++;
     }
     return suggestions;
   }
@@ -316,20 +317,24 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
 
   buildTagSuggestion(
     tag: string,
-    tagVal: { subtags?: any; defaults?: any; description?: any },
-    id: number
+    tagVal: {
+      subtags?: any;
+      defaultFields?: any;
+      displayName?: string;
+      desc?: string;
+    }
   ) {
     const snippets: any[] = [];
     let index = 0;
     let that = this;
     function build(
       tag: any,
-      { subtags, defaults }: any,
+      { subtags, defaultFields }: any,
       snippets: any[] | string[]
     ) {
       let attrs = "";
-      defaults &&
-        defaults.forEach((item: any, i: number) => {
+      defaultFields &&
+        defaultFields.forEach((item: any, i: number) => {
           attrs += ` ${item}=${that.quotes}$${index + i + 1}${that.quotes}`;
         });
       snippets.push(`${index > 0 ? "<" : ""}${tag}${attrs}>`);
@@ -341,10 +346,20 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
       snippets.push(`</${tag}>`);
     }
     build(tag, tagVal, snippets);
+    let documentation = new MarkdownString(`### 描述
+    ${tagVal.displayName}`);
+    documentation.appendText("\n");
+    documentation.appendMarkdown(`### 详情`);
+    documentation.appendText("\n");
+    documentation.appendText(tagVal.desc);
+    documentation.appendText(" 详见：");
+    documentation.appendMarkdown(
+      `[Cookbook](http://192.168.12.28:8888/#/others/cookbook?type=components&key=${tag})`
+    );
 
     return {
       label: tag,
-      sortText: `0${id}${tag}`,
+      // sortText: `0${tag}`,
       insertText: new SnippetString(
         prettyHTML("<" + snippets.join(""), { indent_size: this.size }).substr(
           1
@@ -352,7 +367,7 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
       ),
       kind: CompletionItemKind.Snippet,
       detail: YN_P1,
-      documentation: tagVal.description
+      documentation
     };
   }
 
@@ -453,10 +468,10 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
 
     // const config = workspace.getConfiguration("antdv-helper");
     // this.size = config.get("indent-size");
-    this.size = 2;
+    // this.size = 2;
     // const normalQuotes = config.get("quotes") === "double" ? '"' : "'";
     // this.quotes = normalQuotes;
-    this.quotes = `"`;
+    // this.quotes = `"`;
 
     let tag: TagObject | string | undefined = this.getPreTag();
     let attr = this.getPreAttr();
