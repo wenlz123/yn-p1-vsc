@@ -272,46 +272,70 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
           detail: string;
           documentation: any;
         }[] = [];
-    let tagAttrs = this.getTagAttrs(tag);
     let preText = this.getTextBeforePosition(this._position);
     let prefix = preText
       .replace(/['"]([^'"]*)['"]$/, "")
       .split(/\s|\(+/)
       .pop();
     // method attribute
-    if (prefix) {
-      const method = prefix[0] === "@";
-      // bind attribute
-      const bind = prefix[0] === ":";
+    // if (prefix) {
+    const eventFlag = prefix[0] === "@";
+    // bind attribute
+    const propertyFlag = prefix[0] === ":";
 
-      prefix = prefix.replace(/[:@]/, "");
+    prefix = prefix.replace(/[:@]/, "");
 
-      if (/[^@:a-zA-z\s]/.test(prefix[0])) {
-        return suggestions;
-      }
+    if (/[^@:a-zA-z\s]/.test(prefix[0])) {
+      return suggestions;
+    }
 
-      tagAttrs.forEach((attr: string) => {
-        const attrItem = this.getAttrItem(tag, attr);
+    // let tagAttrs = this.getTagAttrs(tag, eventFlag, propertyFlag);
+    if (!eventFlag) {
+      // all or property
+      let properties = TAGS[tag].properties;
+      Reflect.ownKeys(properties).forEach((attr: string) => {
+        const attrItem = properties[attr];
         if (
           attrItem &&
-          (prefix && (!prefix.trim() || this.firstCharsEqual(attr, prefix)))
+          (!prefix || (!prefix.trim() || this.firstCharsEqual(attr, prefix)))
         ) {
           const sug = this.buildAttrSuggestion(
-            { attr, tag, bind, method },
+            {
+              attr,
+              tag,
+              propertyFlag: true,
+              eventFlag: false
+            },
             attrItem
           );
           sug && suggestions.push(sug);
         }
       });
     }
-    // for (let attr in ATTRS) {
-    //   const attrItem = this.getAttrItem(tag, attr);
-    //   if (attrItem && attrItem.global && (!prefix.trim() || this.firstCharsEqual(attr, prefix))) {
-    //     const sug = this.buildAttrSuggestion({attr, tag: null, bind, method}, attrItem);
-    //     sug && suggestions.push(sug);
-    //   }
-    // }
-
+    if (!propertyFlag) {
+      // all or event
+      let events = TAGS[tag].events;
+      Reflect.ownKeys(events).forEach((attr: string) => {
+        const attrItem = events[attr];
+        if (
+          attrItem &&
+          (!prefix || (!prefix.trim() || this.firstCharsEqual(attr, prefix)))
+        ) {
+          const sug = this.buildAttrSuggestion(
+            {
+              attr,
+              tag,
+              propertyFlag: false,
+              eventFlag: true,
+              prefixWithAt: eventFlag
+            },
+            attrItem
+          );
+          sug && suggestions.push(sug);
+        }
+      });
+      // }
+    }
     return suggestions;
   }
 
@@ -337,24 +361,21 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
         defaultFields.forEach((item: any, i: number) => {
           attrs += ` ${item}=${that.quotes}$${index + i + 1}${that.quotes}`;
         });
-      snippets.push(`${index > 0 ? "<" : ""}${tag}${attrs}>`);
+      snippets.push(
+        `${index > 0 ? "<" : ""}${tag}${attrs}${"$" + (index + 1)}>`
+      );
       index++;
       subtags &&
         subtags.forEach((item: string | number) =>
           build(item, TAGS[item], snippets)
         );
-      snippets.push(`</${tag}>`);
+      snippets.push(`$0</${tag}>`);
     }
     build(tag, tagVal, snippets);
-    let documentation = new MarkdownString(`### 描述
-    ${tagVal.displayName}`);
-    documentation.appendText("\n");
-    documentation.appendMarkdown(`### 详情`);
-    documentation.appendText("\n");
-    documentation.appendText(tagVal.desc);
-    documentation.appendText(" 详见：");
+    let documentation = new MarkdownString(`___描述：___${tagVal.displayName}`);
+    documentation.appendText("\n\n");
     documentation.appendMarkdown(
-      `[Cookbook](http://192.168.12.28:8888/#/others/cookbook?type=components&key=${tag})`
+      `___详情：___${tagVal.desc} 详见：[Cookbook](http://192.168.12.28:8888/#/others/cookbook?type=components&key=${tag})`
     );
 
     return {
@@ -372,38 +393,59 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
   }
 
   buildAttrSuggestion(
-    { attr, tag, bind, method },
-    { description, type, optionType, defaultValue }
+    { attr, tag, propertyFlag, eventFlag, prefixWithAt },
+    { displayName, desc, type, defaultValue, value, valueDesc, valueList }
   ) {
-    if (
-      (method && type === "method") ||
-      (bind && type !== "method") ||
-      (!method && !bind)
-    ) {
-      let documentation = description;
-      optionType && (documentation += "\n" + `type: ${optionType}`);
-      defaultValue && (documentation += "\n" + `default: ${defaultValue}`);
-      return {
-        label: attr,
-        insertText:
-          type && type === "flag"
-            ? `${attr} `
-            : new SnippetString(`${attr}=${this.quotes}$1${this.quotes}$0`),
-        kind:
-          type && type === "method"
-            ? CompletionItemKind.Method
-            : CompletionItemKind.Property,
-        detail: "Ant Design Vue",
-        documentation
-      };
-    } else {
-      return;
+    // if (
+    //   (eventFlag && type === "method") ||
+    //   (propertyFlag && type !== "method") ||
+    //   (!eventFlag && !propertyFlag)
+    // ) {
+    let documentation = new MarkdownString(`___描述：___${displayName}`);
+    documentation.appendText("\n\n");
+    documentation.appendMarkdown(`___类型：___${type}`);
+    documentation.appendText("\n\n");
+    if (value || valueDesc) {
+      documentation.appendMarkdown(`___默认值：___`);
+      if (value) {
+        documentation.appendText(value);
+      }
+      if (valueDesc) {
+        documentation.appendText(`默认值描述：${valueDesc}`);
+      }
     }
+    if (valueList) {
+      documentation.appendMarkdown(`___值列表：___${valueList.join(",")}`);
+      documentation.appendText("\n\n");
+    }
+    documentation.appendMarkdown(
+      `___详情：___${desc} 详见：[Cookbook](http://192.168.12.28:8888/#/others/cookbook?type=components&key=${tag})`
+    );
+    // optionType && (documentation += "\n" + `type: ${optionType}`);
+    // defaultValue && (documentation += "\n" + `default: ${defaultValue}`);
+    return {
+      label: attr,
+      insertText: new SnippetString(
+        `${(eventFlag && !prefixWithAt ? "@" : "") + attr}=${this.quotes}$1${
+          this.quotes
+        }$0`
+      ),
+      // insertText:
+      //   type && type === "flag"
+      //     ? `${attr} `
+      //     : new SnippetString(`${attr}=${this.quotes}$1${this.quotes}$0`),
+      kind: eventFlag ? CompletionItemKind.Method : CompletionItemKind.Property,
+      detail: YN_P1,
+      documentation
+    };
+    // } else {
+    //   return;
+    // }
   }
 
   getAttrValues(tag: string | undefined, attr: string | undefined) {
     let attrItem = this.getAttrItem(tag, attr);
-    let options = attrItem && attrItem.options;
+    let options = attrItem && attrItem.valueList;
     if (!options && attrItem) {
       if (attrItem.type === "boolean") {
         options = ["true", "false"];
@@ -412,19 +454,16 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
     return options || [];
   }
 
-  getTagAttrs(tag: string) {
-    return (TAGS[tag] && TAGS[tag].attributes) || [];
-  }
+  // getTagAttrs(tag: string, eventFlg: boolean, propertyFlg: boolean) {
+  //   return (TAGS[tag] && TAGS[tag].properties) || [];
+  // }
 
-  getAttrItem(tag: string | undefined, attr: string | undefined) {
-    // return ATTRS[`${tag}/${attr}`] || ATTRS[attr];
-    return {
-      options: [],
-      type: "TODO",
-      description: "TODO",
-      optionType: "TODO",
-      defaultValue: "TODO"
-    };
+  getAttrItem(
+    tag: string | undefined,
+    attr: string | undefined,
+    type: string = "property"
+  ) {
+    return TAGS[tag][type === "property" ? "properties" : "events"][attr];
   }
 
   isAttrValueStart(tag: Object | string | undefined, attr: string | undefined) {

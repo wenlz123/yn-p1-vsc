@@ -183,37 +183,57 @@ class P1CompletionItemProvider {
     }
     getAttrSuggestion(tag) {
         let suggestions = [];
-        let tagAttrs = this.getTagAttrs(tag);
         let preText = this.getTextBeforePosition(this._position);
         let prefix = preText
             .replace(/['"]([^'"]*)['"]$/, "")
             .split(/\s|\(+/)
             .pop();
         // method attribute
-        if (prefix) {
-            const method = prefix[0] === "@";
-            // bind attribute
-            const bind = prefix[0] === ":";
-            prefix = prefix.replace(/[:@]/, "");
-            if (/[^@:a-zA-z\s]/.test(prefix[0])) {
-                return suggestions;
-            }
-            tagAttrs.forEach((attr) => {
-                const attrItem = this.getAttrItem(tag, attr);
+        // if (prefix) {
+        const eventFlag = prefix[0] === "@";
+        // bind attribute
+        const propertyFlag = prefix[0] === ":";
+        prefix = prefix.replace(/[:@]/, "");
+        if (/[^@:a-zA-z\s]/.test(prefix[0])) {
+            return suggestions;
+        }
+        // let tagAttrs = this.getTagAttrs(tag, eventFlag, propertyFlag);
+        if (!eventFlag) {
+            // all or property
+            let properties = TAGS[tag].properties;
+            Reflect.ownKeys(properties).forEach((attr) => {
+                const attrItem = properties[attr];
                 if (attrItem &&
-                    (prefix && (!prefix.trim() || this.firstCharsEqual(attr, prefix)))) {
-                    const sug = this.buildAttrSuggestion({ attr, tag, bind, method }, attrItem);
+                    (!prefix || (!prefix.trim() || this.firstCharsEqual(attr, prefix)))) {
+                    const sug = this.buildAttrSuggestion({
+                        attr,
+                        tag,
+                        propertyFlag: true,
+                        eventFlag: false
+                    }, attrItem);
                     sug && suggestions.push(sug);
                 }
             });
         }
-        // for (let attr in ATTRS) {
-        //   const attrItem = this.getAttrItem(tag, attr);
-        //   if (attrItem && attrItem.global && (!prefix.trim() || this.firstCharsEqual(attr, prefix))) {
-        //     const sug = this.buildAttrSuggestion({attr, tag: null, bind, method}, attrItem);
-        //     sug && suggestions.push(sug);
-        //   }
-        // }
+        if (!propertyFlag) {
+            // all or event
+            let events = TAGS[tag].events;
+            Reflect.ownKeys(events).forEach((attr) => {
+                const attrItem = events[attr];
+                if (attrItem &&
+                    (!prefix || (!prefix.trim() || this.firstCharsEqual(attr, prefix)))) {
+                    const sug = this.buildAttrSuggestion({
+                        attr,
+                        tag,
+                        propertyFlag: false,
+                        eventFlag: true,
+                        prefixWithAt: eventFlag
+                    }, attrItem);
+                    sug && suggestions.push(sug);
+                }
+            });
+            // }
+        }
         return suggestions;
     }
     buildTagSuggestion(tag, tagVal) {
@@ -226,21 +246,16 @@ class P1CompletionItemProvider {
                 defaultFields.forEach((item, i) => {
                     attrs += ` ${item}=${that.quotes}$${index + i + 1}${that.quotes}`;
                 });
-            snippets.push(`${index > 0 ? "<" : ""}${tag}${attrs}>`);
+            snippets.push(`${index > 0 ? "<" : ""}${tag}${attrs}${"$" + (index + 1)}>`);
             index++;
             subtags &&
                 subtags.forEach((item) => build(item, TAGS[item], snippets));
-            snippets.push(`</${tag}>`);
+            snippets.push(`$0</${tag}>`);
         }
         build(tag, tagVal, snippets);
-        let documentation = new vscode_1.MarkdownString(`### 描述
-    ${tagVal.displayName}`);
-        documentation.appendText("\n");
-        documentation.appendMarkdown(`### 详情`);
-        documentation.appendText("\n");
-        documentation.appendText(tagVal.desc);
-        documentation.appendText(" 详见：");
-        documentation.appendMarkdown(`[Cookbook](http://192.168.12.28:8888/#/others/cookbook?type=components&key=${tag})`);
+        let documentation = new vscode_1.MarkdownString(`___描述：___${tagVal.displayName}`);
+        documentation.appendText("\n\n");
+        documentation.appendMarkdown(`___详情：___${tagVal.desc} 详见：[Cookbook](http://192.168.12.28:8888/#/others/cookbook?type=components&key=${tag})`);
         return {
             label: tag,
             // sortText: `0${tag}`,
@@ -250,32 +265,50 @@ class P1CompletionItemProvider {
             documentation
         };
     }
-    buildAttrSuggestion({ attr, tag, bind, method }, { description, type, optionType, defaultValue }) {
-        if ((method && type === "method") ||
-            (bind && type !== "method") ||
-            (!method && !bind)) {
-            let documentation = description;
-            optionType && (documentation += "\n" + `type: ${optionType}`);
-            defaultValue && (documentation += "\n" + `default: ${defaultValue}`);
-            return {
-                label: attr,
-                insertText: type && type === "flag"
-                    ? `${attr} `
-                    : new vscode_1.SnippetString(`${attr}=${this.quotes}$1${this.quotes}$0`),
-                kind: type && type === "method"
-                    ? vscode_1.CompletionItemKind.Method
-                    : vscode_1.CompletionItemKind.Property,
-                detail: "Ant Design Vue",
-                documentation
-            };
+    buildAttrSuggestion({ attr, tag, propertyFlag, eventFlag, prefixWithAt }, { displayName, desc, type, defaultValue, value, valueDesc, valueList }) {
+        // if (
+        //   (eventFlag && type === "method") ||
+        //   (propertyFlag && type !== "method") ||
+        //   (!eventFlag && !propertyFlag)
+        // ) {
+        let documentation = new vscode_1.MarkdownString(`___描述：___${displayName}`);
+        documentation.appendText("\n\n");
+        documentation.appendMarkdown(`___类型：___${type}`);
+        documentation.appendText("\n\n");
+        if (value || valueDesc) {
+            documentation.appendMarkdown(`___默认值：___`);
+            if (value) {
+                documentation.appendText(value);
+            }
+            if (valueDesc) {
+                documentation.appendText(`默认值描述：${valueDesc}`);
+            }
         }
-        else {
-            return;
+        if (valueList) {
+            documentation.appendMarkdown(`___值列表：___${valueList.join(",")}`);
+            documentation.appendText("\n\n");
         }
+        documentation.appendMarkdown(`___详情：___${desc} 详见：[Cookbook](http://192.168.12.28:8888/#/others/cookbook?type=components&key=${tag})`);
+        // optionType && (documentation += "\n" + `type: ${optionType}`);
+        // defaultValue && (documentation += "\n" + `default: ${defaultValue}`);
+        return {
+            label: attr,
+            insertText: new vscode_1.SnippetString(`${(eventFlag && !prefixWithAt ? "@" : "") + attr}=${this.quotes}$1${this.quotes}$0`),
+            // insertText:
+            //   type && type === "flag"
+            //     ? `${attr} `
+            //     : new SnippetString(`${attr}=${this.quotes}$1${this.quotes}$0`),
+            kind: eventFlag ? vscode_1.CompletionItemKind.Method : vscode_1.CompletionItemKind.Property,
+            detail: YN_P1,
+            documentation
+        };
+        // } else {
+        //   return;
+        // }
     }
     getAttrValues(tag, attr) {
         let attrItem = this.getAttrItem(tag, attr);
-        let options = attrItem && attrItem.options;
+        let options = attrItem && attrItem.valueList;
         if (!options && attrItem) {
             if (attrItem.type === "boolean") {
                 options = ["true", "false"];
@@ -283,18 +316,11 @@ class P1CompletionItemProvider {
         }
         return options || [];
     }
-    getTagAttrs(tag) {
-        return (TAGS[tag] && TAGS[tag].attributes) || [];
-    }
-    getAttrItem(tag, attr) {
-        // return ATTRS[`${tag}/${attr}`] || ATTRS[attr];
-        return {
-            options: [],
-            type: "TODO",
-            description: "TODO",
-            optionType: "TODO",
-            defaultValue: "TODO"
-        };
+    // getTagAttrs(tag: string, eventFlg: boolean, propertyFlg: boolean) {
+    //   return (TAGS[tag] && TAGS[tag].properties) || [];
+    // }
+    getAttrItem(tag, attr, type = "property") {
+        return TAGS[tag][type === "property" ? "properties" : "events"][attr];
     }
     isAttrValueStart(tag, attr) {
         return tag && attr;
