@@ -405,14 +405,15 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
     documentation.appendText("\n\n");
     documentation.appendMarkdown(`___类型：___${type}`);
     documentation.appendText("\n\n");
-    if (value || valueDesc) {
+    if (typeof value !== "undefined" || valueDesc) {
       documentation.appendMarkdown(`___默认值：___`);
-      if (value) {
-        documentation.appendText(value);
+      if (typeof value !== "undefined") {
+        documentation.appendText("" + value);
       }
       if (valueDesc) {
         documentation.appendText(`默认值描述：${valueDesc}`);
       }
+      documentation.appendText("\n\n");
     }
     if (valueList) {
       documentation.appendMarkdown(`___值列表：___${valueList.join(",")}`);
