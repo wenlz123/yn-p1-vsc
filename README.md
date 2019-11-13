@@ -17,4 +17,6 @@
 
 ## 使用
 
-![test](/images/yuannian128.png)
+### 基本使用方法
+
+![Usage Sample](/images/usage_sample.gif)
