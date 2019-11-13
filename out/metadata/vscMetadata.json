@@ -49,6 +49,14 @@
         "displayName": "按钮类型",
         "desc": "设置按钮类型，可选值为 primary dashed danger link 或者不设",
         "type": "string",
+        "valueList": [
+          "primary",
+          "ghost",
+          "dashed",
+          "danger",
+          "link",
+          "omitted"
+        ],
         "value": "default"
       },
       "block": {
@@ -569,9 +577,7 @@
         "desc": "触发下拉的行为, Array<click|hover|contextmenu>",
         "typeDesc": "Array<click|hover|contextmenu>, 默认值['hover']",
         "type": "array",
-        "value": [
-          "hover"
-        ]
+        "value": ["hover"]
       },
       "visible": {
         "displayName": "显示菜单",
@@ -4523,10 +4529,7 @@
                 "desc": "指定窗口打开主标题超链接。",
                 "type": "string",
                 "valueDesc": "blank",
-                "valueList": [
-                  "self",
-                  "blank"
-                ]
+                "valueList": ["self", "blank"]
               }
             }
           }
