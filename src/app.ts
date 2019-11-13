@@ -304,7 +304,8 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
               attr,
               tag,
               propertyFlag: true,
-              eventFlag: false
+              eventFlag: false,
+              prefixWithAt: false
             },
             attrItem
           );

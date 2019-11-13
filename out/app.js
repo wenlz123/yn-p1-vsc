@@ -209,7 +209,8 @@ class P1CompletionItemProvider {
                         attr,
                         tag,
                         propertyFlag: true,
-                        eventFlag: false
+                        eventFlag: false,
+                        prefixWithAt: false
                     }, attrItem);
                     sug && suggestions.push(sug);
                 }

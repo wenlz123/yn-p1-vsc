@@ -1,12 +1,13 @@
 {
-  "name": "yn_p1",
+  "name": "yn-p1",
   "displayName": "元年 P1",
   "description": "元年 P1 插件",
   "version": "0.0.1",
   "publisher": "yuanian",
   "engines": {
-    "vscode": "^1.35.0"
+    "vscode": "^1.40.0"
   },
+  "icon": "images/yuannian128.png",
   "categories": [
     "Snippets",
     "Other"
@@ -38,6 +39,7 @@
     "vscode-test": "^1.2.2"
   },
   "dependencies": {
+    "patch": "0.0.1",
     "pretty": "^2.0.0",
     "shelljs": "^0.8.3"
   }
