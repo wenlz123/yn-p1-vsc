@@ -2,7 +2,7 @@
   "name": "yn-p1",
   "displayName": "YN P1",
   "description": "元年 P1 插件",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "publisher": "yuanian",
   "engines": {
     "vscode": "^1.35.0"
