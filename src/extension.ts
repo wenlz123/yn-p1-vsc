@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { App, P1CompletionItemProvider } from "./app";
+import { ImportFixer } from "./import-fixer";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -35,10 +36,15 @@ export function activate(context: vscode.ExtensionContext) {
     "@",
     "("
   );
+  let importFixer = vscode.commands.registerCommand(
+    "extension.fixImport",
+    (document, position, token, tag, componentPath) => {
+      new ImportFixer().fix(document, position, token, tag, componentPath);
+    }
+  );
   let vueLanguageConfig = vscode.languages.setLanguageConfiguration("vue", {
     wordPattern: WORD_REG
   });
-
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
@@ -52,7 +58,7 @@ export function activate(context: vscode.ExtensionContext) {
   //   }
   // );
 
-  context.subscriptions.push(completion, vueLanguageConfig);
+  context.subscriptions.push(importFixer, completion, vueLanguageConfig);
 }
 
 // this method is called when your extension is deactivated

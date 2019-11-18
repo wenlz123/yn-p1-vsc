@@ -159,6 +159,7 @@ const HTML_CONTENT = (query: Query) => {
 export class P1CompletionItemProvider implements CompletionItemProvider {
   private _document!: TextDocument;
   private _position!: Position;
+  private _token!: CancellationToken;
   private tagReg: RegExp = /<([\w-]+)\s+/g;
   private attrReg: RegExp = /(?:\(|\s*)(\w+)=['"][^'"]*/;
   private tagStartReg: RegExp = /<([\w-]*)$/;
@@ -297,7 +298,7 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
         const attrItem = properties[attr];
         if (
           attrItem &&
-          (!prefix || (!prefix.trim() || this.firstCharsEqual(attr, prefix)))
+          (!prefix || !prefix.trim() || this.firstCharsEqual(attr, prefix))
         ) {
           const sug = this.buildAttrSuggestion(
             {
@@ -320,7 +321,7 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
         const attrItem = events[attr];
         if (
           attrItem &&
-          (!prefix || (!prefix.trim() || this.firstCharsEqual(attr, prefix)))
+          (!prefix || !prefix.trim() || this.firstCharsEqual(attr, prefix))
         ) {
           const sug = this.buildAttrSuggestion(
             {
@@ -347,6 +348,7 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
       defaultFields?: any;
       displayName?: string;
       desc?: string;
+      componentPath?: string;
     }
   ) {
     const snippets: any[] = [];
@@ -389,7 +391,18 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
       ),
       kind: CompletionItemKind.Snippet,
       detail: YN_P1,
-      documentation
+      documentation,
+      command: {
+        command: "extension.fixImport",
+        title: "Fix Import",
+        arguments: [
+          this._document,
+          this._position,
+          this._token,
+          tag,
+          tagVal.componentPath
+        ]
+      }
     };
   }
 
@@ -506,6 +519,7 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
   ): ProviderResult<CompletionItem[] | CompletionList> {
     this._document = document;
     this._position = position;
+    this._token = token;
 
     // const config = workspace.getConfiguration("antdv-helper");
     // this.size = config.get("indent-size");

@@ -76,7 +76,8 @@
         }
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/general/yn-button/"
   },
   "yn-button-group": {
     "name": "yn-button-group",
@@ -86,7 +87,8 @@
     "properties": {},
     "slots": {},
     "events": {},
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/general/yn-button-group/"
   },
   "yn-icon": {
     "name": "yn-icon",
@@ -136,7 +138,8 @@
         "type": "string"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/general/yn-icon/"
   },
   "yn-cube-grid": {
     "name": "yn-cube-grid",
@@ -215,7 +218,8 @@
         "visible": true,
         "args": []
       }
-    }
+    },
+    "componentPath": "@/components/cube/yn-cube-grid/"
   },
   "yn-cube-pilot": {
     "name": "yn-cube-pilot",
@@ -231,7 +235,135 @@
     },
     "slots": {},
     "events": {},
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/cube/yn-cube-pilot/"
+  },
+  "yn-cube-dimensions": {
+    "name": "yn-cube-dimensions",
+    "displayName": "多维表维度条",
+    "version": "1.0.0",
+    "desc": "元年多维表维度条",
+    "properties": {
+      "data": {
+        "displayName": "data",
+        "desc": "该CubeDimension对应的数据提供方实例。",
+        "type": "object",
+        "value": null
+      },
+      "listener": {
+        "displayName": "listener",
+        "desc": "这里包括5个监听处理，分别为afterDropDim, pageDimsClick, rowDimsClick, colDimsClick, pageDimsDropdownClick。该回调处理仅作用于default template，对于自定义模版需要自己处理监听逻辑，不再提供相应的回调方法。",
+        "type": "object",
+        "properties": {
+          "afterDropDim": {
+            "displayName": "afterDropDim",
+            "desc": "drag结束后触发",
+            "type": "function"
+          },
+          "pageDimsClick": {
+            "displayName": "pageDimsClick",
+            "desc": "点击页面维度回调",
+            "type": "function"
+          },
+          "rowDimsClick": {
+            "displayName": "afterDropDim",
+            "desc": "点击行维度回调",
+            "type": "function"
+          },
+          "colDimsClick": {
+            "displayName": "afterDropDim",
+            "desc": "点击列维度回调",
+            "type": "function"
+          },
+          "pageDimsDropdownClick": {
+            "displayName": "afterDropDim",
+            "desc": "点击页面维下拉icon回调",
+            "type": "function"
+          }
+        }
+      }
+    },
+    "slots": {
+      "pageDimsActions": {
+        "displayName": "pageDimsActions",
+        "desc": "页面维区域slot，适合挂载各种action组件，例如button等等。"
+      },
+      "pageDim": {
+        "displayName": "pageDim",
+        "desc": "页面维区域中具体页面维内容slot，适合针对该维度内容的样式进行丰富。",
+        "data": [
+          {
+            "type": "object",
+            "name": "pageDimsItem",
+            "displayName": "pageDimsItem",
+            "desc": "当前页面维度信息"
+          }
+        ]
+      },
+      "rowDim": {
+        "displayName": "rowDim",
+        "desc": "行维区域中具体页面维内容slot，适合针对该维度内容的样式进行丰富。",
+        "data": [
+          {
+            "type": "object",
+            "name": "rowDimsItem",
+            "displayName": "rowDimsItem",
+            "desc": "当前行维度信息"
+          }
+        ]
+      },
+      "colDim": {
+        "displayName": "colDim",
+        "desc": "列维区域中具体页面维内容slot，适合针对该维度内容的样式进行丰富。",
+        "data": [
+          {
+            "type": "object",
+            "name": "colDimsItem",
+            "displayName": "colDimsItem",
+            "desc": "当前列维度信息"
+          }
+        ]
+      },
+      "pageDimsCell": {
+        "displayName": "pageDimsCell",
+        "desc": "页面维区域中具体页面维slot，适合定制化具体页面维呈现效果，若使用该slot，则listener中pageDimsClick将无效，开发者需手动实现其逻辑。",
+        "data": [
+          {
+            "type": "object",
+            "name": "pageDimsItem",
+            "displayName": "pageDimsItem",
+            "desc": "当前页面维度信息"
+          }
+        ]
+      },
+      "rowDimsCell": {
+        "displayName": "rowDimsCell",
+        "desc": "行维区域中具体行维slot，适合定制化具体行维呈现效果，若使用该slot，则listener中rowDimsClick将无效，开发者需手动实现其逻辑。",
+        "data": [
+          {
+            "type": "object",
+            "name": "rowDimsItem",
+            "displayName": "rowDimsItem",
+            "desc": "当前行维度信息"
+          }
+        ]
+      },
+      "colDimsCell": {
+        "displayName": "colDimsCell",
+        "desc": "列维区域中具体列维slot，适合定制化具体列维呈现效果，若使用该slot，则listener中colDimsClick将无效，开发者需手动实现其逻辑。",
+        "data": [
+          {
+            "type": "object",
+            "name": "colDimsItem",
+            "displayName": "colDimsItem",
+            "desc": "当前列维度信息"
+          }
+        ]
+      }
+    },
+    "events": {},
+    "methods": {},
+    "componentPath": "@/components/cube/yn-cube-dimensions/"
   },
   "yn-row": {
     "name": "yn-row",
@@ -265,7 +397,8 @@
     },
     "slots": {},
     "events": {},
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/layout/yn-row/"
   },
   "yn-col": {
     "name": "yn-col",
@@ -336,7 +469,8 @@
     },
     "slots": {},
     "events": {},
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/layout/yn-col/"
   },
   "yn-layout": {
     "name": "yn-layout",
@@ -360,7 +494,8 @@
         "type": "boolean"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/layout/yn-layout/"
   },
   "yn-layout-sider": {
     "name": "yn-layout-sider",
@@ -451,7 +586,8 @@
         "argsDesc": "(broken) => {}"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/layout/yn-layout-sider/"
   },
   "yn-affix": {
     "name": "yn-affix",
@@ -483,7 +619,8 @@
         "argsDesc": "Function(affixed)"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/navigation/yn-affix/"
   },
   "yn-breadcrumb": {
     "name": "yn-breadcrumb",
@@ -521,7 +658,8 @@
       }
     },
     "events": {},
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/navigation/yn-breadcrumb/"
   },
   "yn-breadcrumb-item": {
     "name": "yn-breadcrumb-item",
@@ -536,7 +674,8 @@
       "slots": {},
       "events": {},
       "methods": {}
-    }
+    },
+    "componentPath": "@/components/navigation/yn-breadcrumb-item/"
   },
   "yn-dropdown": {
     "name": "yn-dropdown",
@@ -577,7 +716,9 @@
         "desc": "触发下拉的行为, Array<click|hover|contextmenu>",
         "typeDesc": "Array<click|hover|contextmenu>, 默认值['hover']",
         "type": "array",
-        "value": ["hover"]
+        "value": [
+          "hover"
+        ]
       },
       "visible": {
         "displayName": "显示菜单",
@@ -600,7 +741,8 @@
         "argsDesc": "function(visible)"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/navigation/yn-dropdown/"
   },
   "yn-dropdown-button": {
     "name": "yn-dropdown-button",
@@ -663,7 +805,8 @@
         "argsDesc": "function(visible)"
       },
       "methods": {}
-    }
+    },
+    "componentPath": "@/components/navigation/yn-dropdown-button/"
   },
   "yn-menu": {
     "name": "yn-menu",
@@ -771,7 +914,8 @@
         "argsDesc": "function({ item, key, selectedKeys })"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/navigation/yn-menu/"
   },
   "yn-menu-item": {
     "name": "yn-menu-item",
@@ -796,7 +940,8 @@
         "type": "string"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/navigation/yn-menu-item/"
   },
   "yn-menu-submenu": {
     "name": "yn-menu-submenu",
@@ -834,7 +979,8 @@
         "argsDesc": "({ key, domEvent })"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/navigation/yn-menu-submenu/"
   },
   "yn-menu-itemgroup": {
     "name": "yn-menu-itemgroup",
@@ -853,7 +999,8 @@
         "displayName": "分组标题",
         "desc": "分组标题"
       }
-    }
+    },
+    "componentPath": "@/components/navigation/yn-menu-itemgroup/"
   },
   "yn-pagination": {
     "name": "yn-pagination",
@@ -949,7 +1096,137 @@
         "argsDesc": "Function(current, size)"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/navigation/yn-pagination/"
+  },
+  "yn-steps": {
+    "name": "yn-steps",
+    "displayName": "整体步骤条",
+    "version": "1.0.0",
+    "desc": "引导用户按照流程完成任务的导航条。",
+    "properties": {
+      "current": {
+        "displayName": "指定当前步骤，从 0 开始记数。",
+        "desc": "指定当前步骤，从 0 开始记数。在子 Step 元素中，可以通过 status 属性覆盖状态",
+        "type": "number",
+        "value": 0
+      },
+      "direction": {
+        "displayName": "指定步骤条方向。",
+        "desc": "指定步骤条方向。目前支持水平（horizontal）和竖直（vertical）两种方向",
+        "type": "string",
+        "value": "horizontal"
+      },
+      "labelPlacement": {
+        "displayName": "指定标签放置位置",
+        "desc": "指定标签放置位置，默认水平放图标右侧，可选vertical放图标下方",
+        "type": "string",
+        "value": "horizontal"
+      },
+      "progressDot": {
+        "displayName": "点状步骤条",
+        "desc": "点状步骤条，可以设置为一个 作用域插槽,labelPlacement 将强制为vertical",
+        "type": "boolean",
+        "value": false
+      },
+      "size": {
+        "displayName": "指定大小",
+        "desc": "指定大小，目前支持普通（default）和迷你（small）",
+        "type": "string",
+        "value": "default"
+      },
+      "status": {
+        "displayName": "指定当前步骤的状态",
+        "desc": "指定当前步骤的状态，可选 wait process finish error",
+        "type": "string",
+        "value": "process"
+      },
+      "initial": {
+        "displayName": "起始序号",
+        "desc": "起始序号，从 0 开始记数",
+        "type": "number",
+        "value": 0
+      }
+    },
+    "slots": {
+      "progressDot": {
+        "displayName": "点状步骤条",
+        "desc": "点状步骤条，可以设置为一个 作用域插槽,labelPlacement 将强制为vertical",
+        "args": [
+          {
+            "type": "number",
+            "name": "index",
+            "displayName": "索引"
+          },
+          {
+            "type": "object",
+            "name": "status",
+            "displayName": "状态"
+          },
+          {
+            "type": "object",
+            "name": "title",
+            "displayName": "标题"
+          },
+          {
+            "type": "object",
+            "name": "description",
+            "displayName": "描述"
+          },
+          {
+            "type": "object",
+            "name": "prefixCls",
+            "displayName": "前缀"
+          }
+        ]
+      }
+    },
+    "methods": {},
+    "componentPath": "@/components/navigation/yn-steps/"
+  },
+  "yn-steps-step": {
+    "name": "yn-steps-step",
+    "displayName": "步骤条内的每一个步骤",
+    "version": "1.0.0",
+    "desc": "步骤条内的每一个步骤。",
+    "properties": {
+      "description": {
+        "displayName": "步骤的详情描述",
+        "desc": "步骤的详情描述，可选",
+        "type": "string"
+      },
+      "icon": {
+        "displayName": "步骤图标的类型",
+        "desc": "步骤图标的类型，可选",
+        "type": "string"
+      },
+      "status": {
+        "displayName": "指定状态。",
+        "desc": "指定状态。当不配置该属性时，会使用 Steps 的 current 来自动指定状态。可选：wait process finish error",
+        "type": "string"
+      },
+      "title": {
+        "displayName": "标题",
+        "desc": "标题",
+        "type": "string"
+      }
+    },
+    "slots": {
+      "description": {
+        "displayName": "步骤的详情描述",
+        "desc": "步骤的详情描述，可选"
+      },
+      "icon": {
+        "displayName": "步骤图标的类型",
+        "desc": "步骤图标的类型，可选"
+      },
+      "title": {
+        "displayName": "标题",
+        "desc": "标题"
+      }
+    },
+    "methods": {},
+    "componentPath": "@/components/navigation/yn-steps-step/"
   },
   "yn-auto-complete": {
     "name": "yn-auto-complete",
@@ -1082,7 +1359,201 @@
         "displayName": "获取焦点",
         "desc": "获取焦点"
       }
-    }
+    },
+    "componentPath": "@/components/data-entry/yn-auto-complete/"
+  },
+  "yn-cascader": {
+    "name": "yn-cascader",
+    "displayName": "级联选择",
+    "version": "1.0.0",
+    "desc": "级联选择框。",
+    "properties": {
+      "allowClear": {
+        "displayName": "是否支持清除",
+        "desc": "是否支持清除",
+        "type": "boolean",
+        "value": true
+      },
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "changeOnSelect": {
+        "displayName": "点选每级菜单选项值都会发生变化",
+        "desc": "当此项为 true 时，点选每级菜单选项值都会发生变化，具体见上面的演示",
+        "type": "boolean",
+        "value": false
+      },
+      "defaultValue": {
+        "displayName": "默认的选中项",
+        "desc": "默认的选中项",
+        "typeDesc": "string[] | number[]",
+        "type": "array"
+      },
+      "disabled": {
+        "displayName": "禁用",
+        "desc": "禁用",
+        "type": "boolean",
+        "value": false
+      },
+      "displayRender": {
+        "displayName": "选择后展示的渲染函数",
+        "desc": "选择后展示的渲染函数,可使用 slot='displayRender' 和 slot-scope='{labels, selectedOptions}'",
+        "typeDesc": "({labels, selectedOptions}) => vNode",
+        "type": "function"
+      },
+      "expandTrigger": {
+        "displayName": "次级菜单的展开方式",
+        "desc": "次级菜单的展开方式，可选 'click' 和 'hover'",
+        "type": "string",
+        "value": "click"
+      },
+      "fieldNames": {
+        "displayName": "自定义 options 中 label name children 的字段",
+        "desc": "自定义 options 中 label name children 的字段",
+        "typeDesc": "默认值：{ label: 'label', value: 'value', children: 'children' }",
+        "type": "object"
+      },
+      "getPopupContainer": {
+        "displayName": "菜单渲染父节点。",
+        "desc": "菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位。",
+        "typeDesc": "类型：Function(triggerNode), 默认值：() => document.body",
+        "type": "function"
+      },
+      "loadData": {
+        "displayName": "用于动态加载选项",
+        "desc": "用于动态加载选项，无法与 showSearch 一起使用",
+        "typeDesc": "类型：(selectedOptions) => void",
+        "type": "function"
+      },
+      "notFoundContent": {
+        "displayName": "当下拉列表为空时显示的内容",
+        "desc": "当下拉列表为空时显示的内容",
+        "type": "string",
+        "value": "Not Found"
+      },
+      "options": {
+        "displayName": "可选项数据源",
+        "desc": "可选项数据源",
+        "type": "object"
+      },
+      "placeholder": {
+        "displayName": "输入框占位文本",
+        "desc": "输入框占位文本",
+        "type": "string",
+        "value": "请选择"
+      },
+      "popupClassName": {
+        "displayName": "自定义浮层类名",
+        "desc": "自定义浮层类名",
+        "type": "string"
+      },
+      "popupStyle": {
+        "displayName": "自定义浮层样式",
+        "desc": "自定义浮层样式",
+        "type": "object"
+      },
+      "popupPlacement": {
+        "displayName": "浮层预设位置",
+        "desc": "浮层预设位置：bottomLeft bottomRight topLeft topRight",
+        "typeDesc": "类型：Enum",
+        "type": "string",
+        "value": "bottomLeft"
+      },
+      "popupVisible": {
+        "displayName": "控制浮层显隐",
+        "desc": "控制浮层显隐",
+        "type": "boolean"
+      },
+      "showSearch": {
+        "displayName": "在选择框中显示搜索框",
+        "desc": "在选择框中显示搜索框",
+        "type": "boolean|object",
+        "value": false,
+        "properties": {
+          "filter": {
+            "displayName": "接收 inputValue path 两个参数",
+            "desc": "接收 inputValue path 两个参数，当 path 符合筛选条件时，应返回 true，反之则返回 false。",
+            "typeDesc": "function(inputValue, path): boolean",
+            "type": "function"
+          },
+          "limit": {
+            "displayName": "搜索结果展示数量",
+            "desc": "搜索结果展示数量",
+            "type": "number",
+            "value": 50
+          },
+          "matchInputWidth": {
+            "displayName": "搜索结果列表是否与输入框同宽",
+            "desc": "搜索结果列表是否与输入框同宽",
+            "type": "boolean"
+          },
+          "render": {
+            "displayName": "用于渲染 filter 后的选项",
+            "desc": "用于渲染 filter 后的选项,可使用 slot='showSearchRender' 和 slot-scope='{inputValue, path}'",
+            "typeDesc": "function({inputValue, path}): vNode",
+            "type": "function"
+          },
+          "sort": {
+            "displayName": "用于排序 filter 后的选项",
+            "desc": "用于排序 filter 后的选项",
+            "typeDesc": "function(a, b, inputValue)",
+            "type": "function"
+          }
+        }
+      },
+      "size": {
+        "displayName": "输入框大小",
+        "desc": "输入框大小，可选 large default small",
+        "type": "string",
+        "value": "default"
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "string | VNode | slot",
+        "type": "string|object"
+      },
+      "value": {
+        "displayName": "指定选中项",
+        "desc": "指定选中项",
+        "typeDesc": "string[] | number[]",
+        "type": "array",
+        "v-model": true
+      }
+    },
+    "slots": {
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "string | VNode | slot"
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "选择完成后的回调",
+        "desc": "选择完成后的回调",
+        "argsDesc": "(value, selectedOptions) => void"
+      },
+      "popupVisibleChange": {
+        "displayName": "显示/隐藏浮层的回调",
+        "desc": "显示/隐藏浮层的回调",
+        "argsDesc": "(value) => void"
+      }
+    },
+    "methods": {
+      "blur": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    },
+    "componentPath": "@/components/data-entry/yn-cascader/"
   },
   "yn-checkbox": {
     "name": "yn-checkbox",
@@ -1137,7 +1608,8 @@
         "displayName": "获取焦点",
         "desc": "获取焦点"
       }
-    }
+    },
+    "componentPath": "@/components/data-entry/yn-checkbox/"
   },
   "yn-checkbox-group": {
     "name": "yn-checkbox-group",
@@ -1175,7 +1647,8 @@
         "argsDesc": "Function(checkedValue)"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-entry/yn-checkbox-group/"
   },
   "yn-datepicker": {
     "name": "yn-datepicker",
@@ -1375,7 +1848,8 @@
         "displayName": "获取焦点",
         "desc": "获取焦点"
       }
-    }
+    },
+    "componentPath": "@/components/data-entry/yn-datepicker/"
   },
   "yn-monthpicker": {
     "name": "yn-monthpicker",
@@ -1555,7 +2029,8 @@
         "displayName": "获取焦点",
         "desc": "获取焦点"
       }
-    }
+    },
+    "componentPath": "@/components/data-entry/yn-monthpicker/"
   },
   "yn-weekpicker": {
     "name": "yn-weekpicker",
@@ -1719,7 +2194,8 @@
         "displayName": "获取焦点",
         "desc": "获取焦点"
       }
-    }
+    },
+    "componentPath": "@/components/data-entry/yn-weekpicker/"
   },
   "yn-rangepicker": {
     "name": "yn-rangepicker",
@@ -1914,7 +2390,8 @@
         "displayName": "获取焦点",
         "desc": "获取焦点"
       }
-    }
+    },
+    "componentPath": "@/components/data-entry/yn-rangepicker/"
   },
   "yn-form": {
     "name": "yn-form",
@@ -1955,7 +2432,8 @@
         }
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-entry/yn-form/"
   },
   "yn-form-item": {
     "name": "yn-form-item",
@@ -2031,7 +2509,8 @@
         "desc": "label 标签的文本"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-entry/yn-form-item/"
   },
   "yn-input": {
     "name": "yn-input",
@@ -2134,7 +2613,8 @@
         }
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-entry/yn-input/"
   },
   "yn-input-textarea": {
     "name": "yn-input-textarea",
@@ -2167,7 +2647,8 @@
         "desc": "按下回车的回调"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-entry/yn-input-textarea/"
   },
   "yn-input-search": {
     "name": "yn-input-search",
@@ -2193,7 +2674,8 @@
         "desc": "点击搜索或按下回车键时的回调。unction(value, event)"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-entry/yn-input-search/"
   },
   "yn-input-group": {
     "name": "yn-input-group",
@@ -2216,7 +2698,8 @@
     },
     "slots": {},
     "events": {},
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-entry/yn-input-group/"
   },
   "yn-input-number": {
     "name": "yn-input-number",
@@ -2306,7 +2789,24 @@
       "focus": {
         "desc": "@"
       }
-    }
+    },
+    "componentPath": "@/components/data-entry/yn-input-number/"
+  },
+  "yn-input-password": {
+    "name": "yn-input-password",
+    "displayName": "输入密码框",
+    "version": "1.0.0",
+    "desc": "输入密码框",
+    "properties": {
+      "visibilityToggle": {
+        "displayName": "是否显示切换按钮",
+        "desc": "是否显示切换按钮",
+        "type": "boolean",
+        "value": true
+      },
+      "methods": {}
+    },
+    "componentPath": "@/components/data-entry/yn-input-password/"
   },
   "yn-radio": {
     "name": "yn-radio",
@@ -2348,7 +2848,8 @@
         "displayName": "获取焦点",
         "desc": "获取焦点"
       }
-    }
+    },
+    "componentPath": "@/components/data-entry/yn-radio/"
   },
   "yn-radio-group": {
     "name": "yn-radio-group",
@@ -2408,7 +2909,8 @@
         "argsDesc": "Function(e:Event)"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-entry/yn-radio-group/"
   },
   "yn-rate": {
     "name": "yn-rate",
@@ -2513,7 +3015,8 @@
         "displayName": "获取焦点",
         "desc": "获取焦点"
       }
-    }
+    },
+    "componentPath": "@/components/data-entry/yn-rate/"
   },
   "yn-switch": {
     "name": "yn-switch",
@@ -2600,7 +3103,8 @@
         "displayName": "获取焦点",
         "desc": "获取焦点"
       }
-    }
+    },
+    "componentPath": "@/components/data-entry/yn-switch/"
   },
   "yn-select": {
     "name": "yn-select",
@@ -2942,7 +3446,8 @@
         "displayName": "获取焦点",
         "desc": "获取焦点"
       }
-    }
+    },
+    "componentPath": "@/components/data-entry/yn-select/"
   },
   "yn-select-option": {
     "name": "yn-select-option",
@@ -2979,7 +3484,8 @@
     },
     "slots": {},
     "events": {},
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-entry/yn-select-option/"
   },
   "yn-select-optgroup": {
     "name": "yn-select-optgroup",
@@ -3005,7 +3511,408 @@
       }
     },
     "events": {},
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-entry/yn-select-optgroup/"
+  },
+  "yn-slider": {
+    "name": "yn-slider",
+    "displayName": "滑动输入条",
+    "version": "1.0.0",
+    "desc": "滑动型输入器，展示当前值和可选范围。",
+    "properties": {
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "defaultValue": {
+        "displayName": "设置初始取值",
+        "desc": "设置初始取值。当 range 为 false 时，使用 number，否则用 [number, number]",
+        "typeDesc": "number|number[]",
+        "type": "number|array",
+        "valueDesc": "0 or [0, 0]",
+        "value": 0
+      },
+      "disabled": {
+        "displayName": "禁用状态",
+        "desc": "值为 true 时，滑块为禁用状态",
+        "type": "boolean",
+        "value": false
+      },
+      "dots": {
+        "displayName": "是否只能拖拽到刻度上",
+        "desc": "是否只能拖拽到刻度上",
+        "type": "boolean",
+        "value": false
+      },
+      "included": {
+        "displayName": "marks 不为空对象时有效",
+        "desc": "marks 不为空对象时有效，值为 true 时表示值为包含关系，false 表示并列",
+        "type": "boolean",
+        "value": true
+      },
+      "marks": {
+        "displayName": "刻度标记",
+        "desc": "刻度标记，key 的类型必须为 number 且取值在闭区间 [min, max] 内，每个标签可以单独设置样式",
+        "valueDesc": "{ number: string|VNode } or { number: { style: object, label: string|VNode } } or { number: () => VNode }",
+        "type": "object"
+      },
+      "max": {
+        "displayName": "最大值",
+        "desc": "最大值",
+        "type": "number",
+        "value": 100
+      },
+      "min": {
+        "displayName": "最小值",
+        "desc": "最小值",
+        "type": "number",
+        "value": 0
+      },
+      "range": {
+        "displayName": "双滑块模式",
+        "desc": "双滑块模式",
+        "type": "boolean",
+        "value": false
+      },
+      "step": {
+        "displayName": "步长",
+        "desc": "步长，取值必须大于 0，并且可被 (max - min) 整除。当 marks 不为空对象时，可以设置 step 为 null，此时 Slider 的可选值仅有 marks 标出来的部分。",
+        "type": "number",
+        "value": 1
+      },
+      "tipFormatter": {
+        "displayName": "格式",
+        "desc": "Slider 会把当前值传给 tipFormatter，并在 Tooltip 中显示 tipFormatter 的返回值，若为 null，则隐藏 Tooltip。",
+        "valueDesc": "IDENTITY",
+        "type": "function"
+      },
+      "value": {
+        "displayName": "设置当前取值",
+        "desc": "设置当前取值。当 range 为 false 时，使用 number，否则用 [number, number]",
+        "typeDesc": "number|number[]",
+        "type": "number|array",
+        "v-model": true
+      },
+      "vertical": {
+        "displayName": "垂直方向",
+        "desc": "值为 true 时，Slider 为垂直方向",
+        "type": "boolean",
+        "value": false
+      },
+      "tooltipVisible": {
+        "displayName": "显示Tooltip",
+        "desc": "值为true时，Tooltip 将会始终显示；否则始终不显示，哪怕在拖拽及移入时。",
+        "type": "boolean"
+      }
+    },
+    "events": {
+      "afterChange": {
+        "displayName": "把当前值作为参数传入。",
+        "desc": "与 mouseup 触发时机一致，把当前值作为参数传入。",
+        "argsDesc": "Function(value)"
+      },
+      "change": {
+        "displayName": "改变后的值作为参数传入。",
+        "desc": "当 Slider 的值发生改变时，会触发 change 事件，并把改变后的值作为参数传入。",
+        "argsDesc": "Function(value)"
+      }
+    },
+    "methods": {
+      "blur": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    },
+    "componentPath": "@/components/data-entry/yn-slider/"
+  },
+  "yn-timepicker": {
+    "name": "yn-timepicker",
+    "displayName": "时间选择框",
+    "version": "1.0.0",
+    "desc": "输入或选择时间的控件。",
+    "properties": {
+      "allowClear": {
+        "displayName": "是否展示清除按钮",
+        "desc": "是否展示清除按钮",
+        "type": "boolean",
+        "value": true
+      },
+      "autoFocus": {
+        "displayName": "自动获取焦点",
+        "desc": "自动获取焦点",
+        "type": "boolean",
+        "value": false
+      },
+      "clearText": {
+        "displayName": "清除按钮的提示文案",
+        "desc": "清除按钮的提示文案",
+        "type": "string",
+        "value": "clear"
+      },
+      "defaultOpenValue": {
+        "displayName": "设置面板打开时默认选中的值",
+        "desc": "当 defaultValue/value 不存在时，可以设置面板打开时默认选中的值",
+        "typeDesc": "moment",
+        "valueDesc": "moment()",
+        "type": "object"
+      },
+      "defaultValue": {
+        "displayName": "默认时间",
+        "desc": "默认时间",
+        "typeDesc": "moment",
+        "type": "object",
+        "value": null
+      },
+      "disabled": {
+        "displayName": "禁用全部操作",
+        "desc": "禁用全部操作",
+        "type": "boolean",
+        "value": false
+      },
+      "disabledHours": {
+        "displayName": "禁止选择部分小时选项",
+        "desc": "禁止选择部分小时选项",
+        "typeDesc": "function()",
+        "type": "function"
+      },
+      "disabledMinutes": {
+        "displayName": "禁止选择部分分钟选项",
+        "desc": "禁止选择部分分钟选项",
+        "typeDesc": "function(selectedHour)",
+        "type": "function"
+      },
+      "disabledSeconds": {
+        "displayName": "禁止选择部分秒选项",
+        "desc": "禁止选择部分秒选项",
+        "typeDesc": "function(selectedHour, selectedMinute)",
+        "type": "string"
+      },
+      "format": {
+        "displayName": "展示的时间格式",
+        "desc": "展示的时间格式",
+        "valueDesc": "'HH:mm:ss'",
+        "type": "string"
+      },
+      "getPopupContainer": {
+        "displayName": "定义浮层的容器",
+        "desc": "定义浮层的容器，默认为 body 上新建 div",
+        "typeDesc": "function(trigger)",
+        "type": "string"
+      },
+      "hideDisabledOptions": {
+        "displayName": "隐藏禁止选择的选项",
+        "desc": "隐藏禁止选择的选项",
+        "type": "boolean",
+        "value": false
+      },
+      "hourStep": {
+        "displayName": "小时选项间隔",
+        "desc": "小时选项间隔",
+        "type": "number",
+        "value": 1
+      },
+      "inputReadOnly": {
+        "displayName": "设置输入框为只读",
+        "desc": "设置输入框为只读（避免在移动设备上打开虚拟键盘）",
+        "type": "boolean",
+        "value": false
+      },
+      "minuteStep": {
+        "displayName": "分钟选项间隔",
+        "desc": "分钟选项间隔",
+        "type": "number",
+        "value": 1
+      },
+      "open": {
+        "displayName": "面板是否打开",
+        "desc": "面板是否打开",
+        "type": "boolean",
+        "value": false,
+        ".sync": true
+      },
+      "placeholder": {
+        "displayName": "没有值的时候显示的内容",
+        "desc": "没有值的时候显示的内容",
+        "type": "string",
+        "value": "请选择时间"
+      },
+      "popupClassName": {
+        "displayName": "弹出层类名",
+        "desc": "弹出层类名",
+        "type": "string"
+      },
+      "popupStyle": {
+        "displayName": "弹出层样式对象",
+        "desc": "弹出层样式对象",
+        "type": "object"
+      },
+      "secondStep": {
+        "displayName": "秒选项间隔",
+        "desc": "秒选项间隔",
+        "type": "number",
+        "value": 1
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "string | VNode | slot",
+        "type": "string|object"
+      },
+      "use12Hours": {
+        "displayName": "使用 12 小时制",
+        "desc": "使用 12 小时制，为 true 时 format 默认为 h:mm:ss a",
+        "type": "boolean",
+        "value": false
+      },
+      "value": {
+        "displayName": "当前时间",
+        "desc": "当前时间",
+        "typeDesc": "moment",
+        "type": "object"
+      }
+    },
+    "slots": {
+      "addon": {
+        "displayName": "选择框底部显示自定义的内容",
+        "desc": "选择框底部显示自定义的内容",
+        "typeDesc": "slot | slot-scope"
+      },
+      "suffixIcon": {
+        "displayName": "自定义的选择框后缀图标",
+        "desc": "自定义的选择框后缀图标",
+        "typeDesc": "string | VNode | slot"
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "时间发生变化的回调",
+        "desc": "时间发生变化的回调",
+        "argsDesc": "function(time: moment, timeString: string): void"
+      },
+      "openChange": {
+        "displayName": "面板打开/关闭时的回调",
+        "desc": "面板打开/关闭时的回调",
+        "argsDesc": "(open: boolean): void"
+      }
+    },
+    "methods": {
+      "blur": {
+        "displayName": "移除焦点",
+        "desc": "移除焦点"
+      },
+      "focus": {
+        "displayName": "获取焦点",
+        "desc": "获取焦点"
+      }
+    },
+    "componentPath": "@/components/data-entry/yn-timepicker/"
+  },
+  "yn-transfer": {
+    "name": "yn-transfer",
+    "displayName": "穿梭框",
+    "version": "1.0.0",
+    "desc": "双栏穿梭选择框。",
+    "properties": {
+      "dataSource": {
+        "displayName": "数据源",
+        "desc": "数据源，其中的数据将会被渲染到左边一栏中，targetKeys 中指定的除外。",
+        "typeDesc": "[{key: string.isRequired,title: string.isRequired,description: string,disabled: bool}][]",
+        "valueDesc": "[]"
+      },
+      "disabled": {
+        "displayName": "是否禁用",
+        "desc": "是否禁用"
+      },
+      "filterOption": {
+        "displayName": "接收 inputValue option 两个参数",
+        "desc": "接收 inputValue option 两个参数，当 option 符合筛选条件时，应返回 true，反之则返回 false。",
+        "typeDesc": "(inputValue, option): boolean"
+      },
+      "lazy": {
+        "displayName": "懒加载",
+        "desc": "Transfer 使用了 [vc-lazy-load]优化性能，这里可以设置相关参数。设为 false 可以关闭懒加载。",
+        "valueDesc": "{ height: 32, offset: 32 }"
+      },
+      "listStyle": {
+        "displayName": "两个穿梭框的自定义样式",
+        "desc": "两个穿梭框的自定义样式"
+      },
+      "locale": {
+        "displayName": "各种语言",
+        "desc": "各种语言",
+        "valueDesc": "{ itemUnit: '项', itemsUnit: '项', notFoundContent: '列表为空', searchPlaceholder: '请输入搜索内容' }"
+      },
+      "operations": {
+        "displayName": "操作文案集合",
+        "desc": "操作文案集合，顺序从上至下",
+        "valueDesc": "['>', '<']"
+      },
+      "render": {
+        "displayName": "每行数据渲染函数",
+        "desc": "每行数据渲染函数，该函数的入参为 dataSource 中的项，返回值为 element。或者返回一个普通对象，其中 label 字段为 element，value 字段为 title",
+        "typeDesc": "Function(record)"
+      },
+      "selectedKeys": {
+        "displayName": "设置哪些项应该被选中",
+        "desc": "设置哪些项应该被选中"
+      },
+      "showSearch": {
+        "displayName": "是否显示搜索框",
+        "desc": "是否显示搜索框"
+      },
+      "targetKeys": {
+        "displayName": "显示在右侧框数据的 key 集合",
+        "desc": "显示在右侧框数据的 key 集合"
+      },
+      "titles": {
+        "displayName": "标题集合",
+        "desc": "标题集合，顺序从左至右",
+        "valueDesc": "['', '']"
+      }
+    },
+    "slots": {
+      "footer": {
+        "displayName": "可以设置为一个 作用域插槽",
+        "desc": "可以设置为一个 作用域插槽",
+        "args": [
+          {
+            "type": "object",
+            "name": "footer",
+            "displayName": "尾部"
+          }
+        ]
+      }
+    },
+    "events": {
+      "change": {
+        "displayName": "选项在两栏之间转移时的回调函数",
+        "desc": "选项在两栏之间转移时的回调函数",
+        "argsDesc": "(targetKeys, direction, moveKeys): void"
+      },
+      "scroll": {
+        "displayName": "选项列表滚动时的回调函数",
+        "desc": "选项列表滚动时的回调函数",
+        "argsDesc": "(direction, event): void"
+      },
+      "search": {
+        "displayName": "搜索框内容时改变时的回调函数",
+        "desc": "搜索框内容时改变时的回调函数",
+        "argsDesc": "(direction: 'left'|'right', value: string): void"
+      },
+      "selectChange": {
+        "displayName": "选中项发生改变时的回调函数",
+        "desc": "选中项发生改变时的回调函数",
+        "argsDesc": "(sourceSelectedKeys, targetSelectedKeys): void"
+      }
+    },
+    "methods": {},
+    "componentPath": "@/components/data-entry/yn-transfer/"
   },
   "yn-avatar": {
     "name": "yn-avatar",
@@ -3051,7 +3958,8 @@
         "type": "function"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-avatar/"
   },
   "yn-badge": {
     "name": "yn-badge",
@@ -3115,7 +4023,8 @@
         "desc": "图标右上角的圆形徽标数字。"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-badge/"
   },
   "yn-calendar": {
     "name": "yn-calendar",
@@ -3217,7 +4126,8 @@
         }
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-calendar/"
   },
   "yn-card": {
     "name": "yn-card",
@@ -3315,7 +4225,8 @@
         }
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-card/"
   },
   "yn-empty": {
     "name": "yn-empty",
@@ -3346,7 +4257,8 @@
       }
     },
     "events": {},
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-empty/"
   },
   "yn-tabs": {
     "name": "yn-tabs",
@@ -3441,7 +4353,8 @@
         "argsDesc": "Function"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-tabs/"
   },
   "yn-tabs-tabpane": {
     "name": "yn-tabs-tabpane",
@@ -3472,7 +4385,8 @@
         "desc": "选项卡头显示文字"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-tabs-tabpane/"
   },
   "yn-tooltip": {
     "name": "yn-tooltip",
@@ -3577,7 +4491,8 @@
         }
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-tooltip/"
   },
   "yn-tag": {
     "name": "yn-tag",
@@ -3621,7 +4536,8 @@
         }
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-tag/"
   },
   "yn-tag-checkabletag": {
     "name": "yn-tag-checkabletag",
@@ -3647,7 +4563,8 @@
         }
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-tag-checkabletag/"
   },
   "yn-tag-list": {
     "name": "yn-tag-list",
@@ -3678,7 +4595,8 @@
       }
     },
     "events": {},
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-tag-list/"
   },
   "yn-tree": {
     "name": "yn-tree",
@@ -3977,7 +4895,8 @@
           }
         ]
       }
-    }
+    },
+    "componentPath": "@/components/data-display/yn-tree/"
   },
   "yn-tree-treenode": {
     "name": "yn-tree-treenode",
@@ -4055,7 +4974,8 @@
         "desc": "标题"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-tree-treenode/"
   },
   "yn-tree-directorytree": {
     "name": "yn-tree-directorytree",
@@ -4070,7 +4990,8 @@
         "value": "click"
       }
     },
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/data-display/yn-tree-directorytree/"
   },
   "yn-modal": {
     "name": "yn-modal",
@@ -4359,7 +5280,8 @@
         "desc": "点击确定回调，参数为关闭函数，返回 promise 时 resolve 后自动关闭",
         "type": "function"
       }
-    }
+    },
+    "componentPath": "@/components/feedback/yn-modal/"
   },
   "yn-drawer": {
     "name": "yn-drawer",
@@ -4466,7 +5388,8 @@
         "displayName": "抽屉",
         "desc": "屏幕边缘滑出的浮层面板。"
       }
-    }
+    },
+    "componentPath": "@/components/feedback/yn-drawer/"
   },
   "yn-echart": {
     "name": "yn-echart",
@@ -4529,7 +5452,10 @@
                 "desc": "指定窗口打开主标题超链接。",
                 "type": "string",
                 "valueDesc": "blank",
-                "valueList": ["self", "blank"]
+                "valueList": [
+                  "self",
+                  "blank"
+                ]
               }
             }
           }
@@ -4555,6 +5481,7 @@
     },
     "slots": {},
     "events": {},
-    "methods": {}
+    "methods": {},
+    "componentPath": "@/components/charts/yn-echart/"
   }
 }
