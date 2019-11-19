@@ -8,7 +8,7 @@ const css_default = `.{name} {
 
 }
 `;
-const index_default = `import { defineComponent, VUE } from "yn_p1/utils/ComponentUtils";
+const index_default = `import { defineComponent, VUE } from "yn-p1/utils/ComponentUtils";
 import template from "./{name}.html";
 import definition from "./{name}.js";
 import metadata from "./metadata.json";
@@ -28,9 +28,9 @@ const js_default = `export default {
 `;
 const metadata_default = `{
   "name": "{name}",
-  "displayName": "{displayName}",
+  "displayName": "@",
   "version": "1.0.0",
-  "desc": "{desc}",
+  "desc": "@",
   "properties": {
   },
   "events": {
@@ -39,7 +39,7 @@ const metadata_default = `{
   }
 }
 `;
-const help_cookbook_defualt = `/* eslint-disable no-useless-escape */
+const help_cookbook_default = `/* eslint-disable no-useless-escape */
 
 export default {
   whenToUseDesc: \`\`,
@@ -48,14 +48,15 @@ export default {
     {
       title: "",
       desc: "",
-      code: \`
-    \`
+      code: \`\`
     }
   ]
 };
 `;
 const nls_default_translations = `{
   "dt": {
+    "displayName": "{displayName}",
+    "desc": "{desc}"
   }
 }
 `;
@@ -100,36 +101,48 @@ export class YnComponent {
     let nameReplaceReg = /\{name\}/g;
     let displayNameReplaceReg = /\{displayName\}/g;
     let descReplaceReg = /\{desc\}/g;
+    terminal.sendText('echo "Create html file."');
     terminal.sendText(
       `echo '${template_default.replace(nameReplaceReg, name)}' > ${name +
         "/" +
         name}.html`
     );
+    terminal.sendText('echo "Create index js file."');
     terminal.sendText(
       `echo '${index_default.replace(nameReplaceReg, name)}' > ${name +
         "/index"}.js`
     );
+    terminal.sendText('echo "Create view model file."');
     terminal.sendText(`echo '${js_default}' > ${name + "/" + name}.js`);
+    terminal.sendText('echo "Create css file."');
     terminal.sendText(
       `echo '${css_default.replace(nameReplaceReg, name)}' > ${name +
         "/" +
         name}.css`
     );
+    terminal.sendText('echo "Create metadata json."');
     terminal.sendText(
-      `echo '${metadata_default
-        .replace(nameReplaceReg, name)
-        .replace(displayNameReplaceReg, displayName)
-        .replace(descReplaceReg, desc)}' > ${name + "/metadata.json"}`
+      `echo '${metadata_default.replace(nameReplaceReg, name)}' > ${name +
+        "/metadata.json"}`
     );
-    terminal.sendText(
-      `echo '${help_cookbook_defualt}' > ${name +
-        "/resources/help/cookbook.js"}`
-    );
-
-    terminal.sendText(
-      `echo '${nls_default_translations}' > ${name +
-        "/resources/nls/ui-translations.json"}`
-    );
+    terminal.sendText('echo "Create cookbook file."');
+    setTimeout(() => {
+      terminal.sendText(
+        `echo '${help_cookbook_default}' > ${name +
+          "/resources/help/cookbook.js"}`
+      );
+    }, 50);
+    setTimeout(() => {
+      terminal.sendText('echo "Create default translation file."');
+    }, 50);
+    setTimeout(() => {
+      terminal.sendText(
+        `echo '${nls_default_translations
+          .replace(displayNameReplaceReg, displayName)
+          .replace(descReplaceReg, desc)}' > ${name +
+          "/resources/nls/ui-translations.json"}`
+      );
+    }, 50);
   }
 
   public getTextEdit(document: vscode.TextDocument, componentPath: string) {

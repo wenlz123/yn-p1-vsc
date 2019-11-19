@@ -18,9 +18,13 @@
 
 ## 使用
 
-### 基本使用方法
+### 组件提示使用方法
 
 ![Usage Sample](/images/usage_sample.gif)
+
+### 新增元年标准组件
+
+![Create Component Sample](/images/create_component_sample.gif)
 
 ## TODO 列表
 
