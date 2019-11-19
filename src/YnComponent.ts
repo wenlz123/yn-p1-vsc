@@ -2,12 +2,10 @@ import * as vscode from "vscode";
 
 const template_default = `<div class="{name}">
 
-</div>
-`;
+</div>`;
 const css_default = `.{name} {
 
-}
-`;
+}`;
 const index_default = `import { defineComponent, VUE } from "yn-p1/utils/ComponentUtils";
 import template from "./{name}.html";
 import definition from "./{name}.js";
@@ -20,12 +18,10 @@ export default defineComponent({
   template,
   definition,
   metadata
-});
-`;
+});`;
 const js_default = `export default {
 
-}
-`;
+}`;
 const metadata_default = `{
   "name": "{name}",
   "displayName": "@",
@@ -37,8 +33,7 @@ const metadata_default = `{
   },
   "slots": {
   }
-}
-`;
+}`;
 const help_cookbook_default = `/* eslint-disable no-useless-escape */
 
 export default {
@@ -51,15 +46,13 @@ export default {
       code: \`\`
     }
   ]
-};
-`;
+};`;
 const nls_default_translations = `{
   "dt": {
     "displayName": "{displayName}",
     "desc": "{desc}"
   }
-}
-`;
+}`;
 
 export class YnComponent {
   public async add(...args): Promise<void> {
