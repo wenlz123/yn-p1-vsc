@@ -3,6 +3,7 @@
 import * as vscode from "vscode";
 import { App, P1CompletionItemProvider } from "./app";
 import { ImportFixer } from "./import-fixer";
+import { YnComponent } from "./YnComponent";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -42,6 +43,14 @@ export function activate(context: vscode.ExtensionContext) {
       new ImportFixer().fix(document, position, token, tag, componentPath);
     }
   );
+  let terminal: vscode.Terminal = vscode.window.createTerminal("YN P1");
+  terminal.sendText("clear");
+  let addYnComponentCommand = vscode.commands.registerCommand(
+    "extension.createYnComponent",
+    (...args) => {
+      new YnComponent().add(terminal, ...args);
+    }
+  );
   let vueLanguageConfig = vscode.languages.setLanguageConfiguration("vue", {
     wordPattern: WORD_REG
   });
@@ -58,7 +67,12 @@ export function activate(context: vscode.ExtensionContext) {
   //   }
   // );
 
-  context.subscriptions.push(importFixer, completion, vueLanguageConfig);
+  context.subscriptions.push(
+    importFixer,
+    completion,
+    vueLanguageConfig,
+    addYnComponentCommand
+  );
 }
 
 // this method is called when your extension is deactivated

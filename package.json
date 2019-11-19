@@ -18,11 +18,32 @@
   ],
   "activationEvents": [
     "onLanguage:html",
-    "onLanguage:vue"
+    "onLanguage:vue",
+    "workspaceContains:vue.config.js"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": []
+    "commands": [
+      {
+        "command": "extension.createYnComponent",
+        "title": "添加元年标准组件"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "extension.createYnComponent",
+          "group": "yuanian",
+          "when": "explorerResourceIsFolder"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "extension.createYnComponent",
+        "key": "alt+shift+c"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
