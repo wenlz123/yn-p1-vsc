@@ -2,6 +2,10 @@
 
 元年 P1 VSCode 插件用于辅助开发人员更快的使用元年 P1 平台开发的组件和工具类。
 
+## 安装地址
+
+https://marketplace.visualstudio.com/items?itemName=yuanian.yn-p1
+
 ## 特点
 
 插件中，组件对应的标签名称，属性名称，和属性值都有提示。开发人员会大幅提升开发效率。
