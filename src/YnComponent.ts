@@ -6,7 +6,7 @@ const template_default = `<div class="{name}">
 const css_default = `.{name} {
 
 }`;
-const index_default = `import { defineComponent, VUE } from "yn-p1/utils/ComponentUtils";
+const index_default = `import { defineComponent, VUE } from "yn-p1/libs/utils/ComponentUtils";
 import template from "./{name}.html";
 import definition from "./{name}.js";
 import metadata from "./metadata.json";
