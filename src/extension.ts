@@ -40,7 +40,9 @@ export function activate(context: vscode.ExtensionContext) {
   let importFixer = vscode.commands.registerCommand(
     "extension.fixImport",
     (document, position, token, tag, componentPath) => {
-      new ImportFixer().fix(document, position, token, tag, componentPath);
+      if (document.languageId === "vue") {
+        new ImportFixer().fix(document, position, token, tag, componentPath);
+      }
     }
   );
   let terminal: vscode.Terminal = vscode.window.createTerminal("YN P1");
