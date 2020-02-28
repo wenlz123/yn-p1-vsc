@@ -378,7 +378,7 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
     let documentation = new MarkdownString(`___描述：___${tagVal.displayName}`);
     documentation.appendText("\n\n");
     documentation.appendMarkdown(
-      `___详情：___${tagVal.desc} 详见：[Cookbook](http://192.168.12.28:8888/#/others/cookbook?type=components&key=${tag})`
+      `___详情：___${tagVal.desc} 详见：[Cookbook](http://192.168.12.28:7000/#/cookbook?type=components&key=${tag})`
     );
 
     return {
@@ -434,7 +434,7 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
       documentation.appendText("\n\n");
     }
     documentation.appendMarkdown(
-      `___详情：___${desc} 详见：[Cookbook](http://192.168.12.28:8888/#/others/cookbook?type=components&key=${tag})`
+      `___详情：___${desc} 详见：[Cookbook](http://192.168.12.28:7000/#/cookbook?type=components&key=${tag})`
     );
     // optionType && (documentation += "\n" + `type: ${optionType}`);
     // defaultValue && (documentation += "\n" + `default: ${defaultValue}`);
