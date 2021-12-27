@@ -375,10 +375,10 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
       snippets.push(`$0</${tag}>`);
     }
     build(tag, tagVal, snippets);
-    let documentation = new MarkdownString(`___描述：___${tagVal.displayName}`);
+    let documentation = new MarkdownString(`描述：${tagVal.displayName}`);
     documentation.appendText("\n\n");
     documentation.appendMarkdown(
-      `___详情：___${tagVal.desc} 详见：[Cookbook](http://192.168.12.28:7000/#/cookbook?type=components&key=${tag})`
+      `详情：${tagVal.desc} 详见：[Cookbook](http://192.168.12.28:7000/#/cookbook?type=components&key=${tag})`
     );
 
     return {
@@ -415,12 +415,12 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
     //   (propertyFlag && type !== "method") ||
     //   (!eventFlag && !propertyFlag)
     // ) {
-    let documentation = new MarkdownString(`___描述：___${displayName}`);
+    let documentation = new MarkdownString(`描述：${displayName}`);
     documentation.appendText("\n\n");
-    documentation.appendMarkdown(`___类型：___${type}`);
+    documentation.appendMarkdown(`类型：${type}`);
     documentation.appendText("\n\n");
     if (typeof value !== "undefined" || valueDesc) {
-      documentation.appendMarkdown(`___默认值：___`);
+      documentation.appendMarkdown(`默认值：`);
       if (typeof value !== "undefined") {
         documentation.appendText("" + value);
       }
@@ -430,15 +430,15 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
       documentation.appendText("\n\n");
     }
     if (valueList) {
-      documentation.appendMarkdown(`___值列表：___${valueList.join(",")}`);
+      documentation.appendMarkdown(`值列表：${valueList.join(",")}`);
       documentation.appendText("\n\n");
     }
     documentation.appendMarkdown(
-      `___详情：___${desc} 详见：[Cookbook](http://192.168.12.28:7000/#/cookbook?type=components&key=${tag})`
+      `详情：${desc} 详见：[Cookbook](http://192.168.12.28:7000/#/cookbook?type=components&key=${tag})`
     );
     // optionType && (documentation += "\n" + `type: ${optionType}`);
     // defaultValue && (documentation += "\n" + `default: ${defaultValue}`);
-    return {
+    const result =  {
       label: attr,
       insertText: new SnippetString(
         `${(eventFlag && !prefixWithAt ? "@" : "") + attr}=${this.quotes}$1${
@@ -456,6 +456,7 @@ export class P1CompletionItemProvider implements CompletionItemProvider {
     // } else {
     //   return;
     // }
+    return result;
   }
 
   getAttrValues(tag: string | undefined, attr: string | undefined) {
